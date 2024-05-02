@@ -3,7 +3,7 @@
 
 /* Cấu trúc if 
 if (dieu-kien) {
-    // thuc-hien-code-neu-dieu-kien-dung
+    // Thực hiện code nếu điều kiện đúng
 }
 */
 
@@ -26,9 +26,9 @@ echo '<br>';
 
 /* Cấu trúc if...else...
 if (dieu-kien) {
-    // thuc-hien-code-neu-dieu-kien-dung
+    // Thực hiện code nếu điều kiện đúng
 } else {
-    // nguoc-lai-thuc-hien-code-neu-dieu-kien-sai
+    // Ngược lại thực hiện code nếu điều kiện sai
 }
  */
 
@@ -59,11 +59,11 @@ echo '<br>';
 /* Cấu trúc if...elseif...else
 
 if (dien-kien-1) {
-    // thuc-hien-code-neu-dieu-kien-1-dung
+    // Thực hiện code nếu điều kiện 1 đúng
 } elseif (dien-kien-2) {
-    // nguoc-lai-thuc-hien-code-neu-dieu-kien-2-dung
-} else {
-    // nguoc-lai-thuc-hien-code-neu-tat-ca-dieu-kien-tren-sai   
+    // Thực hiện code nếu điều kiện 1 sai và điều kiện 2 đúng
+} else {   
+    // Ngược lại thực hiện code nếu tất cả điều kiện trên sai
 }
 
 // Có thể có nhiều elseif() trong câu lệnh điều kiện
@@ -82,25 +82,29 @@ if ($point == 10) {
 } else {
     echo 'Không hợp lệ';
 }
+echo '<br>';
 
 /* Cấu trúc if...else lồng nhau 
 
-if(dieu-kien-1) {
-    if(dieu-kien-1-a) {
-        if(dieu-kien-1-1-a) {
-
-        } else{
-            
-        }
+if(dieu-kien-1) { // Điều kiện cha
+    if(dieu-kien-2) { // Điều kiện con
+        // Thực hiện code nếu điều kiện 1 đúng và điều kiện 2 đúng
     } else{
-        
+        // Ngược lại thực hiện code nếu điều kiện 1 đúng và điều kiện 2 sai
     }
 }else{
-    if(dieu-kien-1-b) {
-
-    } else{
-        
-    }
+    // Ngược lại thực hiện code nếu điều kiện 1 sai
 }
 
 */
+$number = 10;
+
+if ($number > 5) {
+    if ($number > 9) {
+        echo 'Lơn hơn 9';
+    } else {
+        echo 'Nhỏ hơn 9';
+    }
+} else {
+    echo 'Nhỏ hơn 5';
+}
