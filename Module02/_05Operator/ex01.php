@@ -1,7 +1,11 @@
 <?php
-/* Biểu Thức - Toán Tử */
 
-/* Biểu Thức */
+/**
+ * Biểu Thức - Toán Tử
+ * 
+ * Biểu Thức 
+ */
+
 $a = 1;
 $b = 2;
 $result = $a + $b + 7;
@@ -12,9 +16,11 @@ $result = $a + $b + 7;
 
 // Lưu ý: code đọc từ trên xuống, đọc từ trái sang phải
 
-/* Toán Tử Gán */
-
-/** Toán tử = (BẰNG là phép gán giá trị) **/
+/**
+ * Toán Tử Gán 
+ * 
+ * Toán tử = (BẰNG là phép gán giá trị)
+ */
 
 // Cú pháp: ten_bien = gia_tri;
 $age = 30;
@@ -26,7 +32,9 @@ const LANG = 'vietnamese';
 print_r(LANG); //OUTPUT: vietnamese
 echo '<br>';
 
-/** Toán tử .= (CHẤM BẰNG là phép nối chuỗi và gán giá trị) **/
+/** 
+ * Toán tử .= (CHẤM BẰNG là phép nối chuỗi và gán giá trị) 
+ */
 $str = 'Học Lập Trình';
 $str .= ' PHP'; // Tương tự như:  $str = $str . ' PHP';
 $str .= ' Cơ Bản';
