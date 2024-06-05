@@ -25,7 +25,7 @@ for ($i = $start; $i < $count; $i += 2) {
 echo '<hr>';
 // VÍ DỤ: Tính tổng S = 1+2+3+4+5+...+n
 $number = 10;
-$result = 0;
+$result = 0; // Giả định giá trị ban đầu là 0
 for ($i = 1; $i < $number; $i++) {
     $result += $i; // $result = $result + $i
 }
@@ -35,7 +35,7 @@ echo $result;
  * Giả Thích:
  * $result = 0;
  * 
- * $i = 0;` 0 nhỏ hơn 10 => TRUE; $result = 0 + 1 => $result = 1;
+ * $i = 0; 0 nhỏ hơn 10 => TRUE; $result = 0 + 1 => $result = 1;
  * $i = 1; 1 nhỏ hơn 10 => TRUE; $result = 1 + 1 => $result = 2;
  * $i = 2; 2 nhỏ hơn 10 => TRUE; $result = 2 + 2 => $result = 4;
  * $i = 3; 3 nhỏ hơn 10 => TRUE; $result = 3 + 3 => $result = 6;
