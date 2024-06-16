@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Bài tập 1: Hiển thị số chẵn, số lẻ trong dãy số từ 1,2,3,...,100
  */

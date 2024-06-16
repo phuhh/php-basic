@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Bài tập 3: Kiểm tra 1 số có phải là số nguyên tố không và hiển thị kết quả
  *
@@ -39,3 +40,77 @@ if ($n > 1) {
 } else {
     echo $n . ' Không phải là số nguyên số';
 }
+
+/**
+ * Bài 4: In bảng cửu chương
+ * 
+ * Kinh nghiệm: Vẽ HTML CSS trước rồi mới xử lý logic sau
+ * 
+ */
+?>
+
+<table border="1" width="100%" style="background-color:gray">
+    <tr>
+        <?php
+        // lặp hàng toán hạng thứ 1
+        for ($i = 1; $i <= 5; $i++) {
+            echo '<td>';
+            // lặp hàng toán hạng thứ 2
+            for ($j = 1; $j <= 10; $j++) {
+                echo $i . ' x ' . $j . ' = ' . $i * $j . ' <br>';
+            }
+            echo '</td>';
+        }
+        ?>
+    </tr>
+
+    <tr>
+        <?php
+        for ($i = 6; $i <= 10; $i++) {
+            echo '<td>';
+            for ($j = 1; $j <= 10; $j++) {
+                echo $i . ' x ' . $j . ' = ' . $i * $j . ' <br>';
+            }
+            echo '</td>';
+        }
+        ?>
+    </tr>
+</table>
+<hr>
+
+<?php
+/**
+ * Tối ưu code
+ */
+?>
+<table border="1" width="100%" style="background-color: yellow;">
+    <?php
+    for ($i = 1; $i <= 10; $i++) {
+        // Xử lý khi mở thẻ tr
+        if ($i == 1 || $i == 6) {
+            echo '<tr>';
+        }
+        echo '<td>';
+        for ($j = 1; $j <= 10; $j++) {
+            echo $i . ' x ' . $j . ' = ' . $i * $j . ' <br>';
+        }
+        echo '</td>';
+        if ($i == 5 || $i == 10) {
+            echo '</tr>';
+        }
+    }
+    ?>
+</table>
+
+<?php
+/**
+ * For lồng nhau chạy như thế nào ?
+ * 
+ * For (bên ngoài) sẽ chạy đầu tiên, tiếp đến chạy hết vòng lặp For (bên trong).
+ * Quay lại: For (bên ngoài) sẽ chạy tiếp vòng lặp thứ 2, và tiếp tục chạy hết dòng lặp For (bên trong).
+ * Tiếp tục quay lại: For (bên ngoài) sẽ chạy tiếp vòng lặp thứ 3, và tiếp tục chạy hết dòng lặp For (bên trong).
+ * ...
+ * Vòng sẽ lặp đến khi KHÔNG thoả mãn điều kiện For (bên ngoài) thì dừng.
+ * 
+ */
+?>
