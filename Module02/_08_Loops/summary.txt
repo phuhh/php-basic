@@ -1,0 +1,9 @@
+Khi nào sử dụng for - while - do...while
+
+1. Tuỳ vào thói quen 
+
+2. Tuỳ vào bài toán mà sử dụng for - while - do...while
+- Dùng for khi biết trước số lần lặp
+- Dùng while khi không biết trước số lần lặp
+- Dùng do...while khi không biết trước số lần lặp và chạy ít nhất 1 lần nếu điều kiện SAI 
+ 

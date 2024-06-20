@@ -26,6 +26,8 @@
  *        - Giá trị case chỉ chấp nhận: int, string, boolean, null, float
  *        - Quan hệ so sánh trong câu lệnh switch...case luôn là so sanh 2 dấu bằng (==)
  * 
+ *    Từ khoá break dùng để thoát ra khỏi câu lệnh switch sau khi thực hiện đoạn code bên trong case hoặc default.
+ * 
  */
 $number = 1;
 switch ($number) {

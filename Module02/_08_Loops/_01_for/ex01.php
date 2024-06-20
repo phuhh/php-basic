@@ -35,15 +35,15 @@ echo $result;
  * Giải thích:
  * $result = 0; // Giá trị ban đầu
  * 
- * Khởi tạo $i = 0; 0 nhỏ hơn 10 => TRUE; $result = 0 + 1 => $result = 1;
- * $i = 1; 1 nhỏ hơn 10 => TRUE; $result = 1 + 1 => $result = 2;
- * $i = 2; 2 nhỏ hơn 10 => TRUE; $result = 2 + 2 => $result = 4;
- * $i = 3; 3 nhỏ hơn 10 => TRUE; $result = 3 + 3 => $result = 6;
- * $i = 4; 4 nhỏ hơn 10 => TRUE; $result = 6 + 4 => $result = 10;
- * $i = 5; 5 nhỏ hơn 10 => TRUE; $result = 10 + 5 => $result = 15;
+ * $i = 0; kiểm tra 0 nhỏ hơn 10 => điều kiện TRUE; $result = 0 + 1 => $result = 1;
+ * $i = 1; kiểm tra 1 nhỏ hơn 10 => điều kiện TRUE; $result = 1 + 1 => $result = 2;
+ * $i = 2; kiểm tra 2 nhỏ hơn 10 => điều kiện TRUE; $result = 2 + 2 => $result = 4;
+ * $i = 3; kiểm tra 3 nhỏ hơn 10 => điều kiện TRUE; $result = 3 + 3 => $result = 6;
+ * $i = 4; kiểm tra 4 nhỏ hơn 10 => điều kiện TRUE; $result = 6 + 4 => $result = 10;
+ * $i = 5; kiểm tra 5 nhỏ hơn 10 => điều kiện TRUE; $result = 10 + 5 => $result = 15;
  * ...
- * $i = 9; 9 nhỏ hơn 10 => TRUE; $result = 36 + 9 => $result = 45;
- * $i = 10; 10 nhỏ hơn 10 => FALSE;
+ * $i = 9; kiểm tra 9 nhỏ hơn 10 => đk TRUE; $result = 36 + 9 => $result = 45;
+ * $i = 10; kiểm tra 10 nhỏ hơn 10 => đk FALSE;
  * 
  * OUTPUT: 45;
  */

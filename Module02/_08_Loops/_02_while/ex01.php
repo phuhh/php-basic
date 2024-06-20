@@ -13,13 +13,14 @@
 $i = 1; // Giá trị ban đầu (Biến khởi tạo)
 while ($i <= 10) {
     echo 'Vòng lặp thứ ' . $i . '<br>';
-    $i++; // Xử lý điều kiện thoát vòng lặp
+    $i++; // Xử lý điều kiện thoát vòng lặp 
+    // - Chú ý: luôn đặt biến tăng hay biến giảm dưới đoạn code xử lý logic, nếu đặt trên sẽ cho ra kết quả khác.
 }
 
 /**
  * Giải thích
  * 
- * Khởi tạo $i = 1; kiểm tra đk ĐÚNG; in ra 1; tăng $i = 2
+ * $i = 1; kiểm tra đk ĐÚNG; in ra 1; tăng $i = 2
  * $i = 2; kiểm tra đk Đúng; in ra 2; tăng $i = 3
  * $i = 3; kiểm tra đk Đúng; in ra 3; tăng $i = 4
  * ...
