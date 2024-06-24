@@ -3,9 +3,9 @@
 /**
  * Từ khoá break và continue sẽ thường dùng trong các vòng lặp
  * 
- * - Từ khoá break dùng để thoát khỏi vòng lặp, trong đó cả câu lệnh rẽ nhánh switch
- * - Trong switch, tất cả đoạn mã nằm trong câu lệnh case sẽ được thực thi cho đến 
- * khi gặp break sẽ dừng lại và thoát ra khỏi switch. Đối với các case khác cũng vậy.
+ * - Từ khoá break dùng để thoát khỏi vòng lặp, trong đó có cả câu lệnh rẽ nhánh switch
+ * - Trong câu lệnh switch, tất cả đoạn mã nằm trong câu lệnh case sẽ được thực thi cho đến 
+ * khi gặp break sẽ dừng lại và thoát ra khỏi câu lệnh switch. Đối với các case khác cũng vậy.
  */
 for ($i = 1; $i <= 10; $i++) {
     if ($i === 5) {
