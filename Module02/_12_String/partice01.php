@@ -91,12 +91,12 @@ $posSpaceFirst = strpos($strInput, ' ');
 $firstWord = substr($strInput, 0, $posSpaceFirst);
 // 2. Lấy ra chữ cuối cùng
 $posSpaceEnd = strripos($strInput, ' ');
-$leftLength = strlen($strInput) - $posSpaceFirst;
+$leftLength = strlen($strInput) - $posSpaceEnd;
 $endWord = substr($strInput, $posSpaceEnd + 1, $leftLength);
 // 3. lấy nội dung giữa chuỗi
-$middleContent = substr($strInput, $posSpaceFirst, $posSpaceEnd - $posSpaceFirst + 1);
+$middleWord = substr($strInput, $posSpaceFirst, $posSpaceEnd - $posSpaceFirst + 1);
 // 4. Chèn và thay thế
-$output = $endWord . $middleContent . $firstWord;
+$output = $endWord . $middleWord . $firstWord;
 
 // Output
 echo $output;
