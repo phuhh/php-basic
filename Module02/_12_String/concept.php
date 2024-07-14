@@ -2,7 +2,7 @@
 
 /**
  * Khái Niệm
- * String (chuỗi) là mảng bao gồm các ký tự được kết thúc bằng ký rỗng (null).
+ * String (chuỗi) là mảng bao gồm các ký tự.
  * - Hiểu đơn giản chuỗi là danh sách các ký tự nằm trong dấu ngoặc kép hoặc dấu ngoặc đơn.
  * 
  */
@@ -22,7 +22,6 @@ var_dump($str);
  * 8 -> s
  * 9 -> u
  * 10 -> m
- * 11 -> (rỗng)
  */
 echo '<br>';
 //viết chuỗi đặt trong dấu ngoặc kép

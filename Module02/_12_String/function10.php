@@ -12,6 +12,6 @@ $str = chunk_split($str, 5, ', ');
 var_dump($str); // Output: string(21) "Hello, Hello, Hello, "
 echo '<hr>';
 
-// Xoá ký tự dư thừa
+// kết hợp: Xoá ký tự dư thừa
 $str = rtrim($str, ', ');
 var_dump($str); // Output: string(19) "Hello, Hello, Hello"

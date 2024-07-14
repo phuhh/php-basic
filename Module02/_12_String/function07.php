@@ -3,22 +3,17 @@
 /**
  * Trích xuất chuỗi, Tìm vị trí trong chuỗi
  * 
- * 15 Tìm và tách chuỗi từ đâu đến đâu. (Lấy ra chuỗi con từ chuỗi cha)
+ * 15. Lấy ra chuỗi con từ chuỗi cha
  * 
  * Cú pháp: substr($str, $offset, $length)
  * Lưu ý: Vị trí bắt đầu là 0
  */
-$str = 'Trung tâm đào tạo lập trình Unicode';
+$str = 'Trung tam dao tao lap trinh Unicode';
 $subStr = substr($str, 0, 5); // Output: Trung
 echo $subStr . '<br>';
 
-// Hàm này không hỗ trợ tiếng việt
-$str = 'Trung tâm đào tạo lập trình Unicode';
-$subStr = substr($str, 0, 9); // Output: Trung tâ
-echo $subStr . '<br>';
-
 /**
- * Hàm tương tự hỗ trợ tiếng việt
+ * Hàm tương tự hỗ trợ UTF-8 (tiếng việt)
  * Cú pháp: mb_substr($str, $offset, $length, $encoding)
  */
 $str = 'Trung tâm đào tạo lập trình Unicode';
@@ -30,27 +25,34 @@ $str = 'Trung tâm đào tạo lập trình Unicode';
 $subStr = mb_substr($str, 10, 7); // Output: đào tạo
 echo $subStr . '<br>';
 
-// Lấy theo chiều ngược lại, tham số 2 là số âm, không có tham số 3
+/**
+ * Lấy chuỗi theo chiều ngược lại, tham số 2 là số âm
+ * Chú ý: Vị trí cuối cùng bắt đầu là 1 -> đếm từ phải sang trái
+ */
 $str = 'Trung tâm đào tạo lập trình Unicode';
 $subStr = mb_substr($str, -7); // Output: Unicode
 echo $subStr . '<br>';
 
-// Ví dụ khác: Vị trí cuối cùng bắt đầu là 1 -> đếm ngược về
+// Ví dụ khác: hỗ trợ utf-8
 $str = 'Trung tâm đào tạo lập trình Unicode';
-$subStr = mb_substr($str, -14); // Output: trình Unicode
+$subStr = mb_substr($str, -14, null, 'UTF-8'); // Output: trình Unicode
 echo $subStr . '<hr>';
 
 /**
- * 16. Tìm và Tách chuỗi đến hết  (Tách chuỗi từ ký tự cho trước cho đến hết chuỗi)
+ * 16. Tách chuỗi từ ký tự cho trước cho đến hết chuỗi
  * 
  * Cú pháp: strstr($str, $needle)
  */
 $str = 'Trung tâm đào tạo lập trình Unicode';
 $subStr = strstr($str, 'đào'); // Output: đào tạo lập trình Unicode
+echo $subStr . '<br>';
+
+// Tham số thứ 3: Tìm và lấy chuỗi theo chiều ngược lại (bỏ qua ký tự tìm)
+$subStr = strstr($str, 'đào', true); // Output: Trung tâm
 echo $subStr . '<hr>';
 
 /**
- * 17. Tìm và trả về vị trí tìm thấy. Ngược lại không thấy trả về false
+ * 17. Tìm và trả về vị trí đầu tiên tìm thấy. Ngược lại, tìm không thấy trả về false
  * 
  * Cú pháp: strpos($str, $needle)
  * Lưu ý: Vị trí bắt đầu là 0
@@ -65,11 +67,6 @@ $position = strpos($str, 'f'); // Output: false
 var_dump($position);
 echo '<br>';
 
-// Hàm này không trợ tiếng việt, trả về không chính xác
-$str = 'Trung tâm đào tạo lập trình Unicode';
-$position = strpos($str, 'đ'); // Output: 11
-echo $position . '<br>';
-
 /**
  * Hàm tương tự có hỗ trợ tiếng việt
  * 
@@ -77,6 +74,13 @@ echo $position . '<br>';
  */
 $str = 'Trung tâm đào tạo lập trình Unicode';
 $position = mb_strpos($str, 'đ', 0, 'UTF-8'); // Output: 10
+echo $position . '<br>';
+
+/**
+ * Tìm và trả về vị trí cuối cùng tìm thấy.
+ */
+$str = 'Trung tam dao tao lap trinh Unicode';
+$position = strripos($str, 'd'); // Output: 33
 echo $position . '<hr>';
 
 /**
