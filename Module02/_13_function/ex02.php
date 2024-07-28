@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * Chú ý: Để tối ưu và dễ quản lý hàm tự định nghĩa thì ta nên viết 1 tập tin riêng để chỉ định nghĩa
+ */
+
 require_once './myFunction.php'; // import file myFunction.php
 require_once './myFunction2.php'; // import file myFunction2.php
 /**
@@ -47,7 +52,7 @@ echo '<br>';
 printNumber(12, 'Kết quả');
 echo '<br>';
 /**
- * Lưu ý: thứ tự truyền dữ liệu vào hàm, nếu có tham số bắt buộc mà không truyền vào sẽ bị lỗi
+ * Lưu ý: Thứ tự truyền dữ liệu vào hàm, có tham số bắt buộc mà không truyền hoặc bỏ qua truyền tiếp sẽ gây Lỗi.
  */
 
 // gọi hàm

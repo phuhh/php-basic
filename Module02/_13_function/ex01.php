@@ -33,6 +33,10 @@ function printTotal($a, $b)
 printTotal(5, 10);
 echo '<br>';
 
+/**
+ * Lưu ý: Thứ tự giá trị truyền vào
+ */
+
 // Gọi hàm (truyền thông qua biến)
 $x = 10;
 $y = 20;
@@ -47,7 +51,3 @@ function printMessages()
 
 // Gọi hàm
 printMessages();
-
-/**
- * Chú ý: Để tối ưu và dễ quản lý hàm tự định nghĩa thì ta nên viết 1 tập tin riêng để chỉ định nghĩa
- */
