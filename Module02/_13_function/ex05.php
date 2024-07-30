@@ -1,8 +1,8 @@
 <?php
 
 /**
- * - Tham số
- * - Tham trị
+ * - Tham số (Parameter)
+ * - Tham trị (Còn gọi là Đối số - Argument)
  * - Tham biến  
  * - Tham chiếu
  */
