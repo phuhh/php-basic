@@ -1,0 +1,18 @@
+Path đường dẫn tương đối và đường dẫn tuyệt đối
+
+1. Đường dẫn tương đối (tính từ vị trí hiện tại)
+- Không quan tâm đến đường dẫn tập tin lưu trữ trên máy tính (server)
+- Khó phát sinh ra lỗi trừ khi sai đường dẫn hoặc tập tin không tồn tại
+
+'thu-muc/tap-tin-x.php' hoặc
+'./thu-muc/tap-tin-x.php' => truy cập vào đường dẫn chứa tập tin
+
+'../thu-muc/tap-tin-x.php' => lùi về 1 thư mục và truy cập vào đường dẫn chứa tập tin 
+
+'../../thu-muc/tap-tin-x.php' => lùi về 2 thư mục và truy cập vào đường dẫn chứa tập tin 
+
+2. Đường dẫn tuyệt đối
+- Cần biết vị trí đường dẫn tập tin lưu trữ trên máy tính (server)
+- Đường dẫn tập tin quá dài dễ phát sinh ra lỗi
+
+/Applications/XAMPP/xamppfiles/htdocs/php-basic/module02/_10_imports/path_url.php

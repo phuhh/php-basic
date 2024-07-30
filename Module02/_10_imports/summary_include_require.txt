@@ -1,0 +1,19 @@
+include - include_once - require - require_once: đều cho phép nhúng tập tin php khác vào.
+
+
+include - include_once VS require - require_once
+
+include - include_once: khi gặp đoạn mã bị lỗi chương trình dẫn tiếp tục chạy
+require - require_once : khi gặp đoạn mã bị lỗi chương trình sẽ dừng
+
+
+include - require VS include_once - require_once
+
+include - require: cho phép nhúng nhiều lần tập tin cùng tên
+include_once - require_once: chỉ cho phép nhúng duy nhất 1 tập tin có include_once - require_once
+
+
+Khi nào dùng include - include_once VS require - require_once
+
+include - include_once: khi nhúng các file có liên quan giao diện html css
+require - require_once: khi nhúng các file có liến quan cấu trúc, kiến trúc mô hình php

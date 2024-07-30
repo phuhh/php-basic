@@ -1,0 +1,7 @@
+1. Toán tử 3 ngôi
+2. Cú pháp thay thế áp dụng với việc nhúng HTML trong PHP (giúp code ngắn gọn và dễ nhìn dễ bảo trì)
+    - if, if...else, elseif
+    - switch
+    - for
+    - while (do..while không có cú pháp thay thế)
+    - foreach
