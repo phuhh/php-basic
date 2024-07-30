@@ -67,23 +67,26 @@ echo '</pre>';
 
 $numOne = 1;
 if (!empty($numOne)) {
-    echo '$numOne = ' . $numOne . ' => tồn tại';
+    echo '$numOne => thoả điều kiện';
 } else {
-    echo '$numOne =  ' . $numOne . ' => không tồn tại';
+    echo '$numOne => không thoả điều kiện';
 }
+// OUTPUT: $numOne => hợp lệ
 echo '<br>';
 
 $numTwo = 0;
 if (!empty($numTwo)) {
-    echo '$numTwo = ' . $numTwo . ' => tồn tại';
+    echo '$numTwo => thoả điều kiện';
 } else {
-    echo '$numTwo =  ' . $numTwo . ' => không tồn tại';
+    echo '$numTwo => không thoả điều kiện';
 }
+// OUTPUT: $numTwo => không thoả điều kiện
 echo '<br>';
 
 // $numThree = 0;
 if (!empty($numThree)) {
-    echo '$numThree => tồn tại';
+    echo '$numThree => thoả điều kiện';
 } else {
-    echo '$numThree => không tồn tại';
+    echo '$numThree => không thoả điều kiện';
 }
+// OUTPUT: $numThree => không thoả điều kiện

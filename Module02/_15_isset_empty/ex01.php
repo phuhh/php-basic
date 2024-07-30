@@ -49,10 +49,23 @@ echo '</pre>';
 // Ví dụ: Kiếm tra biến có tồn tại không và có giá trị không?
 $str = 'lorem ipsum';
 if (isset($str) && $str) {
-    echo '$str hợp lệ';
+    echo '$str thoả điều kiện';
 } else {
-    echo '$str không hợp lệ';
+    echo '$str => không thoả điều kiện';
 }
+// OUTPUT: $str thoả điều kiện
+echo '<br>';
+
+$strTwo = '0';
+if (isset($strTwo) && $strTwo) {
+    echo '$strTwo thoả điều kiện';
+} else {
+    echo '$strTwo => không thoả điều kiện';
+}
+// OUTPUT: $strTwo  không thoả điều kiện
 
 
-// isset($str) && $str TƯƠNG ĐƯƠNG BIỂU THỨC !empty($numThree))
+/**
+ * Kết luận:
+ *     isset($str) && $str TƯƠNG ĐƯƠNG BIỂU THỨC !empty($numThree))
+ */
