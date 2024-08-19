@@ -67,5 +67,5 @@ if (isset($strTwo) && $strTwo) {
 
 /**
  * Kết luận:
- *     isset($str) && $str TƯƠNG ĐƯƠNG BIỂU THỨC !empty($numThree))
+ *     isset($str) && $str TƯƠNG ĐƯƠNG BIỂU THỨC !empty($str)
  */

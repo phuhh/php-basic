@@ -1,18 +1,20 @@
 <?php
 
 /**
+ * Kỹ thuật: Gắn cờ - ban đầu đặt giả định giá trị, nếu thoả điều thì đặt lại giá trị.
+ * 
  * Bài tập 3: Kiểm tra 1 số có phải là số nguyên tố không và hiển thị kết quả
  *
- * Xác định INPUT OUTPUT là gì ????
+ * 1.Xác định INPUT OUTPUT là gì ????
  * INPUT: Số Nguyên N
  * OUTPUT: Thông báo số N có phải là số nguyên tố không ???
  *
- * Công Thức là gì ???
+ * 2.Công Thức là gì ???
  * Điều kiện số nguyên tố:
  * - Phải lớn hơn 1
  * - Chỉ chia hết cho 1 và chính nó
  *
- * Giải pháp là gì ???
+ * 3.Giải pháp là gì ???
  * Giải thuật
  * - Kiểm tra số n có lớn hơn 1 hay không ?
  * - Nếu số N lớn hơn 1

@@ -28,7 +28,7 @@ echo '<hr>';
  */
 
 /**
- * Tham biến sẽ tương tự khi tham trị nhưng nó sẽ làm thay đổi giá trị truyền vào.
+ * Tham biến
  */
 echo '<b>Tham Số</b>: function ten_ham($content) <br/>';
 function sayHi($content = null)
@@ -47,7 +47,12 @@ echo '<i>After value: </i>' . $text; // Output: Hello
 echo '<hr>';
 
 echo '<b>Tham biến</b>: function ten_ham(<span style="color:red">&</span>$content) <br/>';
-// Định nghĩa tham số $content là Tham biến
+/**
+ * - Truyền nó như tham chiếu (Passes it by reference) có nghĩa truyền địa chỉ của biến thay vì giá trị.
+ * Cơ bản bạn đang tạo 1 con trỏ tới biến.
+ * 
+ * Định nghĩa tham số &$content là Tham biến
+ */
 function sayHi2(&$content = null)
 {
     $content .= ' World';
@@ -69,26 +74,37 @@ echo '<hr>';
  */
 
 /**
- * NÂNG CAO: Tham chiếu là trả về 1 tham chiếu đến, thay vì giá trị của nó
+ * NÂNG CAO: Tham chiếu
+ * 
+ * Ký hiệu "&" được sử dụng để chỉ định địa chỉ của một biến, thay vì giá trị của nó. Chúng tôi gọi đây là "chuyển qua tham chiếu".
+ * Vì vậy, "&$ten_bien" là tham chiếu đến biến chứ không phải giá trị.
+ * Và "function &ten_ham(..." yêu cầu hàm trả về tham chiếu của biến trả về, thay vì bản sao của biến.
  * 
  * 1. Biến
- *     + Biến tham chiếu là biến $a
+ *     + Biến tham chiếu là biến &$a
  *     + Biến gán biến tham chiếu là biến $b
- *     => Khi biến $b có sự thay đổi về giá trị thì Biến tham chiếu $a sẽ thay đổi giá trị giống như biến $b
+ *     => Khi biến $b thay đổi giá trị thì Biến tham chiếu $a sẽ thay đổi giá trị giống như biến $b
  */
 
 echo '<b>Biến</b><br>';
 $a = 1;  // $a = 1
-$b = $a;
+$b = $a; // $b = 1
 echo '<i>$a: </i>' . $a . '<br>'; // OUTPUT: 1
+echo '<i>$b: </i>' . $b . '<br>'; // OUTPUT: 1
 $b = 10; // $b = 10
+echo '<i>$a: </i>' . $a . '<br>'; // OUTPUT: 1
 echo '<i>$b: </i>' . $b . '<br>'; // OUTPUT: 10
 
+/**
+ * Biến tham chiếu
+ */
 echo '<b>Biến tham chiếu: </b> $b = <span style="color:red">&</span>$a; <br>';
-$a = 1;   // $a = 10
-$b = &$a; // Định nghĩa biến tham chiếu
+$a = 1;
+$b = &$a; // &$a = Định nghĩa biến tham chiếu
+echo '<i>$a: </i>' . $a . '<br>'; // OUTPUT: 1
+echo '<i>$b: </i>' . $b . '<br>'; // OUTPUT: 1
+$b = 10;
 echo '<i>$a: </i>' . $a . '<br>'; // OUTPUT: 10
-$b = 10;  // $b = 10
 echo '<i>$b: </i>' . $b . '<hr>'; // OUTPUT: 10
 
 /**
@@ -109,6 +125,9 @@ $message = 'Ni Hao';
 $message2 = hello();
 echo '<i>After: </i>:' . $message2 . '<hr>'; // Ouput: Hello
 
+/**
+ * Hàm tham chiếu
+ */
 echo '<b>Hàm tham chiếu: </b> function <span style="color:red">&</span>ten_ham() - Gọi hàm: <span style="color:red">&</span>ten_ham() <br>';
 // Định nghĩa hàm tham chiếu
 function &hello2()
