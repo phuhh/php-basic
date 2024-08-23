@@ -5,6 +5,7 @@ if (!function_exists('buildMenuBasic')) {
     {
         if (!empty($menu) && is_array($menu)) {
             echo '<ul class="menu">';
+
             foreach ($menu as $item) {
                 echo '<li><a href="' . $item['link'] . '">' . $item['title'] . '</a>';
                 if (!empty($item['sub'])) {
@@ -24,12 +25,13 @@ if (!function_exists('buildMenuBasic')) {
  * Xây dụng menu dưới dạng dữ liệu cây
  */
 if (!function_exists('buildMenu')) {
-    function buildMenu($menu, $isChildren = false)
+    function buildMenu($dataArr, $isChildren = false)
     {
-        if (!empty($menu) && is_array($menu)) {
+        if (!empty($dataArr) && is_array($dataArr)) {
             $cssClass = $isChildren ? 'class="sub-menu"' : 'class="menu"';
             echo '<ul ' . $cssClass . '>';
-            foreach ($menu as $item) {
+
+            foreach ($dataArr as $item) {
                 echo '<li><a href="' . $item['link'] . '">' . $item['title'] . '</a>';
                 // Kiểm tra nếu có tồn con
                 if (!empty($item['sub'])) {
@@ -52,15 +54,16 @@ if (!function_exists('makeMenu')) {
         $childrenArr = [];
         if (!empty($dataArr) && is_array($dataArr)) {
             foreach ($dataArr as $key => $item) {
-                if ($item['parent_id'] === $parentID) {
+                if ($item['parent_id'] == $parentID) {
                     $childrenArr[] = $item;
-                    unset($menu[$key]);
+                    unset($dataArr[$key]);
                 }
             }
         }
 
         if (!empty($childrenArr) && is_array($childrenArr)) {
             $cssClass = $isSub ? 'class="sub-menu"' : 'class="menu"';
+
             echo '<ul ' . $cssClass . '>';
             foreach ($childrenArr as $key => $child) {
                 echo '<li><a href="' . $child['link'] . '">' . $child['title'] . '</a>';
@@ -111,7 +114,7 @@ if (!function_exists('buildTree')) {
     }
 }
 /**
- * Đệ qui xuôi từ Cha tìm Con
+ * Đệ quy xuôi từ Cha tìm Con
  */
 if (!function_exists('getChildrenByParentID')) {
     function getChildrenByParentID($dataArr, $parentID = 0, &$resultArr = [])

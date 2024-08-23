@@ -9,10 +9,11 @@
 
 /**
  * - Tham số là các tham số khi định nghĩa hàm.
- * - Tham trị là các biến và giá trị dữ liệu truyền vào hàm (gọi hàm).
+ * - Tham trị (Đối số) là biến hoặc giá trị truyền lúc gọi hàm.
  */
 echo '<b>Tham số, Tham trị</b><br/>';
-function makeTotal($a, $b) // $a và $b là gọi là Tham số
+// Định nghĩa hàm
+function makeTotal($a, $b) // $a và $b gọi là Tham số
 {
     return $a + $b;
 }
@@ -20,17 +21,16 @@ function makeTotal($a, $b) // $a và $b là gọi là Tham số
 $x = 5;
 $y = 10;
 // Gọi hàm
-$result = makeTotal($x, $y); // $x và $y được đặt trong hàm gọi là Tham trị
+$result = makeTotal($x, $y); // $x và $y gọi là Tham trị (Đối số)
 echo $result;
 echo '<hr>';
-/**
- * Lưu ý: Tham trị sẽ KHÔNG làm thay đổi giá trị khi truyền vào hàm. Ngược lại thì Tham biến thì có.
- */
 
 /**
  * Tham biến
+ * 
+ * pass arguments by value - Truyền đối số là giá trị
  */
-echo '<b>Tham Số</b>: function ten_ham($content) <br/>';
+echo '<b>Tham Trị</b>: function ten_ham($content) <br/>';
 function sayHi($content = null)
 {
     $content .= ' World';
@@ -38,20 +38,21 @@ function sayHi($content = null)
 }
 
 $text = 'Hello';
-echo '<i>Before value: </i>' . $text . '<br>'; // Output: Hello
+echo '<i>Before $text = </i>' . $text . '<br>'; // Output: Hello
 
 echo sayHi($text); // Output: Hello World
 echo '<br>';
 
-echo '<i>After value: </i>' . $text; // Output: Hello
+echo '<i>After $text = </i>' . $text; // Output: Hello
 echo '<hr>';
 
 echo '<b>Tham biến</b>: function ten_ham(<span style="color:red">&</span>$content) <br/>';
 /**
- * - Truyền nó như tham chiếu (Passes it by reference) có nghĩa truyền địa chỉ của biến thay vì giá trị.
- * Cơ bản bạn đang tạo 1 con trỏ tới biến.
+ * Tham biến tương như tham trị nhưng khác 1 chỗ sẽ thay đổi giá trị khi truyền vào hàm
  * 
- * Định nghĩa tham số &$content là Tham biến
+ * Passing arguments by reference - Truyền đối số là tham chiếu
+ * 
+ * https://www.php.net/manual/en/functions.arguments.php#functions.arguments.by-reference
  */
 function sayHi2(&$content = null)
 {
@@ -60,30 +61,19 @@ function sayHi2(&$content = null)
 }
 
 $text = 'Hello';
-echo '<i>Before value: </i>' . $text; // Output: Hello
+echo '<i>Before $text = </i>' . $text; // Output: Hello
 echo '<br>';
 
 echo sayHi2($text); // Output: Hello World
 echo '<br>';
 
-echo '<i>After value: </i>' . $text; // Output: Hello World
+echo '<i>After $text = </i>' . $text; // Output: Hello World
 echo '<hr>';
-
-/**
- * Lưu ý: Giá trị chỉ thay đổi khi tham biến được xử lý trong hàm.
- */
 
 /**
  * NÂNG CAO: Tham chiếu
  * 
- * Ký hiệu "&" được sử dụng để chỉ định địa chỉ của một biến, thay vì giá trị của nó. Chúng tôi gọi đây là "chuyển qua tham chiếu".
- * Vì vậy, "&$ten_bien" là tham chiếu đến biến chứ không phải giá trị.
- * Và "function &ten_ham(..." yêu cầu hàm trả về tham chiếu của biến trả về, thay vì bản sao của biến.
- * 
  * 1. Biến
- *     + Biến tham chiếu là biến &$a
- *     + Biến gán biến tham chiếu là biến $b
- *     => Khi biến $b thay đổi giá trị thì Biến tham chiếu $a sẽ thay đổi giá trị giống như biến $b
  */
 
 echo '<b>Biến</b><br>';
@@ -93,14 +83,11 @@ echo '<i>$a: </i>' . $a . '<br>'; // OUTPUT: 1
 echo '<i>$b: </i>' . $b . '<br>'; // OUTPUT: 1
 $b = 10; // $b = 10
 echo '<i>$a: </i>' . $a . '<br>'; // OUTPUT: 1
-echo '<i>$b: </i>' . $b . '<br>'; // OUTPUT: 10
+echo '<i>$b: </i>' . $b . '<hr>'; // OUTPUT: 10
 
-/**
- * Biến tham chiếu
- */
-echo '<b>Biến tham chiếu: </b> $b = <span style="color:red">&</span>$a; <br>';
+echo 'b = <span style="color:red">&</span>$a; <br>';
 $a = 1;
-$b = &$a; // &$a = Định nghĩa biến tham chiếu
+$b = &$a;
 echo '<i>$a: </i>' . $a . '<br>'; // OUTPUT: 1
 echo '<i>$b: </i>' . $b . '<br>'; // OUTPUT: 1
 $b = 10;
@@ -126,17 +113,19 @@ $message2 = hello();
 echo '<i>After: </i>:' . $message2 . '<hr>'; // Ouput: Hello
 
 /**
- * Hàm tham chiếu
+ * https://www.php.net/language.references.return
+ * 
+ *  Pass by reference có nghĩa truyền địa chỉ của biến thay vì giá trị.
+ * Cơ bản bạn đang tạo 1 con trỏ tới biến.
  */
-echo '<b>Hàm tham chiếu: </b> function <span style="color:red">&</span>ten_ham() - Gọi hàm: <span style="color:red">&</span>ten_ham() <br>';
-// Định nghĩa hàm tham chiếu
+echo 'function <span style="color:red">&</span>ten_ham() - Gọi hàm: <span style="color:red">&</span>ten_ham() <br>';
 function &hello2()
 {
     static $content = 'Hello';
     return $content;
 }
 
-$message = &hello2(); // Gọi hàm tham chiếu
+$message = &hello2();
 echo '<i>Before: </i>' . $message . '<br>'; // Ouput: Hello
 
 $message = 'Ni Hao';
