@@ -15,7 +15,7 @@ echo '<br>';
 
 $num2 = (int) $num2;
 var_dump($num2);
-echo '<br>';
+echo '<hr>';
 
 // Kiểm tra phải kiểu số nguyên hay không ?
 $check = is_int(30);

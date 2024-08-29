@@ -10,7 +10,7 @@ echo '<br>';
 // Từ INT => 0
 $num = (int) null;
 var_dump($num);
-echo '<br>';
+echo '<hr>';
 
 // Từ BOOLEAN => false
 $isActive = (bool) null;
@@ -22,10 +22,10 @@ $str = (string) null;
 var_dump($str);
 echo '<br>';
 
-// Từ ARRAY => []
+// Từ ARRAY => [] or array()
 $arr = (array) null;
 var_dump($arr);
-echo '<br>';
+echo '<hr>';
 
 // Kiểm tra có phải kiểu null hay không?
 $check = is_null(null);

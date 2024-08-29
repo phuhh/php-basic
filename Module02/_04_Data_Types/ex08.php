@@ -14,7 +14,7 @@ echo '<br>';
 $staff = ['Tony', 33, 'Web Developer'];
 $staff = (object) $staff;
 var_dump($staff);
-echo '<br>';
+echo '<hr>';
 
 // Kiểu tra có phải kiểu object hay không;
 $check = is_object($staff);

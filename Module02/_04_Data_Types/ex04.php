@@ -12,7 +12,7 @@ echo '<br>';
 $str = 3.14;
 $str = (string) $str;
 var_dump($str); // Gọi là Chuỗi số
-echo '<br>';
+echo '<hr>';
 
 // Kiểm Tra có phải kiểu chuỗi hay không ?
 $check = is_string("Lorem Ipsum");

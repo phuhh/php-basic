@@ -14,7 +14,7 @@ echo '<br>';
 $str = 'lorem ipsum';
 $str = (array) $str;
 var_dump($str);
-echo '<br>';
+echo '<hr>';
 
 // Kiểm tra có phải kiểu mảng hay không ?
 $check = is_array(['lorem ipsum']);
