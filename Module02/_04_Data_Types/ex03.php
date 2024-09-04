@@ -12,7 +12,7 @@ echo '<br>';
 $pi = '3.14';
 $pi = (float) $pi;
 var_dump($pi);
-echo '<br>';
+echo '<hr>';
 
 // Kiểm tra có phải số thực hay không ?
 $check = is_float(3.14);

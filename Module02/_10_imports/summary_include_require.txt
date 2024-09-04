@@ -10,7 +10,7 @@ require - require_once : khi gặp đoạn mã bị lỗi chương trình sẽ d
 include - require VS include_once - require_once
 
 include - require: cho phép nhúng nhiều lần tập tin cùng tên
-include_once - require_once: chỉ cho phép nhúng duy nhất 1 tập tin có include_once - require_once
+include_once - require_once: chỉ cho phép nhúng duy nhất 1 tập tin
 
 
 Khi nào dùng include - include_once VS require - require_once
