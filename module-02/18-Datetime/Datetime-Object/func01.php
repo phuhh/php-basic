@@ -1,10 +1,13 @@
 <?php
 
 /**
- * Thiết lập lại timezone cho object: date_timezone_set($datetimeObj, $timezoneObj)
+ * Thiết lập và lấy ra timezone
+ * 
+ * 1. Thiết lập lại timezone cho object datetime: 
+ * 
+ * date_timezone_set($datetimeObj, $timezoneObj)
  */
-
-$datetimeObj = date_create('2024-09-10 21:16');
+$datetimeObj = date_create();
 $timezoneObj = timezone_open('Asia/Ho_Chi_Minh');
 
 date_timezone_set($datetimeObj, $timezoneObj);
@@ -13,9 +16,13 @@ echo "<pre>";
 print_r($datetimeObj);
 echo "</pre>";
 
-echo '<hr>';
 /**
- * Lấy ra timezone của object: date_timezone_get($datetimeObj);
+ * 2. Lấy ra timezone cho object datetime: 
+ * 
+ * date_timezone_get($datetimeObj);
  */
-$timezone = date_timezone_get($timezoneObj);
-echo $timezone;
+$timezoneObj2 = date_timezone_get($datetimeObj);
+
+echo "<pre>";
+print_r($timezoneObj2);
+echo "</pre>";

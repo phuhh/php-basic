@@ -95,7 +95,7 @@ $year = $dtInfo['tm_year'] + 1900;
 echo $year . '<hr>';
 
 /**
- * 7. Lấy ra 1 số nguyên của ngày giờ theo định dạng: idate($dinh_dang, $timestamp)
+ * 7. Lấy ra 1 số nguyên của ngày giờ theo định dạng: idate($format, $timestamp)
  * Tham số $timestamp: không truyền mặc định lấy ngày giờ hiện tại
  */
 
@@ -116,7 +116,7 @@ $t = gmmktime(22, 5, 15, 9, 8, 2024);
 echo $t . '<br>'; // Output: 1725833115
 
 /**
- * 9. Lấy ra ngày giờ theo định dạng: gmdate($dinh_dang, $timestamp);
+ * 9. Lấy ra ngày giờ theo định dạng: gmdate($format, $timestamp);
  * (múi giờ 0 của GMT)
  */
 $t = strtotime('2024-09-08 23:07');
@@ -137,7 +137,7 @@ echo "</pre>";
 echo '<hr>';
 
 /**
- * 11. Lấy ngày giờ theo định dạng: date($dinh_dang, $timestamp);
+ * 11. Chuỗi đổi timestamp thành ngày giờ: date($format, $timestamp);
  */
 $t = strtotime('2024-09-08 23:07');
 echo $t . '<br>'; // Output: 1725811620
