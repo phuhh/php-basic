@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Thiết lập và lấy ra timezone
+ * Thiết lập và lấy ra từ datetime object
  * 
- * 1. Thiết lập lại timezone cho object datetime: 
+ * 1. Thiết lập lại timezone cho datetime object: 
  * 
  * date_timezone_set($datetimeObj, $timezoneObj)
  */
@@ -17,7 +17,7 @@ print_r($datetimeObj);
 echo "</pre>";
 
 /**
- * 2. Lấy ra timezone cho object datetime: 
+ * 2. Lấy ra timezone cho datetime object: 
  * 
  * date_timezone_get($datetimeObj);
  */

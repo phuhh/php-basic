@@ -24,13 +24,13 @@ echo "</pre>";
 echo '<hr>';
 
 /**
- * 2. Lấy thông tin thời gian trả ra object datetime: date_create_from_format($format, $str)
+ * 2. Lấy thông tin thời gian trả ra datetime object: date_create_from_format($format, $str)
  */
 $str = '2024-09-11';
 $format = 'Y-m-d';
 
-$datetimeObject = date_create_from_format($format, $str);
+$dateTimeObject = date_create_from_format($format, $str);
 
 echo "<pre>";
-var_dump($datetimeObject);
+var_dump($dateTimeObject);
 echo "<pre>";

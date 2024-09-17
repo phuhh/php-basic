@@ -52,7 +52,7 @@ $dt = strftime('%d-%m-%Y %H:%m:%S', $timestamp);
 echo $dt . '<hr>'; // Output: 09-08-2024 21:08:00
 
 /**
- * 4. Lấy ra timestamp của ngày giờ cho trước: mktime($gio, $phut, $giay, $month, $day, $year)
+ * 4. Lấy ra timestamp từ ngày giờ cho trước: mktime($gio, $phut, $giay, $month, $day, $year)
  */
 $t = mktime(22, 5, 15, 9, 8, 2024);
 echo $t . '<br>'; // Output: 1725807942
@@ -95,7 +95,7 @@ $year = $dtInfo['tm_year'] + 1900;
 echo $year . '<hr>';
 
 /**
- * 7. Lấy ra 1 số nguyên của ngày giờ theo định dạng: idate($format, $timestamp)
+ * 7. Lấy ra 1 giá trị theo định dạng ngày giờ: idate($format, $timestamp)
  * Tham số $timestamp: không truyền mặc định lấy ngày giờ hiện tại
  */
 
