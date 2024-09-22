@@ -1,0 +1,43 @@
+Array
+(
+    [UNIQUE_ID] => Zu-xQ1AQv0pWv4JtcLYiqAAAAAg
+    [HTTP_HOST] => localhost
+    [HTTP_CONNECTION] => keep-alive
+    [HTTP_SEC_CH_UA] => "Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"
+    [HTTP_SEC_CH_UA_MOBILE] => ?0
+    [HTTP_SEC_CH_UA_PLATFORM] => "macOS"
+    [HTTP_UPGRADE_INSECURE_REQUESTS] => 1
+    [HTTP_USER_AGENT] => Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36
+    [HTTP_ACCEPT] => text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+    [HTTP_SEC_FETCH_SITE] => same-origin
+    [HTTP_SEC_FETCH_MODE] => navigate
+    [HTTP_SEC_FETCH_USER] => ?1
+    [HTTP_SEC_FETCH_DEST] => document
+    [HTTP_REFERER] => http://localhost/php-basic/module-02/19-get-post/server/
+    [HTTP_ACCEPT_ENCODING] => gzip, deflate, br, zstd
+    [HTTP_ACCEPT_LANGUAGE] => en
+    [PATH] => /usr/bin:/bin:/usr/sbin:/sbin
+    [DYLD_LIBRARY_PATH] => /Applications/XAMPP/xamppfiles/lib:/Applications/XAMPP/xamppfiles/lib
+    [SERVER_SIGNATURE] => 
+    [SERVER_SOFTWARE] => Apache/2.4.56 (Unix) OpenSSL/1.1.1t PHP/8.2.4 mod_perl/2.0.12 Perl/v5.34.1
+    [SERVER_NAME] => localhost
+    [SERVER_ADDR] => ::1
+    [SERVER_PORT] => 80
+    [REMOTE_ADDR] => ::1
+    [DOCUMENT_ROOT] => /Applications/XAMPP/xamppfiles/htdocs
+    [REQUEST_SCHEME] => http
+    [CONTEXT_PREFIX] => 
+    [CONTEXT_DOCUMENT_ROOT] => /Applications/XAMPP/xamppfiles/htdocs
+    [SERVER_ADMIN] => you@example.com
+    [SCRIPT_FILENAME] => /Applications/XAMPP/xamppfiles/htdocs/php-basic/module-02/19-get-post/server/ex01.php
+    [REMOTE_PORT] => 56710
+    [GATEWAY_INTERFACE] => CGI/1.1
+    [SERVER_PROTOCOL] => HTTP/1.1
+    [REQUEST_METHOD] => GET
+    [QUERY_STRING] => 
+    [REQUEST_URI] => /php-basic/module-02/19-get-post/server/ex01.php
+    [SCRIPT_NAME] => /php-basic/module-02/19-get-post/server/ex01.php
+    [PHP_SELF] => /php-basic/module-02/19-get-post/server/ex01.php
+    [REQUEST_TIME_FLOAT] => 1726984515.5529
+    [REQUEST_TIME] => 1726984515
+)
