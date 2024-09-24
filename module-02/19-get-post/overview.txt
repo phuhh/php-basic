@@ -1,0 +1,6 @@
+HTTP request method - Phương thức gửi, nhận dữ liệu
+
+https://www.w3schools.com/tags/ref_httpmethods.asp
+
+- get
+- post

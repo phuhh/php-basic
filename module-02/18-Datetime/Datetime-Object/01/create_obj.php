@@ -12,7 +12,7 @@
  */
 
 
-// Khởi tạo 1 object Timezone
+// Tạo ra 1 object Timezone
 $timezoneObj = timezone_open('Asia/Bangkok');
 echo "<pre>";
 print_r($timezoneObj);
@@ -20,17 +20,19 @@ echo "</pre>";
 
 echo '<hr>';
 
-// khởi tạo 1 object Datetime
+// Tạo ra 1 object Datetime
 $datetimeObj = date_create();
 echo "<pre>";
 print_r($datetimeObj);
 echo "</pre>";
 
+// Tạo ra 1 object Datetime chỉ định theo chuỗi ngày giờ
 $datetimeObj = date_create('2024-09-10 21:55');
 echo "<pre>";
 print_r($datetimeObj);
 echo "</pre>";
 
+// Tạo ra 1 object Datetime chỉ định theo chuỗi ngày giờ và object timezone
 $datetimeObj = date_create('2024-09-10 21:55', $timezoneObj);
 echo "<pre>";
 print_r($datetimeObj);
@@ -38,12 +40,13 @@ echo "</pre>";
 
 echo '<hr>';
 
-// Khởi tạo 1 object Datetime phải đúng định dạng 
+// Tạo ra 1 object datetime theo định dạng cùng với chuỗi ngày giờ
 $datetimeObj = date_create_from_format('m-d-Y', '09-10-2024');
 echo "<pre>";
 var_dump($datetimeObj);
 echo "</pre>";
 
+// Tạo ra 1 object datetime theo định dạng cùng với chuỗi ngày giờ và object timezone
 $datetimeObj = date_create_from_format('mdY', '09102024', $timezoneObj);
 echo "<pre>";
 var_dump($datetimeObj);
