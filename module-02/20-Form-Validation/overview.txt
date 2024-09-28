@@ -1,0 +1,19 @@
+1. Form Validation là gì ?
+    - Xác thực dữ liệu truyền vào có hợp lệ hay không (trước khi xử lý)
+    - Các dữ liệu không hợp lệ đúng sẽ gây ra:
+        + Truyền vào CSDL về mặt dữ liệu không đúng 
+        + Gây nguy hiểm đến Website và Gây hại đến CSDL về mặt bảo mật dữ liệu
+    - Validation có 2 loại:
+        + Validation Client: Thẻ HTML5 và Javascript
+        + Validation Server: PHP
+    - Khi nào sử dụng validation client và validation server
+        + Validation client: khi tăng tính trải nghiệm người dùng được tốt hơn. 
+        Nhược điểm: dễ bị tất công, hoặc tắt javascript trong trình duyệt.
+        + Validation server: khi người dùng vượt qua validation client hoặc không có validation client.
+    - Có thể kết hợp cả 2 để tăng tính bảo mật và trải nghiệm người dùng được tốt hơn trong Website người dùng. 
+    Còn website quản lý thì chỉ cần validation server là đủ.
+
+2. Quy trình from validation 
+    - Bước 1: Xác định rule (field này => điều kiện là gì)
+    - Bước 2: Xác định message cho rule đó.
+    - Bước 3: Thực hiện chạy validation
