@@ -1,33 +1,47 @@
 <?php
 
 /**
- * Vấn đề trong URL: Một số trình duyệt sẽ mã hoá giá trị trong query string
+ * Gửi dữ liệu qua HTML Forms
  * 
- * - Lấy giá trị ra sẽ không chính xác.
- * 
- * Trường hợp: ?module=Tin%20Tức
- * 
- * Giải pháp mã hoá url: ?module=Tin+Tức
- *
+ * - Không cần dùng urlencode vì form đã mã hoá sẵn
  */
 
+// Kiểm tra nhấn nút Send chưa?
+if (isset($_GET['btnSend'])) {
+    if (isset($_GET['fullName'])) {
+        $fullName = $_GET['fullName'];
+        echo 'Full Name: ' . $fullName . '<br>';
+    }
 
-$data = ['Tin Tức', 'Sản Phẩm'];
-
-echo '<ul>';
-foreach ($data as $item) {
-    // Hàm urlencode($queryString): Mã hoá chuỗi url
-    $urlEncode = urlencode($item);
-    echo '<li><a href="?module=' . $urlEncode . '">' . $item . '</a></li>';
+    if (isset($_GET['email'])) {
+        $email = $_GET['email'];
+        echo 'Email: ' . $email . '<br>';
+        echo '<hr>';
+    }
 }
-echo '</ul>';
+?>
 
-if (isset($_GET['module'])) {
-    // Hàm urldecode($queryString): Giải mã chuỗi url
-    $urlDecode = urldecode($_GET['module']);
-    echo 'Kết quả: <b>' . $urlDecode . '</b>';
-}
+<!DOCTYPE html>
+<html>
 
-/**
- * Giúp ít trong tìm kiếm tiếng viêt có dấu, lấy ra giá trị chính xác
- */
+<head>
+    <title>Method GET</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <h1>Method GET</h1>
+    <form action="" method="get">
+        <div>
+            <span for="fullName">Full Name: </span>
+            <input type="text" name="fullName">
+        </div>
+        <div>
+            <span for="email">Email: </span>
+            <input type="text" name="email">
+        </div>
+        <button type="submit" name="btnSend">Send</button>
+    </form>
+</body>
+
+</html>

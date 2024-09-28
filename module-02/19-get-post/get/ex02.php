@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Gán lại giá trị mới khi được gửi lên.
+ */
+
 echo "<pre>";
 var_dump($_GET);
 echo "</pre>";
