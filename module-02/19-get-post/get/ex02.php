@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Gán lại giá trị mới khi được gửi lên.
+ * Gán lại giá trị trong phương thức gửi GET
  */
 
 echo "<pre>";

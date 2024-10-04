@@ -1,44 +1,47 @@
 <?php
 
 /**
- * Lưu ý: Query String trong file index.php
+ * Gửi dữ liệu qua HTML Forms
  * 
- * domain.com/path/username=phuhh2019&email=phuhh2019@gmail.com&age=33
- * 
- * như nhau:
- * 
- * domain.com/path/index.php?username=phuhh2019&email=phuhh2019@gmail.com&age=33
- * 
+ * - Không cần dùng urlencode vì form đã mã hoá sẵn
  */
 
-echo "<pre>";
-var_dump($_GET);
-echo "</pre>";
+// Kiểm tra nhấn nút Send chưa?
+if (isset($_GET['btnSend'])) {
+    if (isset($_GET['fullName'])) {
+        $fullName = $_GET['fullName'];
+        echo 'Full Name: ' . $fullName . '<br>';
+    }
 
-$userName = $email = $age = null;
-
-// lấy ra dữ liệu từ phương thức GET
-if (isset($_GET['username'])) {
-    $userName = $_GET['username'];
+    if (isset($_GET['email'])) {
+        $email = $_GET['email'];
+        echo 'Email: ' . $email . '<br>';
+        echo '<hr>';
+    }
 }
-
-if (isset($_GET['email'])) {
-    $email = $_GET['email'];
-}
-
-if (isset($_GET['age']) && is_numeric($_GET['age'])) {
-    $age = $_GET['age'];
-}
-
-echo 'Username: ' . $userName . '<br>';
-echo 'Email: ' . $email . '<br>';
-echo 'Age: ' . $age . '<hr>';
 ?>
 
-<div>
-    <a href="?username=philip&email=philip@gmail.com&age=34">click me</a>
-</div>
+<!DOCTYPE html>
+<html>
 
-<div>
-    <a href="index.php?username=phuhh2019&email=phuhh2019@gmail.com&age=33">click me 2</a>
-</div>
+<head>
+    <title>Method GET</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <h1>Method GET</h1>
+    <form action="" method="get">
+        <div>
+            <span for="fullName">Full Name: </span>
+            <input type="text" name="fullName">
+        </div>
+        <div>
+            <span for="email">Email: </span>
+            <input type="text" name="email">
+        </div>
+        <button type="submit" name="btnSend">Send</button>
+    </form>
+</body>
+
+</html>`
