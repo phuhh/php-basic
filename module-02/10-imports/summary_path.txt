@@ -5,11 +5,15 @@ Path đường dẫn tương đối và đường dẫn tuyệt đối
 - Khó phát sinh ra lỗi trừ khi sai đường dẫn hoặc tập tin không tồn tại
 
 'thu-muc/tap-tin-x.php' hoặc
-'./thu-muc/tap-tin-x.php' => truy cập vào đường dẫn chứa tập tin
+'./thu-muc/tap-tin-x.php' => ./ cùng cấp -> truy cập vào đường dẫn chứa tập tin
 
-'../thu-muc/tap-tin-x.php' => lùi về 1 thư mục và truy cập vào đường dẫn chứa tập tin 
+'../thu-muc/tap-tin-x.php' => ../ quay ra 1 cấp -> lùi về 1 thư mục và truy cập vào đường dẫn chứa tập tin 
 
-'../../thu-muc/tap-tin-x.php' => lùi về 2 thư mục và truy cập vào đường dẫn chứa tập tin 
+'../../thu-muc/tap-tin-x.php' => ../../ quay ra 2 cấp -> lùi về 2 thư mục và truy cập vào đường dẫn chứa tập tin 
+
+lưu ý:
+
+'/thu-muc' => truy cập vào thư mục con
 
 2. Đường dẫn tuyệt đối
 - Cần biết vị trí đường dẫn tập tin lưu trữ trên máy tính (server)
