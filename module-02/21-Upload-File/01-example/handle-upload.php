@@ -10,7 +10,7 @@
 
 // 1. Kiểm tra phương thức POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // 2. Kiểm tra có tải tập tin không
+    // 2. Kiểm tra tập tin có tồn tại không
     if (!empty($_FILES['fileUpload'])) {
         $allowedExtensions = ['jpeg', 'jpg', 'png'];
         // Lấy ra tên tập tin

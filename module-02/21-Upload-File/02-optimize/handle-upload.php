@@ -16,7 +16,7 @@ defined('ONE_MB') || define('ONE_MB', 1048576); // 1024 * 1024S
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $errors = [];
-    // 2. Kiểm tra có tải tập tin không
+    // 2. Kiểm tra tập tin có tồn tại không
     if (!empty($_FILES['fileUpload'])) {
 
         // Kiểm tra xem tập tin đã được chọn chưa 
