@@ -35,11 +35,11 @@ if (!function_exists('build_upload_file')) {
             if (!empty($config['file_name'])) {
                 $fileName = $config['file_name'] . '.' . $fileExtension;
             } else {
-                $errors['fileUpload']['file_name'] = 'Chưa cấu hình.';
+                $errors['file_name'] = 'Chưa cấu hình.';
             }
 
             if ($inputName['error'] === 4) {
-                $errors['fileUpload']['required'] = 'Chọn tập tin.';
+                $errors['required'] = 'Chọn tập tin.';
             } else {
                 if (!empty($config['allow_ext'])) {
                     $allowExt = explode(',', $config['allow_ext']);
@@ -49,20 +49,22 @@ if (!function_exists('build_upload_file')) {
                     }
 
                     if (empty($allowExt) || !in_array($fileExtension, $allowExt)) {
-                        $errors['fileUpload']['code'] = 0;
-                        $errors['fileUpload']['allow_ext'] = 'Định dạng không hợp lệ. Định dạng cho phép: ' . $config['allow_ext'];
+                        $errors['code'] = 0;
+                        $errors['fileOriginalName'] = $fileOriginalName;
+                        $errors['allow_ext'] = 'Định dạng không hợp lệ. Định dạng cho phép: ' . $config['allow_ext'];
                     }
                 } else {
-                    $errors['fileUpload']['allow_ext'] = 'Chưa cấu hình.';
+                    $errors['allow_ext'] = 'Chưa cấu hình.';
                 }
 
                 if (!empty($config['max_size'])) {
                     if ($inputName['size'] > $config['max_size']) {
-                        $errors['fileUpload']['code'] = 0;
-                        $errors['fileUpload']['max_size'] = 'Kích thước tập tin tối đa ' . number_format($config['max_size']) . ' byte';
+                        $errors['code'] = 0;
+                        $errors['fileOriginalName'] = $fileOriginalName;
+                        $errors['max_size'] = 'Kích thước tập tin tối đa ' . number_format($config['max_size']) . ' byte';
                     }
                 } else {
-                    $errors['fileUpload']['max_size'] = 'Chưa cấu hình.';
+                    $errors['max_size'] = 'Chưa cấu hình.';
                 }
             }
         }
@@ -80,17 +82,13 @@ if (!function_exists('build_upload_file')) {
                     ];
                 } else {
                     return [
-                        'fileUpload' => [
-                            'code' => 0,
-                            'uploaded_file' => 'Tải tập tin thất bại'
-                        ]
+                        'code' => 0,
+                        'uploaded_file' => 'Tải tập tin thất bại'
                     ];
                 }
             }
             return [
-                'fileUpload' => [
-                    'upload_dir' => 'Chưa cấu hình.'
-                ]
+                'upload_dir' => 'Chưa cấu hình.'
             ];
         }
         return $errors;
