@@ -1,24 +1,5 @@
 <?php
 
-if (!function_exists('build_multiple_file')) {
-    function build_multiple_file($inputName)
-    {
-        $files = [];
-        if (!empty($inputName)) {
-            foreach ($inputName['name'] as $index =>  $fileName) {
-                $files[] = [
-                    'name' =>  $fileName,
-                    'type' => $inputName['type'][$index],
-                    'tmp_name' => $inputName['tmp_name'][$index],
-                    'error' => $inputName['error'][$index],
-                    'size' => $inputName['size'][$index],
-                ];
-            }
-        }
-        return $files;
-    }
-}
-
 if (!function_exists('build_upload_file')) {
     function build_upload_file($config, $inputName, $file = [])
     {
@@ -93,5 +74,23 @@ if (!function_exists('build_upload_file')) {
         }
         return $errors;
     }
-    return false;
+}
+
+if (!function_exists('build_multiple_file')) {
+    function build_multiple_file($inputName)
+    {
+        $files = [];
+        if (!empty($inputName)) {
+            foreach ($inputName['name'] as $index =>  $fileName) {
+                $files[] = [
+                    'name' =>  $fileName,
+                    'type' => $inputName['type'][$index],
+                    'tmp_name' => $inputName['tmp_name'][$index],
+                    'error' => $inputName['error'][$index],
+                    'size' => $inputName['size'][$index],
+                ];
+            }
+        }
+        return $files;
+    }
 }
