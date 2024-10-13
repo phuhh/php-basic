@@ -1,0 +1,10 @@
+Session (Phiên làm của người dùng - lưu lại trạng thái - tăng tính trải nghiệm người dùng)
+
+- Sẽ được lưu phía Server
+    + Lưu trong thư mục tạm trên server
+    + Có thể thay đổi thư mục tạm trong (php.ini);
+
+
+- Thời gian tồn tại
+    + Khi đóng trình duyệt (session này khác session của cookie sẽ kết thúc phiên khi đóng trình duyệt)
+    + Thời gian tồn tại được thiết lập trên Server (php.ini)

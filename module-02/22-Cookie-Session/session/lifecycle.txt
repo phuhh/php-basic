@@ -1,0 +1,9 @@
+- Client gửi Request lên Server
+- Server thiết lập Session, và Response về Client
+    1. Tạo ra session 
+    2. Session vừa tạo sinh ra 1 tập tin có SESSION ID (đại diện 1 người dùng - 1 trình duyệt) được lưu trong thư mục tạm của server
+    3. đồng thời tạo ra cookie với PHPSESSID=SESSION_ID
+    4. Trong quá trình Response sẽ đính kèm trong HTTP Header: set-cookie: PHPSESSID=SESSION_ID
+- Lần sau Client gửi request lên Server
+    - Đính kèm cookie trong HTTP Header: cookie: PHPSESSID=SESSION_ID
+- Server sẽ dựa trên SESSION_ID mà biết được Session này là của ai.

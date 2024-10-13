@@ -9,18 +9,21 @@ Ví dụ:
 Thời gian tồn tại Cookie
 - Dựa trên set thời gian tồn tại cookie
 - Thời gian tồn tại set giá trị bằng 0. Nghĩa là tồn tại đến khi đóng trình duyệt (hết phiên làm việc)
-Lưu ý: Trong Trình duyệt phải đảm bảo khi khởi động trình duyệt được Thiết lập "Mở cửa sổ mới".
+Lưu ý: Khi đóng lại trình duyệt, 1 số trình duyệt sẽ lưu lại web đã đóng gần nhất. Khi mở lại trình duyệt sẽ tải trình duyệt đã đóng --> lúc này cookie vẫn tồn tại.
+Để đảm bảo chắc chắn, kiểm tra Setting trong trình duyệt chuyển sang chế đố "Mở trình duyệt mới"
 
 CHROME: Settings --> On Startup --> Open The New Tab page
 
 
 Lưu ý khi dùng cookie:
 
+- Cookie có chỉnh sửa trong trình duyệt hoặc bên thứ 3 
+
 - Không lưu các thông tin quan trọng ở cookie: Mật khẩu, tài khoản ngân hàng
 
 - Cookie không chấp nhận các giá trị ở kiểu phực hợp (chỉ chấp kiểu chuỗi, số)
 
 
-Chức năng: sản phẩm đã xem
+Luồng chức năng: sản phẩm đã xem
 - Khi xem sản phẩm 1 => Lấy id sản phẩm => Lưu id vào cookie 
-- Khi xem sản phẩm 2 => Lấy id sản phẩm => thêm id mới vào danh sách (chứa id sp cũ) => lưu cookie
+- Khi xem sản phẩm 2 => Lấy id sản phẩm => thêm id mới vào chung cookie chứa id cũ => lưu cookie
