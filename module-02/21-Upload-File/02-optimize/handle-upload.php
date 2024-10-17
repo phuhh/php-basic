@@ -10,7 +10,6 @@
  * value: 1; The uploaded file exceeds the upload_max_filesize directive in php.ini.
  * Value: 4; No file was uploaded.
  */
-defined('ONE_MB') || define('ONE_MB', 1048576); // 1024 * 1024S
 
 // 1. Kiểm tra phương thức POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -24,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors['fileUpload'] = 'Vui lòng chọn tập tin.';
         } else {
             $allowedExtensions = ['jpeg', 'jpg', 'png'];
-            $maxFileSize = ONE_MB * 3;
+            $maxFileSize = 1048576 * 3; // 3mb
             $pathStorage = '../uploads/';
 
             $fileName = $_FILES['fileUpload']['name'];

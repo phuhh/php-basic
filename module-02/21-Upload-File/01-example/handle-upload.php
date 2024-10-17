@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // 4.Kiểm tra kích thước tập tin
-        if ($_FILES['fileUpload']['size'] > (1024 * 1024 * 3)) {
+        if ($_FILES['fileUpload']['size'] > (1048756 * 3)) {
             echo 'Tối đa kích thước 3 mb';
             exit();
         }

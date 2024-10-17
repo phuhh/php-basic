@@ -8,7 +8,7 @@ Cột có ràng buộc DEFAULT sẽ có dữ liệu mặc định sẵn, với �
 
 
 
-Thêm CHECK khi tạo Table
+Tạo DEFAULT khi tạo Table
 
 CREATE TABLE table_name(
 column_name1 datatype DEFAULT value_default,
@@ -18,12 +18,14 @@ column_name3 datatype,
 
 
 
-THÊM CHECK sau khi tạo Table
+Tạo DEFAULT sau khi tạo Table
 
-ALTER TABLE table_name ALTER column_name SET DEFAULT value_default;
+ALTER TABLE table_name
+ALTER column_name SET DEFAULT value_default;
 
 
 
-Xoá CHECK
+Xoá DEFAULT
 
-ALTER TABLE table_name ALTER column_name DROP DEFAULT;
+ALTER TABLE table_name
+ALTER column_name DROP DEFAULT;

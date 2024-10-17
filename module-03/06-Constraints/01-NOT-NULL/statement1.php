@@ -9,7 +9,7 @@ Lưu ý: Truyền giá trị rỗng '' cho phép vì nó hiểu là chuỗi rỗ
 
 
 
-Thêm NOT NULL lúc tạo Table
+Tạo NOT NULL lúc tạo Table
 
 CREATE TABLE table_name(
 ...
@@ -19,12 +19,14 @@ column_name datatype NOT NULL,
 
 
 
-Thêm NOT NULL sau khi tạo Table
+Tạo NOT NULL sau khi tạo Table
 
-ALTER TABLE table_name MODIFY column_name datatype NOT NULL;
+ALTER TABLE table_name
+MODIFY column_name datatype NOT NULL;
 
 
 
 Xoá NOT NULL
 
-ALTER TABLE table_name MODIFY column_name datatype;
+ALTER TABLE table_name
+MODIFY column_name datatype;
