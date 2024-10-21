@@ -21,7 +21,7 @@ PRIMARY KEY(column_name1)
 
 
 
-Thiết lập con số bắt đầu tự động tăng
+Thiết lập tự động tăng BẮT ĐẦU từ N
 
 ALTER TABLE table_name AUTO_INCREMENT = start_number;
 
