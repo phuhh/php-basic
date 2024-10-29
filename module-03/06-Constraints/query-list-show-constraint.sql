@@ -1,8 +1,3 @@
-<?php
-header('Content-Type: text/plain; charset=utf-8');
-?>
-
-
 -- Lấy ra tên ràng buộc được định nghĩa trong bảng
 
 SELECT *

@@ -1,0 +1,11 @@
+Các toán tử có khi sử dụng WHERE
+
+=           So sánh bằng
+>           So sánh lớn hơn
+<           So sánh bé hơn
+>=          So sánh lớn hơn hoặc bằng
+<=          so sánh bé hơn hoặc bằng
+<>          So sánh không bằng. Một số phiên bản sử dụng toán tử !=
+BETWEEN     Lọc khoảng cách nhất định (dùng để lọc ngày tháng, giá tiền,...)
+LIKE        Lọc theo từ khoá tìm kiếm
+IN          Lọc theo danh sách chỉ định
