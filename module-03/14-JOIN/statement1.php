@@ -50,8 +50,15 @@ WHERE condition;
 
 
 
-CROSS JOIN - Trả về tất cả dòng bảng bên TRÁI và bảng bên phải PHẢI
-(bao gồm các dòng trùng khớp và không trùng khớp)
+CROSS JOIN
+
+table_1 ---- table_2 ---- table_result
+a ---------- x ---------- a x
+b ---------- y ---------- a y
+------------ z ---------- a z
+------------------------- b x
+------------------------- b y
+------------------------- b z
 
 SELECT column_name(s)
 FROM table_1
