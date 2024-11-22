@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Gán lại giá trị trong phương thức gửi GET
+ */
+
 echo "<pre>";
 var_dump($_GET);
 echo "</pre>";

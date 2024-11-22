@@ -1,0 +1,29 @@
+Cookie dùng để lưu thông tin ở dưới trình duyệt người dùng.
+
+Ví dụ:
+- Ghi nhớ đăng nhập
+- Lịch sử tìm kiếm sản phẩm trên website
+- Lịch sử sản phẩm đã xem
+- Gợi ý sản phẩm, dịnh vụ (dựa vào thói quen tìm kiếm, xem sản phẩm,...)
+
+Thời gian tồn tại Cookie
+- Dựa trên set thời gian tồn tại cookie
+- Thời gian tồn tại set giá trị bằng 0. Nghĩa là tồn tại đến khi đóng trình duyệt (hết phiên làm việc)
+Lưu ý: Khi đóng lại trình duyệt, 1 số trình duyệt sẽ lưu lại web đã đóng gần nhất. Khi mở lại trình duyệt sẽ tải trình duyệt đã đóng --> lúc này cookie vẫn tồn tại.
+Để đảm bảo chắc chắn, kiểm tra Setting trong trình duyệt chuyển sang chế đố "Mở trình duyệt mới"
+
+CHROME: Settings --> On Startup --> Open The New Tab page
+
+
+Lưu ý khi dùng cookie:
+
+- Cookie có chỉnh sửa trong trình duyệt hoặc bên thứ 3 
+
+- Không lưu các thông tin quan trọng ở cookie: Mật khẩu, tài khoản ngân hàng
+
+- Cookie không chấp nhận các giá trị ở kiểu phực hợp (chỉ chấp kiểu chuỗi, số)
+
+
+Luồng chức năng: sản phẩm đã xem
+- Khi xem sản phẩm 1 => Lấy id sản phẩm => Lưu id vào cookie 
+- Khi xem sản phẩm 2 => Lấy id sản phẩm => thêm id mới vào chung cookie chứa id cũ => lưu cookie

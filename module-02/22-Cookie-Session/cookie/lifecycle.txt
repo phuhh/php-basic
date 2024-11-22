@@ -1,0 +1,7 @@
+- Client gửi Request lên Server
+- Server thiết lập Cookie và Response về Client 
+    1. Set Cookie
+    2. Trong quá trình response sẽ đính kèm trong HTTP Header: set-cookie: mycookie=value
+- Sau khi nhận Response, Client sẽ lưu lại cookie. vd: mycookie : value
+- Lần sau, Client gửi Request cho Server có đính kèm cookie trong HTTP Header: cookie: mycookie = value
+- Server sẽ dựa trên mycookie mà lấy ra giá trị
