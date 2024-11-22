@@ -26,7 +26,7 @@ ini_set('display_errors', 1);
 // error_reporting(0);
 // Lưu ý: Ẩn tất cả lỗi, mà phát hiện ra lỗi sẽ hiển thị thông báo 500.
 
-include './02-parse-error.php';
-include './03-fatal-error.php';
-include './04-warning.php';
-include './05-notice.php';
+include './ex02.php';
+include './ex03.php';
+include './ex04.php';
+include './ex05.php';

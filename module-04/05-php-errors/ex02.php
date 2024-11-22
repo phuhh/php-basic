@@ -1,5 +1,5 @@
 <?php
-// Lỗi sai cú pháp
+// Parse error - Lỗi sai cú pháp
 
 echo 'Chạy code 1 <br/>';
 

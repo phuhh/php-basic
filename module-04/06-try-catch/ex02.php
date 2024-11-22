@@ -2,7 +2,7 @@
 $age = 17;
 
 try {
-    demo();
+    //demo();
 
     if ($age < 18) {
         throw new Exception('Tuổi không hơp lệ');

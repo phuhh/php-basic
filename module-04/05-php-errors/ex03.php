@@ -1,5 +1,5 @@
 <?php
-// Lỗi biên dịch không được
+// Fatal error - Lỗi biên dịch không được
 
 echo 'Chạy code 4 <br>';
 
