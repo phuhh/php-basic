@@ -3,6 +3,7 @@ session_start();
 
 // Imports
 require_once './config.php';
+require_once './Includes/functions.php';
 
 // Điều hướng (routes)
 $module = _MODULE_DEFAULT;

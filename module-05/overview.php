@@ -63,3 +63,15 @@ Step 03 - Code điều hướng (routes)
 - Ngăn chặn người dùng truy cập trực tiếp vào folder hoặc file
 + Đối với folders: tạo index.html (không code gì)
 + Đối với files: đặt 1 hằng số, từng file kiểm tra hằng số đó có tồn tại không ???
+
+Step 04 - Nhúng Boostrap
+- Nhúng Boostrap 4.x
+- Nhúng fontawesome 4.7
+- Tạo Layout Master
+- Tạo ra đường dẫn host, templates
+- Tạo ra đường dẫn thư mục host, templates
+- Tạo UI Login
+- Tạo Layout (Login/Register)
+- Tạo ra hàm Load Layout
+- Tạo UI Register
+- Truyền biến vào Layout
