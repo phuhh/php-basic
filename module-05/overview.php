@@ -75,3 +75,9 @@ Step 04 - Nhúng Boostrap
 - Tạo ra hàm Load Layout
 - Tạo UI Register
 - Truyền biến vào Layout
+
+Step 05 - Kết nối CSDL
+- Kết nối database
+- Xây dựng các hàm query
+
+Step 06 - Viết hàm xử lý Session

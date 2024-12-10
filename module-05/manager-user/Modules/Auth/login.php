@@ -5,6 +5,27 @@ $data = [
     'pageTitle' => 'Đăng Nhập Hệ Thống'
 ];
 loadLayout('header_login', $data);
+
+// setSession('username', 'phuhh');
+// echo getSession('username');
+
+// setSession('email', 'phuhh@gmail.com');
+// echo getSession('email');
+
+// setSession('role', 'admin');
+
+// var_dump(removeSession('email'));
+
+// var_dump(removeSession());
+
+// setFlashData('messages', 'Inserted Successfully');
+
+// echo getFlashData('messages');
+
+echo "<pre>";
+print_r(getSession());
+echo "</pre>";
+
 ?>
 
 <div class="container">
@@ -14,7 +35,7 @@ loadLayout('header_login', $data);
             <form action="/" method="post">
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control" placeholder="Nhập email..." id="email">
+                    <input type="text" class="form-control" placeholder="Nhập email..." id="email">
                 </div>
                 <div class="form-group">
                     <label for="pass">Mật Khẩu:</label>

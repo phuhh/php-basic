@@ -18,9 +18,16 @@ defined('_WEB_HOST_TEMPLATES') or define(
     _WEB_HOST_ROOT . '/Templates'
 );
 
-// Thiết lập đường dẫn thư mục Root
+// Thiết lập đường dẫn cấu trúc dụ án Root
 // defined('_WEB_PATH_ROOT') or define('_WEB_PATH_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/php-basic/module-05/manager-user');
 defined('_WEB_PATH_ROOT') or define('_WEB_PATH_ROOT', __DIR__);
 
-// Thiết lập đường dẫn thư mục Templates
+// Thiết lập đường dẫn cấu trúc dự án Templates
 defined('_WEB_PATH_TEMPLATES') or define('_WEB_PATH_TEMPLATES', _WEB_PATH_ROOT . '/Templates');
+
+// Thiết lập kết nối csdl
+defined('DB_DRIVER ') || define('DB_DRIVER', 'mysql');
+defined('DB_HOST ') || define('DB_HOST', 'localhost');
+defined('DB_SCHEMA ') || define('DB_SCHEMA', 'PHPBasic');
+defined('DB_USERNAME ') || define('DB_USERNAME', 'root');
+defined('DB_PASSWORD ') || define('DB_PASSWORD', '');
