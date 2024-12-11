@@ -4,7 +4,12 @@ session_start();
 // Imports
 require_once './config.php';
 // require_once './Includes/functions.php';
-require_once _WEB_PATH_ROOT . '/Includes/connect.php'; // Import Connect Database
+require_once _WEB_PATH_ROOT . '/Includes/connect.php'; // Connect Database
+// Import PHPMailer
+require_once _WEB_PATH_ROOT . '/Includes/PHPMailer/Exception.php';
+require_once _WEB_PATH_ROOT . '/Includes/PHPMailer/SMTP.php';
+require_once _WEB_PATH_ROOT . '/Includes/PHPMailer/PHPMailer.php';
+
 require_once _WEB_PATH_ROOT . '/Includes/functions.php';
 require_once _WEB_PATH_ROOT . '/Includes/session.php';
 

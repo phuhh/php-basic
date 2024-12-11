@@ -6,26 +6,7 @@ $data = [
 ];
 loadLayout('header_login', $data);
 
-// setSession('username', 'phuhh');
-// echo getSession('username');
-
-// setSession('email', 'phuhh@gmail.com');
-// echo getSession('email');
-
-// setSession('role', 'admin');
-
-// var_dump(removeSession('email'));
-
-// var_dump(removeSession());
-
-// setFlashData('messages', 'Inserted Successfully');
-
-// echo getFlashData('messages');
-
-echo "<pre>";
-print_r(getSession());
-echo "</pre>";
-
+sendMail('phuhh2019@gmail.com', 'Test Mail', 'PHP Basic');
 ?>
 
 <div class="container">

@@ -18,7 +18,7 @@ defined('_WEB_HOST_TEMPLATES') or define(
     _WEB_HOST_ROOT . '/Templates'
 );
 
-// Thiết lập đường dẫn cấu trúc dụ án Root
+// Thiết lập đường dẫn cấu trúc dự án Root
 // defined('_WEB_PATH_ROOT') or define('_WEB_PATH_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/php-basic/module-05/manager-user');
 defined('_WEB_PATH_ROOT') or define('_WEB_PATH_ROOT', __DIR__);
 

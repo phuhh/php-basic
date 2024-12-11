@@ -4,7 +4,7 @@ date_default_timezone_set('Asia/Bangkok');
 /**
  * Các hàm xử lý liên quan timestamp và chuỗi ngày giờ
  * 
- * 1. Lấy ra số giấy của ngày giờ hiện tại: time()
+ * 1. Lấy ra số giây của ngày giờ hiện tại: time()
  */
 
 $t = time();

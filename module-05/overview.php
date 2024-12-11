@@ -81,3 +81,8 @@ Step 05 - Kết nối CSDL
 - Xây dựng các hàm query
 
 Step 06 - Viết hàm xử lý Session
+- Viết các hàm session và session flash
+
+Step 07 - Kết nối Mail
+- Nhúng thư viện PHP Mailer
+- Thiết lập tài khoản Gmail
