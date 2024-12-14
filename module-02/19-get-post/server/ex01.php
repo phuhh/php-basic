@@ -13,7 +13,7 @@
  * 
  * $_SERVER['DOCUMENT_ROOT'] : lấy đường dẫn gốc (chứa thư mục)
  * 
- * $_SERVER['REQUEST_METHOD'] : lấy phương thức gửi
+ * $_SERVER['REQUEST_METHOD'] : lấy phương thức gửi GET / POST
  * 
  */
 

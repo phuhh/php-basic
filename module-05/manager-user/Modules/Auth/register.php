@@ -11,7 +11,7 @@ loadLayout('header_login', $data);
     <div class="row">
         <div class="col-6" style="margin: 20px auto;">
             <h3 class="text-center text-uppercase">Đăng Ký Tài Khoản</h3>
-            <form action="/" method="post">
+            <form action="" method="post">
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <input type="email" class="form-control" placeholder="Nhập email..." name="email">

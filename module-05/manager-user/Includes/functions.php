@@ -13,6 +13,7 @@ function loadLayout($layoutName = 'header', $data = [])
         require_once _WEB_PATH_TEMPLATES . '//layouts//' . $layoutName . '.php';
 }
 
+// Hàm gửi mail
 function sendMail($to, $subject, $body)
 {
     //Create an instance; passing `true` enables exceptions
@@ -38,7 +39,7 @@ function sendMail($to, $subject, $body)
         ]);
 
         //Recipients
-        $mail->setFrom('phuhh2019@gmail.com', 'phuhh');
+        $mail->setFrom('phuhh2019@gmail.com', 'Tutorial PHP Basic');
         $mail->addAddress($to);     //Add a recipient
         // $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
         // $mail->addAddress('ellen@example.com');               //Name is optional
@@ -56,10 +57,95 @@ function sendMail($to, $subject, $body)
         $mail->Body    = $body;
         // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-        $mail->send();
-        echo 'Message has been sent';
+        return $mail->send();
+        // echo 'Message has been sent';
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-        die();
     }
+}
+
+
+// Hàm xử lý Request
+// Kiểm tra phức thức GET không
+function isGet()
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        return true;
+    }
+    return false;
+}
+// Kiểm tra phức thức POST không
+function isPost()
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        return true;
+    }
+    return false;
+}
+// Lấy dữ liệu bằng GET hoặc POST
+function getBody()
+{
+    $body = [];
+    if (isGet()) {
+        // Xử lý dữ liệu trước khi trả về
+        if (!empty($_GET)) {
+            foreach ($_GET as $key => $value) {
+                $key = strip_tags($key);
+                // Cách 1
+                // $body[$key] = htmlentities($value);
+
+                // Cách 2
+                if (is_array($value)) {
+                    $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
+                } else {
+                    $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                }
+            }
+        }
+    }
+
+    if (isPost()) {
+        if (!empty($_POST)) {
+            foreach ($_POST as $key => $value) {
+                $key = strip_tags($key);
+                if (is_array($value)) {
+                    $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
+                } else {
+                    $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                }
+            }
+        }
+    }
+
+    return $body;
+}
+// Hàm kiểm tra định dạng Email
+function isEmail($input)
+{
+    return filter_var($input, FILTER_VALIDATE_EMAIL);
+}
+// Hàm kiểm tra số nguyên
+function isNumberInt($input, $range = [])
+{
+    /**
+     * $range = ['min_range' => 1, 'max_range' => 10]
+     */
+    if (!empty($range) && is_array($range)) {
+        return filter_var($input, FILTER_VALIDATE_INT, [
+            'options' => $range
+        ]);
+    }
+
+    return filter_var($input, FILTER_VALIDATE_INT);
+}
+// Hàm kiểm tra số thực
+function isNumberFloat($input, $range = [])
+{
+    if (!empty($range) && is_array($range)) {
+        return filter_var($input, FILTER_VALIDATE_FLOAT, [
+            'options' => $range
+        ]);
+    }
+
+    return filter_var($input, FILTER_VALIDATE_FLOAT);
 }

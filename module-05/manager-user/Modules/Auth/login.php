@@ -6,21 +6,24 @@ $data = [
 ];
 loadLayout('header_login', $data);
 
-sendMail('phuhh2019@gmail.com', 'Test Mail', 'PHP Basic');
+$data = getBody();
+echo "<pre>";
+var_dump(isNumberFloat($data['email'], ['min_range' => 1, 'max_range' => 10]));
+echo '</pre>';
 ?>
 
 <div class="container">
     <div class="row">
         <div class="col-6" style="margin: 20px auto;">
             <h3 class="text-center text-uppercase">Đăng Nhập</h3>
-            <form action="/" method="post">
+            <form action="" method="post">
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="text" class="form-control" placeholder="Nhập email..." id="email">
+                    <input type="text" name="email" class="form-control" placeholder="Nhập email..." id="email">
                 </div>
                 <div class="form-group">
                     <label for="pass">Mật Khẩu:</label>
-                    <input type="password" class="form-control" placeholder="Nhập mật khẩu..." id="pass">
+                    <input type="password" name="pass" class="form-control" placeholder="Nhập mật khẩu..." id="pass">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Đăng Nhập</button>
                 <hr>

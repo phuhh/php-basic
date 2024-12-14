@@ -86,3 +86,7 @@ Step 06 - Viết hàm xử lý Session
 Step 07 - Kết nối Mail
 - Nhúng thư viện PHP Mailer
 - Thiết lập tài khoản Gmail
+
+Step 08 - Viết các hàm Validate (bằng hàm filter)
+- Viết các hàm xử lý request POST, GET
+- Viết các hàm xử lý email, integer, float
