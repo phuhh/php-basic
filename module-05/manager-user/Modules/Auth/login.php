@@ -5,11 +5,6 @@ $data = [
     'pageTitle' => 'Đăng Nhập Hệ Thống'
 ];
 loadLayout('header_login', $data);
-
-$data = getBody();
-echo "<pre>";
-var_dump(isNumberFloat($data['email'], ['min_range' => 1, 'max_range' => 10]));
-echo '</pre>';
 ?>
 
 <div class="container">

@@ -4,17 +4,32 @@ defined('_ACCESS_DENIED') or die('Access Denied !!!');
 // Thực thi câu lệnh SQL
 function query($sql = '',  $data = [], $isRead = false)
 {
+    /**
+     * $sql => QUERY
+     * $data = [
+     *     'key' => 'value',
+     *     'key' => 'value',
+     *     'key' => 'value',
+     * ];
+     * 
+     * $isRead => SELECT
+     */
     global $conn;
     $query = false;
 
-    if (!empty($sql)) {
-        $stmt = $conn->prepare($sql);
+    try {
+        if (!empty($sql)) {
+            $stmt = $conn->prepare($sql);
 
-        if (empty($data)) {
-            $query = $stmt->execute();
-        } else {
-            $query = $stmt->execute($data);
+            if (empty($data)) {
+                $query = $stmt->execute();
+            } else {
+                $query = $stmt->execute($data);
+            }
         }
+    } catch (Exception $e) {
+        require _WEB_PATH_ROOT . '/Modules/Errors/database.php';
+        die();
     }
 
     if ($query && $isRead) {
@@ -120,7 +135,14 @@ function first($table, $column = '*', $condition = '')
 
 // Bổ sung 1 số hàm query
 // Lấy số dòng
-function getRowCount() {}
+function getRowCount($sql)
+{
+    $stmt = query($sql, [], true);
+    if (!empty($stmt)) {
+        return $stmt->rowCount();
+    }
+    return false;
+}
 
 // Lấy ra ID
 function getLastID() {}

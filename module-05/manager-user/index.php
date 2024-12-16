@@ -5,6 +5,7 @@ session_start();
 require_once './config.php';
 // require_once './Includes/functions.php';
 require_once _WEB_PATH_ROOT . '/Includes/connect.php'; // Connect Database
+require_once _WEB_PATH_ROOT . '/Includes/database.php';
 // Import PHPMailer
 require_once _WEB_PATH_ROOT . '/Includes/PHPMailer/Exception.php';
 require_once _WEB_PATH_ROOT . '/Includes/PHPMailer/SMTP.php';

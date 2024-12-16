@@ -39,6 +39,7 @@ function removeSession($key = '')
     return false;
 }
 // Trong Session có 1 khái niệm là flash Data. Mục đích dùng session chỉ 1 lần xong rồi xoá.
+// Trường hợp dùng: Hiển thị thông báo lỗi, thành công, dữ liệu cũ,...
 // Tạo Flash Data
 function setFlashData($key, $value)
 {
@@ -53,3 +54,4 @@ function getFlashData($key)
     removeSession($keyFlash);
     return $data;
 }
+// lưu ý: khi dùng flash data cần lưu vào 1 biến 

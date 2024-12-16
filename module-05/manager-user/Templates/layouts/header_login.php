@@ -10,7 +10,7 @@
     <title><?= !empty($data['pageTitle']) ? trim($data['pageTitle']) : false ?></title>
     <link rel="stylesheet" href="<?= _WEB_HOST_TEMPLATES ?>/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= _WEB_HOST_TEMPLATES ?>/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<?= _WEB_HOST_TEMPLATES ?>/css/style.css">
+    <link rel="stylesheet" href="<?= _WEB_HOST_TEMPLATES ?>/css/style.css?v=<?= rand() ?>">
 </head>
 
 <body>

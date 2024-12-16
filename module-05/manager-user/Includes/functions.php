@@ -119,16 +119,16 @@ function getBody()
 
     return $body;
 }
-// Hàm kiểm tra định dạng Email
+// Validation: Hàm kiểm tra định dạng Email
 function isEmail($input)
 {
     return filter_var($input, FILTER_VALIDATE_EMAIL);
 }
-// Hàm kiểm tra số nguyên
+// Validation: Hàm kiểm tra số nguyên
 function isNumberInt($input, $range = [])
 {
     /**
-     * $range = ['min_range' => 1, 'max_range' => 10]
+     * $range = ['min_range' => 0, 'max_range' => 10]
      */
     if (!empty($range) && is_array($range)) {
         return filter_var($input, FILTER_VALIDATE_INT, [
@@ -138,7 +138,7 @@ function isNumberInt($input, $range = [])
 
     return filter_var($input, FILTER_VALIDATE_INT);
 }
-// Hàm kiểm tra số thực
+// Validation: Hàm kiểm tra số thực
 function isNumberFloat($input, $range = [])
 {
     if (!empty($range) && is_array($range)) {
@@ -148,4 +148,54 @@ function isNumberFloat($input, $range = [])
     }
 
     return filter_var($input, FILTER_VALIDATE_FLOAT);
+}
+// Validation: Hàm kiểm tra số SĐT (bắt đầu = số 0, tổng 10 con số)
+function isPhone($input)
+{
+    if (!empty($input)) {
+        $checkFirstNumber = false;
+        $checkLastNumbers = false;
+        if ($input[0] === '0') {
+            $checkFirstNumber = true;
+            $lastNumbers = substr($input, 1);
+        }
+
+        if (isNumberInt($lastNumbers) && strlen($lastNumbers) === 9) {
+            $checkLastNumbers = true;
+        }
+
+        if ($checkFirstNumber && $checkLastNumbers) {
+            return true;
+        }
+    }
+    return false;
+}
+// Điều hướng trang
+function redirect($path = '/')
+{
+    header('Location: ' . _WEB_HOST_ROOT . $path);
+    exit();
+}
+// Hiển thị thông báo chung
+function showMessages($content, $type = 'danger')
+{
+    if (!empty($content)) {
+        return '<div class="alert alert-' . $type . '">' . $content . '</div>';
+    }
+    return false;
+}
+// Hiển thị thông báo lỗi từng input
+function formError($fieldName)
+{
+    global $validation_errors;
+    if (!empty($validation_errors[$fieldName])) {
+        return '<span class="error">' . reset($validation_errors[$fieldName]) . '</span>';
+    }
+    return false;
+}
+// Hiển thị dữ liệu cũ
+function old($fieldName)
+{
+    global $old;
+    return !empty($old[$fieldName]) ? trim($old[$fieldName]) : false;
 }
