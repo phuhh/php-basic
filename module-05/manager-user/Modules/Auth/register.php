@@ -4,8 +4,9 @@ defined('_ACCESS_DENIED') or die('Access Denied !!!');
 $data = [
     'pageTitle' => 'Đăng Ký Tài Khoản'
 ];
-loadLayout('header_login', $data);
 
+loadLayout('header_login', $data);
+// Kiểm tra phương thức POST không
 if (isPost()) {
     // Validation Form
     $body = getBody(); // Lấy ra dữ liệu từ trong from
@@ -55,10 +56,39 @@ if (isPost()) {
 
         redirect('?module=auth&action=register');
     } else {
-        setFlashData('msg', 'Đăng ký thành công. Vui lòng kiểm tra hòm thư.');
-        setFlashData('msg_type', 'success');
+        // Tạo active token
+        $activeToken = sha1(uniqid() . time());
+        $data = [
+            'Email' => $body['email'],
+            'Password' => password_hash($body['pass'], PASSWORD_DEFAULT),
+            'FullName' => mb_strtoupper($body['fullname']),
+            'Phone' => trim($body['phone']),
+            'ActiveToken' => $activeToken,
+            'CreateAt' => date('Y-m-d H:i:s')
+        ];
+        // Thêm tài khoản
+        $insertStatus = create('Users', $data);
 
-        redirect('?module=auth&action=login');
+        if ($insertStatus) {
+            setFlashData('msg', 'Đăng ký thành công.');
+            setFlashData('msg_type', 'success');
+        }
+
+        $linkActive = _WEB_HOST_ROOT . '?module=auth&action=active&token=' . $activeToken;
+        $subject = 'Kích hoạt tài khoản [Project: Manager User]';
+        $content = 'Chào bạn: ' . $body['FullName'] . '<br>';
+        $content .= 'Vui lòng nhấp vào đường dẫn dưới đây để kích hoạt tài khoản: <br>';
+        $content .= $linkActive . '<br>';
+        $content .= 'Trân Trọng.';
+        // Gửi mail khi thành công đăng ký
+        $sendStatus = sendMail($body['email'], $subject, $content);
+
+        if ($sendStatus) {
+            setFlashData('msg', 'Đăng ký thành công. Vui lòng kiểm tra email để kích hoạt tài khoản.');
+            setFlashData('msg_type', 'success');
+        }
+
+        redirect('?module=auth&action=register');
     }
 }
 // lưu ý: khi dùng flash data cần lưu vào 1 biến 

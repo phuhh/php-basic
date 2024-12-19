@@ -37,6 +37,7 @@ function sendMail($to, $subject, $body)
                 'allow_self_signed' => true,
             ]
         ]);
+        $mail->CharSet = 'UTF-8';
 
         //Recipients
         $mail->setFrom('phuhh2019@gmail.com', 'Tutorial PHP Basic');

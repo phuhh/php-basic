@@ -7,14 +7,19 @@ function query($sql = '',  $data = [], $isRead = false)
     global $conn;
     $query = false;
 
-    if (!empty($sql)) {
-        $stmt = $conn->prepare($sql);
+    try {
+        if (!empty($sql)) {
+            $stmt = $conn->prepare($sql);
 
-        if (empty($data)) {
-            $query = $stmt->execute();
-        } else {
-            $query = $stmt->execute($data);
+            if (empty($data)) {
+                $query = $stmt->execute();
+            } else {
+                $query = $stmt->execute($data);
+            }
         }
+    } catch (Exception $e) {
+        echo 'Error on <b> line ' . $e->getLine() . '</b> in ' . $e->getFile()  . ': <b>' . $e->getMessage() . '</b><br />';
+        die();
     }
 
     if ($query && $isRead) {
