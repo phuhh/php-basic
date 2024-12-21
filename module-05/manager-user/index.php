@@ -27,7 +27,6 @@ if (!empty($_GET['action']) && is_string($_GET['action'])) {
 }
 // echo $module . '<br>';
 // echo $action . '<br>';
-
 // $path = './Modules/' . $module . '/' . $action . '.php';
 $path = _WEB_PATH_ROOT . '//Modules/' . $module . '/' . $action . '.php';
 

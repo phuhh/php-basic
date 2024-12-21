@@ -138,3 +138,15 @@ Step 10 - Xây dựng chức năng đăng ký người dùng
 ---+ Nâng cao: Xử lý khi mail không gửi tới dùng cần có (chức năng gửi lại mail)
 
 - Người dùng bấm vào link để kích hoạt tài khoản (hoặc dùng OTP để kích hoạt tk).
+
+Step 10 - Xây dựng chức năng kích hoạt tài khoản
+---+ Kiểm tra token tồn tại không
+---+ Kích hoạt tài khoản và gửi mail thông báo
+
+step 11 - Xây dựng chức năng đăng nhập
+---+ Kiểm tra Validation
+---+ Kiểm tra email tồn tại hay không ?
+---+ Xác thực password có hợp lệ hay không ?
+---+ Thêm logintoken và gán token session
+---+ Điều hướng khi đăng nhập thành công
+---+ Xây dựng hàm check login hay chưa ?

@@ -178,7 +178,7 @@ function redirect($path = '/')
     exit();
 }
 // Hiển thị thông báo chung
-function showMessages($content, $type = 'danger')
+function showMessage($content, $type = 'danger')
 {
     if (!empty($content)) {
         return '<div class="alert alert-' . $type . '">' . $content . '</div>';
@@ -186,17 +186,31 @@ function showMessages($content, $type = 'danger')
     return false;
 }
 // Hiển thị thông báo lỗi từng input
-function formError($fieldName)
+function formError($field_name)
 {
     global $validation_errors;
-    if (!empty($validation_errors[$fieldName])) {
-        return '<span class="error">' . reset($validation_errors[$fieldName]) . '</span>';
+    if (!empty($validation_errors[$field_name])) {
+        return '<span class="error">' . reset($validation_errors[$field_name]) . '</span>';
     }
     return false;
 }
 // Hiển thị dữ liệu cũ
-function old($fieldName)
+function old($field_name)
 {
     global $old;
-    return !empty($old[$fieldName]) ? trim($old[$fieldName]) : false;
+    return !empty($old[$field_name]) ? trim($old[$field_name]) : false;
+}
+// Kiểm tra đăng nhập
+function isLogin()
+{
+    if (getSession('login_token')) {
+        $login_token = getSession('login_token');
+        $count_record = getRowCount("SELECT UserID FROM LoginToken WHERE Token = '{$login_token}' ");
+        if ($count_record > 0) {
+            return true;
+        } else {
+            removeSession('login_token');
+        }
+    }
+    return false;
 }

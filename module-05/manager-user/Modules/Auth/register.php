@@ -48,14 +48,7 @@ if (isPost()) {
         $validation_errors['repass']['match'] = 'Password không trùng khớp.';
     }
 
-    if (!empty($validation_errors)) {
-        setFlashData('msg', 'Vui lòng kiểm tra dữ liệu nhập.');
-        setFlashData('msg_type', 'danger');
-        setFlashData('validation_errors', $validation_errors);
-        setFlashData('old', $body);
-
-        redirect('?module=auth&action=register');
-    } else {
+    if (empty($validation_errors)) {
         // Tạo active token
         $activeToken = sha1(uniqid() . time());
         $data = [
@@ -72,24 +65,33 @@ if (isPost()) {
         if ($insertStatus) {
             setFlashData('msg', 'Đăng ký thành công.');
             setFlashData('msg_type', 'success');
+
+            // Gửi mail khi thành công đăng ký
+            $linkActive = _WEB_HOST_ROOT . '?module=auth&action=active&token=' . $activeToken;
+            $subject = 'Kích hoạt tài khoản [Project: Manager User]';
+            $content = 'Chào bạn: ' . $body['FullName'] . '<br>';
+            $content .= 'Vui lòng nhấp vào đường dẫn dưới đây để kích hoạt tài khoản: <br>';
+            $content .= $linkActive . '<br>';
+            $content .= 'Trân Trọng.';
+            $sendStatus = sendMail($body['email'], $subject, $content);
+
+            if ($sendStatus) {
+                setFlashData('msg', 'Đăng ký thành công. Vui lòng kiểm tra email để kích hoạt tài khoản.');
+                setFlashData('msg_type', 'success');
+            }
+
+            redirect('?module=auth&action=login');
+        } else {
+            setFlashData('msg', 'Lỗi hệ thống. Vui lòng liên hệ quản trị viên');
+            setFlashData('msg_type', 'danger');
         }
-
-        $linkActive = _WEB_HOST_ROOT . '?module=auth&action=active&token=' . $activeToken;
-        $subject = 'Kích hoạt tài khoản [Project: Manager User]';
-        $content = 'Chào bạn: ' . $body['FullName'] . '<br>';
-        $content .= 'Vui lòng nhấp vào đường dẫn dưới đây để kích hoạt tài khoản: <br>';
-        $content .= $linkActive . '<br>';
-        $content .= 'Trân Trọng.';
-        // Gửi mail khi thành công đăng ký
-        $sendStatus = sendMail($body['email'], $subject, $content);
-
-        if ($sendStatus) {
-            setFlashData('msg', 'Đăng ký thành công. Vui lòng kiểm tra email để kích hoạt tài khoản.');
-            setFlashData('msg_type', 'success');
-        }
-
-        redirect('?module=auth&action=register');
+    } else {
+        setFlashData('msg', 'Vui lòng kiểm tra dữ liệu nhập.');
+        setFlashData('msg_type', 'danger');
+        setFlashData('validation_errors', $validation_errors);
+        setFlashData('old', $body);
     }
+    redirect('?module=auth&action=register');
 }
 // lưu ý: khi dùng flash data cần lưu vào 1 biến 
 $msg = getFlashData('msg');
@@ -103,7 +105,7 @@ $old = getFlashData('old');
     <div class="row">
         <div class="col-6" style="margin: 20px auto;">
             <h3 class="text-center text-uppercase">Đăng Ký Tài Khoản</h3>
-            <?= showMessages($msg, $msg_type) ?>
+            <?= showMessage($msg, $msg_type) ?>
             <form action="" method="post">
                 <div class="form-group">
                     <label for="fullname">Họ Tên:</label>
@@ -122,12 +124,12 @@ $old = getFlashData('old');
                 </div>
                 <div class="form-group">
                     <label for="pass">Mật Khẩu:</label>
-                    <input type="password" name="pass" class="form-control" placeholder="Nhập mật khẩu..." value="<?= old('pass') ?>">
+                    <input type="password" name="pass" class="form-control" placeholder="Nhập mật khẩu...">
                     <?= formError('pass'); ?>
                 </div>
                 <div class="form-group">
                     <label for="repass">Nhập Lại MK:</label>
-                    <input type="password" name="repass" class="form-control" placeholder="Nhập lại mật khẩu..." value="<?= old('repass') ?>">
+                    <input type="password" name="repass" class="form-control" placeholder="Nhập lại mật khẩu...">
                     <?= formError('repass'); ?>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Đăng Ký</button>
@@ -137,6 +139,5 @@ $old = getFlashData('old');
         </div>
     </div>
 </div>
-
 
 <?php loadLayout('footer_login'); ?>
