@@ -39,10 +39,14 @@ if (isPost()) {
             // Check Password
             if (password_verify($body['pass'], $user_password)) {
                 $login_token = sha1(uniqid() . time());
-                $data = ['UserID' => $user_id, 'Token' => $login_token, 'CreateAt' => date('Y-m-d h:i:s')];
+                $data = [
+                    'UserID' => $user_id,
+                    'Token' => $login_token,
+                    'CreateAt' => date('Y-m-d h:i:s')
+                ];
                 // Insert Login Token and Set Session Token
-                $insertData = create('LoginToken', $data);
-                if ($insertData) {
+                $insert_status = create('LoginToken', $data);
+                if ($insert_status) {
                     //Set token session
                     setSession('login_token', $login_token);
 

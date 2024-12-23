@@ -6,6 +6,10 @@ defined('_ACCESS_DENIED') or die('Access Denied !!!');
 $msg = null;
 $msg_type = null;
 
+if (isLogin()) {
+    redirect('?module=users&action=lists');
+}
+
 $data = [
     'pageTitle' => 'Kích Hoạt Tài khoản'
 ];

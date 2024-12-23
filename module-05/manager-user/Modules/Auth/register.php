@@ -50,32 +50,32 @@ if (isPost()) {
 
     if (empty($validation_errors)) {
         // Tạo active token
-        $activeToken = sha1(uniqid() . time());
+        $active_token = sha1(uniqid() . time());
         $data = [
             'Email' => $body['email'],
             'Password' => password_hash($body['pass'], PASSWORD_DEFAULT),
             'FullName' => mb_strtoupper($body['fullname']),
             'Phone' => trim($body['phone']),
-            'ActiveToken' => $activeToken,
+            'ActiveToken' => $active_token,
             'CreateAt' => date('Y-m-d H:i:s')
         ];
         // Thêm tài khoản
-        $insertStatus = create('Users', $data);
+        $insert_status = create('Users', $data);
 
-        if ($insertStatus) {
+        if ($insert_status) {
             setFlashData('msg', 'Đăng ký thành công.');
             setFlashData('msg_type', 'success');
 
             // Gửi mail khi thành công đăng ký
-            $linkActive = _WEB_HOST_ROOT . '?module=auth&action=active&token=' . $activeToken;
+            $active_path = _WEB_HOST_ROOT . '?module=auth&action=active&token=' . $active_token;
             $subject = 'Kích hoạt tài khoản [Project: Manager User]';
             $content = 'Chào bạn: ' . $body['FullName'] . '<br>';
             $content .= 'Vui lòng nhấp vào đường dẫn dưới đây để kích hoạt tài khoản: <br>';
-            $content .= $linkActive . '<br>';
+            $content .= $active_path . '<br>';
             $content .= 'Trân Trọng.';
-            $sendStatus = sendMail($body['email'], $subject, $content);
+            $send_status = sendMail($body['email'], $subject, $content);
 
-            if ($sendStatus) {
+            if ($send_status) {
                 setFlashData('msg', 'Đăng ký thành công. Vui lòng kiểm tra email để kích hoạt tài khoản.');
                 setFlashData('msg_type', 'success');
             }

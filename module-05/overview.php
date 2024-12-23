@@ -143,10 +143,22 @@ Step 10 - Xây dựng chức năng kích hoạt tài khoản
 ---+ Kiểm tra token tồn tại không
 ---+ Kích hoạt tài khoản và gửi mail thông báo
 
-step 11 - Xây dựng chức năng đăng nhập
+Step 11 - Xây dựng chức năng đăng nhập
 ---+ Kiểm tra Validation
 ---+ Kiểm tra email tồn tại hay không ?
 ---+ Xác thực password có hợp lệ hay không ?
 ---+ Thêm logintoken và gán token session
 ---+ Điều hướng khi đăng nhập thành công
 ---+ Xây dựng hàm check login hay chưa ?
+
+Step 12 - Xây dựng chức năng quên mật khẩu
+Tạo đường dẫn tạo mật khẩu mới
+---+ Kiểm tra validation
+---+ Kiểm tra email có tồn tại không ?
+---+ Tạo forgot token và thêm vào DB
+---+ Gửi mail đường dẫn tạo mật khẩu mới
+Tạo mật khẩu mới
+---+ Kiểm tra token có tồn tại không
+---+ Kiểm tra 2 trường nhập mk trùng nhau không ?
+---+ Cập nhật mk trong DB và xoá đi forgot token
+---+ Gửi mail thông báo mới mk
