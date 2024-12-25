@@ -5,4 +5,13 @@ if (!isLogin()) {
     redirect('?module=auth&action=login');
 }
 
-echo '<h1>Danh sách người dùng</h1>';
+$data = [
+    'pageTitle' => 'Tạo mật khẩu mới'
+];
+// Load Template Login
+loadLayout('header', $data);
+?>
+
+<h1>Danh sách nhân viên</h1>
+
+<?php loadLayout('footer', $data); ?>

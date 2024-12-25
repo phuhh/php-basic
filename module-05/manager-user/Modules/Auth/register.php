@@ -82,7 +82,7 @@ if (isPost()) {
 
             redirect('?module=auth&action=login');
         } else {
-            setFlashData('msg', 'Lỗi hệ thống. Vui lòng liên hệ quản trị viên');
+            setFlashData('msg', 'Lỗi hệ thống. Vui lòng liên hệ quản trị viên.');
             setFlashData('msg_type', 'danger');
         }
     } else {

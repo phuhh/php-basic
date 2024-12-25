@@ -79,7 +79,7 @@ if (isPost()) {
                 setFlashData('msg_type', 'danger');
             }
         } else {
-            setFlashData('msg', 'Liên kết không tôn tại hoặc đã hết hạn');
+            setFlashData('msg', 'Liên kết không tôn tại hoặc đã hết hạn.');
             setFlashData('msg_type', 'danger');
         }
     } else {

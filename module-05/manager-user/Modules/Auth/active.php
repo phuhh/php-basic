@@ -43,19 +43,19 @@ if (!empty($active_token)) {
             $content .= 'Trân trọng.';
             sendMail($user_email, $subject, $content);
 
-            setFlashData('msg', 'Kích hoạt tài khoản thành công. Bạn có thể đăng nhập hệ thống');
+            setFlashData('msg', 'Kích hoạt tài khoản thành công. Bạn có thể đăng nhập hệ thống.');
             setFlashData('msg_type', 'success');
             redirect('?module=auth&action=login');
         } else {
-            setFlashData('msg', 'Lỗi hệ thống. Vui lòng liên hệ quản trị viên');
+            setFlashData('msg', 'Lỗi hệ thống. Vui lòng liên hệ quản trị viên.');
             setFlashData('msg_type', 'danger');
         }
     } else {
-        setFlashData('msg', 'Liên kết không tôn tại hoặc đã hết hạn');
+        setFlashData('msg', 'Liên kết không tôn tại hoặc đã hết hạn.');
         setFlashData('msg_type', 'danger');
     }
 } else {
-    setFlashData('msg', 'Liên kết không tôn tại hoặc đã hết hạn');
+    setFlashData('msg', 'Liên kết không tôn tại hoặc đã hết hạn.');
     setFlashData('msg_type', 'danger');
 }
 
