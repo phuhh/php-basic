@@ -149,7 +149,7 @@ Step 11 - Xây dựng chức năng đăng nhập
 ---+ Xác thực password có hợp lệ hay không ?
 ---+ Thêm logintoken và gán token session
 ---+ Điều hướng khi đăng nhập thành công
----+ Xây dựng hàm check login hay chưa ?
+---+ Xây dựng hàm check login
 
 Step 12 - Xây dựng chức năng quên mật khẩu
 Tạo đường dẫn tạo mật khẩu mới
@@ -162,3 +162,8 @@ Tạo mật khẩu mới
 ---+ Kiểm tra 2 trường nhập mk trùng nhau không ?
 ---+ Cập nhật mk trong DB và xoá đi forgot token
 ---+ Gửi mail thông báo mới mk
+
+Step 13 - Xây dựng chức năng đăng xuất
+---+ Xoá dữ liệu trong DB và session token.
+
+Step 14 - Xây dựng chức năng danh sách người dùng
