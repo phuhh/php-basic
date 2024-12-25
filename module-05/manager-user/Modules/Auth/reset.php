@@ -83,8 +83,6 @@ if (isPost()) {
             setFlashData('msg_type', 'danger');
         }
     } else {
-        setFlashData('msg', 'Vui lòng kiểm tra dữ liệu nhập.');
-        setFlashData('msg_type', 'danger');
         setFlashData('validation_errors', $validation_errors);
     }
 
