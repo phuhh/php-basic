@@ -64,7 +64,7 @@ $users = getRaw($sql);
             </thead>
             <tbody>
                 <?php if (!empty($users)): ?>
-                    <?php $count = 0;
+                    <?php $count = $offset;
                     foreach ($users as $key => $user):
                         $count++; ?>
                         <tr>
