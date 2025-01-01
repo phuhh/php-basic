@@ -167,3 +167,16 @@ Step 13 - Xây dựng chức năng đăng xuất
 ---+ Xoá dữ liệu trong DB và session token.
 
 Step 14 - Xây dựng chức năng danh sách người dùng
+---+ Xây dựng ui
+---+ Lấy ra dữ liệu người dùng
+
+Step 15 - Thuật toán phân trang và xây dựng chức năng phân trang
+---+ 1. Xác định được số lượng bản ghi trên 1 trang
+---+ 2. Tính số trang
+---+ 2.1 Lấy ra tổng bản ghi trong csdl
+---+ 2.2 Số trang = tổng bản ghi / số lượng bản ghi trên 1 trang
+---+ 3. Xử lý số trang dựa vào phương thức GET
+---+ 4. Xử lý $offset trong $limit dựa trên biến $page
+---+ 5. Xây dựng sô trang và active trang hiện tại
+---+ 6. Xây dựng nút trước và sau
+---+ 7. Ẩn bớt số trang trước và sau

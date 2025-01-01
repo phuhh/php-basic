@@ -12,33 +12,37 @@ $data = [
 loadLayout('header', $data);
 
 
-
-// 1.Thiết lập số dòng trên 1 page
+// Xử lý phân trang
+// 1. Xác định được số lượng bản ghi trên 1 trang
 $limit = 3;
-
-// 2. Lấy tổng số dòng
+// 2. Tính số trang
+// 2.1 Lấy ra tổng số dòng
 $total_records = getRowCount('SELECT ID FROM Users');
-
-// 3. Lấy ra tổng số trang
+// 2.2 Lấy ra số trang
 $items_per_page = ceil($total_records / $limit);
-
-echo "<pre>";
-print_r($items_per_page);
-echo "</pre>";
-
-// 4. Xác định trang hiện tại
+// 3. Xác định trang hiện tại
 $page = 1;
-if (!empty(getBody()['page']) && getBody()['page'] > 1) {
+if (!empty(getBody()['page']) && is_numeric(getBody()['page']) && getBody()['page'] > 1) {
     $page = getBody()['page'];
     if ($page > $items_per_page) {
         $page = $items_per_page;
     }
 }
 
-// 5. Xác định vị trí kế tiếp
-$offset = ($page - 1) * $limit;
+// 4. Xác định vị trí tiếp theo trong bản ghi
+// $page = 1 => $offset = 0 ==> (1 - 1) * 3 = 0 => LIMIT 0,3
+// $page = 2 => $offset = 3 ==> (2 - 1) * 3 = 3 => LIMIT 3,3
+// $page = 3 => $offset = 6 ==> (3 - 1) * 3 = 6 => LIMIT 6,3
+// $page = 4 => $offset = 9 ==> (4 - 1) * 3 = 9 => LIMIT 9,3
 
+// Giới hạn 3 dòng trên 1 trang
+// Công thức: (Số Trang - 1) * SL bản ghi trên 1 trang
+$offset = ($page - 1) * $limit;
+// Chú ý: Vị trí offset bắt đầu đếm bằng 0 (tương tự mảng tuần tự trong php)
+
+// 5. Lấy dữ liệu từ csdl với mệnh đề LIMIT
 $sql = 'SELECT ID, Email, FullName, Phone, `Status` FROM Users ORDER BY ID DESC LIMIT ' . $offset . ',' . $limit;
+
 $users = getRaw($sql);
 ?>
 
@@ -69,7 +73,7 @@ $users = getRaw($sql);
                             <td><?= $user['Email'] ?></td>
                             <td><?= $user['Phone'] ?></td>
                             <td>
-                                <?= $user['Status'] === 1 ? '<a href="" class="btn btn-success btn-sm">Kích Hoạt</a>' : '<a href="" class="btn btn-secondary btn-sm">Chưa Kích Hoạt</a>' ?>
+                                <?= $user['Status'] == 1 ? '<a href="" class="btn btn-success btn-sm">Kích Hoạt</a>' : '<a href="" class="btn btn-secondary btn-sm">Chưa Kích Hoạt</a>' ?>
                             </td>
                             <td>
                                 <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
@@ -87,17 +91,37 @@ $users = getRaw($sql);
             </tbody>
         </table>
     </div>
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation example" class="float-right">
         <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
             <?php
+            // 7. Xử lý nút lùi và tới
+            // 7.1 Xử lý nút lùi
+            if ($page > 1) {
+                $pagePrevious = $page - 1;
+                echo '<li class="page-item"><a class="page-link" href="?module=users&page=' .  $pagePrevious . '">Trước</a></li>';
+            }
+
+            // 6. Xử lý nút số trang
             if (!empty($items_per_page)) {
-                for ($item = 1; $item <= $items_per_page; $item++) {
-                    echo '<li class="page-item"><a class="page-link" href="?module=users&page=' . $item . '">' . $item . '</a></li>';
+                // 8. Xử lý ẩn bớt số trang trước hoặc sau khi tới vượt mức.
+                define('SHOW_BUTTONS', 2);
+                $begin = $page - SHOW_BUTTONS;
+                $begin = $begin > 0 ? $begin : 1;
+                $end = $page + SHOW_BUTTONS;
+                $end = $end > $items_per_page ? $items_per_page : $end;
+                for ($item = $begin; $item <= $end; $item++) {
+                    // 6.1 Xử lý active
+                    $active = $item == $page ? ' active' : false;
+                    echo '<li class="page-item' . $active . '"><a class="page-link" href="?module=users&page=' . $item . '">' . $item . '</a></li>';
                 }
             }
+
+            // 7.2 Xử lý nút tới
+            if ($page < $items_per_page) {
+                $pageNext = $page + 1;
+                echo '<li class="page-item"><a class="page-link" href="?module=users&page=' . $pageNext . '">Sau</a></li>';
+            }
             ?>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
         </ul>
     </nav>
 </div>
