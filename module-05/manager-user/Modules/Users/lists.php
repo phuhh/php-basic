@@ -11,27 +11,40 @@ $data = [
 // Load Template Login
 loadLayout('header', $data);
 
-
-$queryString = null;
-if(!empty($_SERVER['QUERY_STRING'])){
-    $queryString = $_SERVER['QUERY_STRING'];
-}
-echo $queryString . '<br>';
-
-
+$status = -1;
+$keywords = '';
+$condition = null;
 // Xử lý lọc và tìm kiếm
-if(isGet()){
+if (isGet()) {
     $body = getBody();
+    // Xử lý lọc
+    if (isset($body['status'])) {
+        $status = $body['status'] == 1 || $body['status'] == 0 ? $body['status'] : -1;
+        $condition = $status == 1 || $status == 0  ? 'WHERE Status=' . $status : '';
+    }
 
+    // Xử lý tìm kiếm
+    if (!empty($body['keywords'])) {
+        $keywords = $body['keywords'];
+
+        // Xử lý nếu kết hợp lọc và tìm kiếm
+        $operator = 'WHERE ';
+        if (!empty($condition) && strpos('WHERE', $condition) >= 0) {
+            $operator = ' AND ';
+        }
+
+        $condition .= $operator . "FullName LIKE '%$keywords%'";
+    }
 }
-
+// echo $condition . '<br>';
+// Nối chuỗi với SQL phân trang.
 
 // Xử lý phân trang
 // 1. Xác định được số lượng bản ghi trên 1 trang
 $limit = 3;
 // 2. Tính số trang
 // 2.1 Lấy ra tổng số dòng
-$total_records = getRowCount('SELECT ID FROM Users');
+$total_records = getRowCount('SELECT ID FROM Users ' . $condition);
 // 2.2 Lấy ra số trang
 $items_per_page = ceil($total_records / $limit);
 // 3. Xác định trang hiện tại
@@ -55,9 +68,19 @@ $offset = ($page - 1) * $limit;
 // Chú ý: Vị trí offset bắt đầu đếm bằng 0 (tương tự mảng tuần tự trong php)
 
 // 5. Lấy dữ liệu từ csdl với mệnh đề LIMIT
-$sql = 'SELECT ID, Email, FullName, Phone, `Status` FROM Users ORDER BY ID DESC LIMIT ' . $offset . ',' . $limit;
-
+$sql = 'SELECT ID, Email, FullName, Phone, `Status` 
+FROM Users ' . $condition . ' ORDER BY ID DESC LIMIT ' . $offset . ',' . $limit;
 $users = getRaw($sql);
+
+// Xử lý lọc và tìm kiếm với phân trang
+$queryString = null;
+if (!empty($_SERVER['QUERY_STRING'])) {
+    $queryString = $_SERVER['QUERY_STRING'];
+    // $queryString = str_replace('module', '', $queryString);
+    $queryString = str_replace('page=' . $page, '', $queryString);
+    $queryString = trim($queryString, '&');
+}
+// echo $queryString . '<br>';
 ?>
 
 <div class="container">
@@ -65,17 +88,18 @@ $users = getRaw($sql);
     <p><a href="#" class="btn btn-success btn-sm">Thêm mới người dùng</a></p>
     <form action="" method="get">
         <input type="hidden" name="module" value="users">
-        <input type="hidden" name="page" value="<?= $page ?>">
         <div class="row mb-3">
             <div class="col-md-3">
                 <select name="status" class="form-control">
-                    <option value="">Vui lòng chọn</option>
-                    <option value="0">Chưa kích hoạt</option>
-                    <option value="1">Đã kích hoạt</option>
+                    <?php // đánh dấu selected 
+                    ?>
+                    <option value="-1" <?= $status == -1 ? ' selected' : false ?>>Vui lòng chọn</option>
+                    <option value="0" <?= $status == 0 ? ' selected' : false ?>>Chưa kích hoạt</option>
+                    <option value="1" <?= $status == 1 ? ' selected' : false ?>>Đã kích hoạt</option>
                 </select>
             </div>
             <div class="col-md-4 offset-md-3">
-                <input type="text" name="search" class="form-control" placeholder="Từ khóa...">
+                <input type="text" name="keywords" class="form-control" placeholder="Từ khóa..." value="<?= $keywords ?>">
             </div>
             <div class="col-md-2">
                 <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
@@ -131,7 +155,7 @@ $users = getRaw($sql);
             // 7.1 Xử lý nút lùi
             if ($page > 1) {
                 $pagePrevious = $page - 1;
-                echo '<li class="page-item"><a class="page-link" href="?module=users&page=' .  $pagePrevious . '">Trước</a></li>';
+                echo '<li class="page-item"><a class="page-link" href="?' . $queryString . '&page=' .  $pagePrevious . '">Trước</a></li>';
             }
 
             // 6. Xử lý nút số trang
@@ -145,14 +169,14 @@ $users = getRaw($sql);
                 for ($item = $begin; $item <= $end; $item++) {
                     // 6.1 Xử lý active
                     $active = $item == $page ? ' active' : false;
-                    echo '<li class="page-item' . $active . '"><a class="page-link" href="?module=users&page=' . $item . '">' . $item . '</a></li>';
+                    echo '<li class="page-item' . $active . '"><a class="page-link" href="?' . $queryString . '&page=' . $item . '">' . $item . '</a></li>';
                 }
             }
 
             // 7.2 Xử lý nút tới
             if ($page < $items_per_page) {
                 $pageNext = $page + 1;
-                echo '<li class="page-item"><a class="page-link" href="?module=users&page=' . $pageNext . '">Sau</a></li>';
+                echo '<li class="page-item"><a class="page-link" href="?' . $queryString . '&page=' . $pageNext . '">Sau</a></li>';
             }
             ?>
         </ul>
