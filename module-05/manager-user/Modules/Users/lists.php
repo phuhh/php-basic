@@ -12,6 +12,20 @@ $data = [
 loadLayout('header', $data);
 
 
+$queryString = null;
+if(!empty($_SERVER['QUERY_STRING'])){
+    $queryString = $_SERVER['QUERY_STRING'];
+}
+echo $queryString . '<br>';
+
+
+// Xử lý lọc và tìm kiếm
+if(isGet()){
+    $body = getBody();
+
+}
+
+
 // Xử lý phân trang
 // 1. Xác định được số lượng bản ghi trên 1 trang
 $limit = 3;
@@ -49,6 +63,25 @@ $users = getRaw($sql);
 <div class="container">
     <h3><?= $data['pageTitle'] ?? null ?></h3>
     <p><a href="#" class="btn btn-success btn-sm">Thêm mới người dùng</a></p>
+    <form action="" method="get">
+        <input type="hidden" name="module" value="users">
+        <input type="hidden" name="page" value="<?= $page ?>">
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <select name="status" class="form-control">
+                    <option value="">Vui lòng chọn</option>
+                    <option value="0">Chưa kích hoạt</option>
+                    <option value="1">Đã kích hoạt</option>
+                </select>
+            </div>
+            <div class="col-md-4 offset-md-3">
+                <input type="text" name="search" class="form-control" placeholder="Từ khóa...">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+            </div>
+        </div>
+    </form>
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead>
