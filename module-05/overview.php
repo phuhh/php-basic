@@ -193,5 +193,22 @@ Step 16 - Xây dựng chức năng lọc và tìm Kiếm
 -------+ Giữ lại giá trị trong Control
 
 Step 17 - Xây dựng chức năng thêm người dùng
+---+ Dựng form thêm mới người dùng.
+---+ Validation form (ngoại trừ trạng thái).
+---+ Hiển thị validation.
+---+ Giữ lại giá trị (ngoại trừ password).
+---+ Thêm dữ liệu vào csdl.
 Step 18 - Xây dựng chức năng cập nhật người dùng
+---+ Dựng form cập nhật người dùng.
+---+ Lấy dữ liệu dựa trên ID.
+---+ Hiển thị dữ liệu ID lấy được.
+-------+ gán vào biến old
+---+ Validation form
+-------+ Email ngoại trừ ID hiện tại (khác ID).
+-------+ Pass không bắt buộc (Nếu có Pass mới check validation Repass).
+---+ Cập nhật dữ liệu vào csdl.
 Step 19 - Xây dựng chức năng xoá người dùng
+---+ Lấy dữ liệu dựa trên ID.
+---+ Xoá dữ liệu trong csdl.
+-------+ Xoá khoá ngoại bảng LoginToken
+-------+ Xoá dữ liệu bảng Users
