@@ -19,13 +19,13 @@ if (isGet()) {
     $body = getBody();
     // Xử lý lọc
     if (isset($body['status'])) {
-        $status = $body['status'] == 1 || $body['status'] == 0 ? $body['status'] : -1;
+        $status = $body['status'] == 1 || $body['status'] == 0 ? trim($body['status']) : -1;
         $condition = $status == 1 || $status == 0  ? 'WHERE Status=' . $status : '';
     }
 
     // Xử lý tìm kiếm
     if (!empty($body['keywords'])) {
-        $keywords = $body['keywords'];
+        $keywords = trim($body['keywords']);
 
         // Xử lý nếu kết hợp lọc và tìm kiếm
         $operator = 'WHERE ';
@@ -69,7 +69,7 @@ $offset = ($page - 1) * $limit;
 
 // 5. Lấy dữ liệu từ csdl với mệnh đề LIMIT
 $sql = 'SELECT ID, Email, FullName, Phone, `Status` 
-FROM Users ' . $condition . ' ORDER BY ID DESC LIMIT ' . $offset . ',' . $limit;
+FROM Users ' . $condition . ' ORDER BY CreateAt DESC LIMIT ' . $offset . ',' . $limit;
 $users = getRaw($sql);
 
 // Xử lý lọc và tìm kiếm với phân trang
@@ -85,7 +85,7 @@ if (!empty($_SERVER['QUERY_STRING'])) {
 
 <div class="container">
     <h3><?= $data['pageTitle'] ?? null ?></h3>
-    <p><a href="#" class="btn btn-success btn-sm">Thêm mới người dùng</a></p>
+    <p><a href="?module=users&action=add" class="btn btn-success btn-sm">Thêm mới người dùng</a></p>
     <form action="" method="get">
         <input type="hidden" name="module" value="users">
         <div class="row mb-3">
@@ -133,10 +133,10 @@ if (!empty($_SERVER['QUERY_STRING'])) {
                                 <?= $user['Status'] == 1 ? '<a href="" class="btn btn-success btn-sm">Kích Hoạt</a>' : '<a href="" class="btn btn-secondary btn-sm">Chưa Kích Hoạt</a>' ?>
                             </td>
                             <td>
-                                <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <a href="?module=users&action=edit&userid=<?= $user['ID'] ?>" class="btn btn-info btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                             </td>
                             <td>
-                                <a href="#" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure ?')"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                <a href="?module=users&action=delete&userid=<?= $user['ID'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure ?')"><i class="fa fa-trash" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

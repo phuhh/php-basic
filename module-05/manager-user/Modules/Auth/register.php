@@ -23,7 +23,7 @@ if (isPost()) {
     } else if (!isPhone(trim($body['phone']))) {
         $validation_errors['phone']['isPhone'] = 'Định dạng không đúng.';
     }
-    // Validation Email: bắt buộc nhập, đúng định dạng email, email tuyệt đốis
+    // Validation Email: bắt buộc nhập, đúng định dạng email, email tuyệt đối
     if (empty(trim($body['email']))) {
         $validation_errors['email']['required'] = 'Bắt buộc phải nhập.';
     } else if (!isEmail(trim($body['email']))) {

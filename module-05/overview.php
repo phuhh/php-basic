@@ -191,3 +191,7 @@ Step 16 - Xây dựng chức năng lọc và tìm Kiếm
 -------+ Kết hợp với chức năng lọc
 -------+ Xử lý dữ liệu truyền vào Query
 -------+ Giữ lại giá trị trong Control
+
+Step 17 - Xây dựng chức năng thêm người dùng
+Step 18 - Xây dựng chức năng cập nhật người dùng
+Step 19 - Xây dựng chức năng xoá người dùng
