@@ -41,7 +41,7 @@ if (isGet()) {
 
 // Xử lý phân trang
 // 1. Xác định được số lượng bản ghi trên 1 trang
-$limit = 3;
+$limit = _PAGE_PER;
 // 2. Tính số trang
 // 2.1 Lấy ra tổng số dòng
 $total_records = getRowCount('SELECT ID FROM Users ' . $condition);
@@ -161,10 +161,9 @@ if (!empty($_SERVER['QUERY_STRING'])) {
             // 6. Xử lý nút số trang
             if (!empty($items_per_page)) {
                 // 8. Xử lý ẩn bớt số trang trước hoặc sau khi tới vượt mức.
-                define('SHOW_BUTTONS', 2);
-                $begin = $page - SHOW_BUTTONS;
+                $begin = $page - _PAGINATION_BUTTONS;
                 $begin = $begin > 0 ? $begin : 1;
-                $end = $page + SHOW_BUTTONS;
+                $end = $page + _PAGINATION_BUTTONS;
                 $end = $end > $items_per_page ? $items_per_page : $end;
                 for ($item = $begin; $item <= $end; $item++) {
                     // 6.1 Xử lý active

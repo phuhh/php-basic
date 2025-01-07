@@ -180,3 +180,14 @@ Step 15 - Thuật toán phân trang và xây dựng chức năng phân trang
 ---+ 5. Xây dựng sô trang và active trang hiện tại
 ---+ 6. Xây dựng nút trước và sau
 ---+ 7. Ẩn bớt số trang trước và sau
+
+Step 16 - Xây dựng chức năng lọc và tìm Kiếm
+---+ 1. Chức năng lọc
+-------+ Lấy dữ liệu từ phương thức GET
+-------+ Xử lý dữ liệu truyền vào Query
+-------+ Giữ lại giá trị trong Control
+---+ 2. Chức năng tìm kiếm
+-------+ Lấy dữ liệu từ phương thức GET
+-------+ Kết hợp với chức năng lọc
+-------+ Xử lý dữ liệu truyền vào Query
+-------+ Giữ lại giá trị trong Control
