@@ -4,7 +4,7 @@
  * Làm tròn
  * 
  * 1. Round($ten_bien, $so_thap_phan)
- * - trên 5 làm tròn lên
+ * - bằng/trên 5 làm tròn lên
  * - dưới 5 làm tròn xuống
  */
 

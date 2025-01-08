@@ -214,3 +214,10 @@ Step 19 - Xây dựng chức năng xoá người dùng
 ---+ Xoá dữ liệu trong csdl.
 -------+ Xoá khoá ngoại bảng LoginToken
 -------+ Xoá dữ liệu bảng Users
+
+Step 20 - Tối ưu hoá ứng dụng
+---+ Kiểm tra thêm đăng nhập thành công khi tài khoản đã được kích hoạt
+---+ Cập nhật thời gian cuối cùng hoạt động.
+---+ Tự động xoá Login Token khi đóng trình duyệt (hoặc không hoạt động)
+-------+ Tính số phút = (thời gian hiện tại - thời gian hoạt động cuối) / 60
+-------+ Xoá login token nếu số phút vượt mức chỉ định
