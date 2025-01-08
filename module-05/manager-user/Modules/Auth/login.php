@@ -31,7 +31,7 @@ if (isPost()) {
 
     if (empty($validation_errors)) {
         // Check login
-        $user = first('Users', 'ID, Password', "Email = '{$body['email']}'");
+        $user = first('Users', "Email = '{$body['email']}'", 'ID, Password');
         // Check Email
         if (!empty($user)) {
             $user_id = $user['ID'];

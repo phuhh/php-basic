@@ -21,7 +21,7 @@ $active_token = $body['token'];
 // Kiểm tra token tồn tại hay không ???
 if (!empty($active_token)) {
     // Lấy ra người dùng từ activeToken
-    $user = first('Users', 'ID, Email', "ActiveToken='{$active_token}'");
+    $user = first('Users', "ActiveToken='{$active_token}'", 'ID, Email');
     if (!empty($user)) {
         // Kích hoạt tài khoản - Cập nhật dữ liệu người dùng
         $user_id = $user['ID'];

@@ -33,7 +33,7 @@ if (isGet()) {
             $operator = ' AND ';
         }
 
-        $condition .= $operator . "FullName LIKE '%$keywords%'";
+        $condition .= $operator . "FullName LIKE '%{$keywords}%' OR Email LIKE '%{$keywords}%'";
     }
 }
 // echo $condition . '<br>';
@@ -81,9 +81,13 @@ if (!empty($_SERVER['QUERY_STRING'])) {
     $queryString = trim($queryString, '&');
 }
 // echo $queryString . '<br>';
+
+$msg = getFlashData('msg');
+$msg_type = getFlashData('msg_type');
 ?>
 
 <div class="container">
+    <?= showMessage($msg, $msg_type) ?>
     <h3><?= $data['pageTitle'] ?? null ?></h3>
     <p><a href="?module=users&action=add" class="btn btn-success btn-sm">Thêm mới người dùng</a></p>
     <form action="" method="get">
@@ -133,10 +137,10 @@ if (!empty($_SERVER['QUERY_STRING'])) {
                                 <?= $user['Status'] == 1 ? '<a href="" class="btn btn-success btn-sm">Kích Hoạt</a>' : '<a href="" class="btn btn-secondary btn-sm">Chưa Kích Hoạt</a>' ?>
                             </td>
                             <td>
-                                <a href="?module=users&action=edit&userid=<?= $user['ID'] ?>" class="btn btn-info btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <a href="?module=users&action=edit&id=<?= $user['ID'] ?>" class="btn btn-info btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                             </td>
                             <td>
-                                <a href="?module=users&action=delete&userid=<?= $user['ID'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure ?')"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                <a href="?module=users&action=delete&id=<?= $user['ID'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure ?')"><i class="fa fa-trash" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

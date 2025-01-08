@@ -1,4 +1,9 @@
-<?php defined('_ACCESS_DENIED') or die('Access Denied !!!') ?>
+<?php defined('_ACCESS_DENIED') or die('Access Denied !!!');
+
+if (!isLogin()) {
+  redirect('?module=auth&action=login');
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">

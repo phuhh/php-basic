@@ -28,7 +28,7 @@ if (isPost()) {
     if (empty($validation_errors)) {
         $input_email = $body['email'];
         // check email exists
-        $user = first('Users', 'ID', "Email = '{$input_email}'");
+        $user = first('Users', "Email = '{$input_email}'", 'ID');
         if (!empty($user)) {
             $user_id = $user['ID'];
             // Tạo ra forgot token

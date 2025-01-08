@@ -51,7 +51,7 @@ if (isPost()) {
     }
 
     if (empty($validation_errors)) {
-        $user = first('Users', 'ID, Email', "ForgotToken='{$input_token}'");
+        $user = first('Users', "ForgotToken='{$input_token}'", 'ID, Email');
         if (!empty($user)) {
             $user_id = $user['ID'];
             $user_email = $user['Email'];

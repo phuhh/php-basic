@@ -109,7 +109,7 @@ function getFirstRaw($sql = '')
     return false;
 }
 // Lấy dữ liệu - bằng cách truyền tham số table, column và condition
-function get($table, $column = '*', $condition = '')
+function get($table, $condition = '', $column = '*')
 {
     if (!empty($table)) {
         $sql = "SELECT {$column} FROM {$table}";
@@ -121,12 +121,15 @@ function get($table, $column = '*', $condition = '')
     return false;
 }
 // Lấy 1 dữ liệu - bằng cách truyền tham số table, column và condition
-function first($table, $column = '*', $condition = '')
+function first($table, $condition = '', $column = '*', $order_by = '')
 {
     if (!empty($table)) {
         $sql = "SELECT {$column} FROM {$table}";
         if (!empty($condition)) {
             $sql .= " WHERE {$condition}";
+            if (!empty($order_by)) {
+                $sql .= " ORDER BY {$order_by}";
+            }
         }
         return getFirstRaw($sql);
     }
