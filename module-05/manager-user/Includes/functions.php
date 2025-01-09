@@ -240,13 +240,15 @@ function updateLastActivity(){
 // Tự động xóa Login Token khi không hoạt động
 function autoRemoveLoginToken() {
     if(isLogin()){
+        // Lấy ra tất cả có trong login token ngoài trừ ID đang đăng nhập
         $all_login_token = get('LoginToken', 'UserID <> ' . isLogin());
         if(!empty($all_login_token)){
             $now = date('Y-m-d h:i:s');
             foreach($all_login_token as $login_token){
+                // lấy ra thời gian hoạt động cuối cùng dựa trên UserID
                 $user = first('Users', 'ID = ' . $login_token['UserID'], 'LastActivity');
                 $last_activity = isset($user) ? $user['LastActivity'] : false;
-
+                // Tính ra số phút chưa hoạt động
                 $diff = (strtotime($now) - strtotime($last_activity)) / _MINUTE;
                 $diff = floor($diff);
 

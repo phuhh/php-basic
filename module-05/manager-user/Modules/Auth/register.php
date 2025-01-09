@@ -1,6 +1,11 @@
 <?php
 defined('_ACCESS_DENIED') or die('Access Denied !!!');
 // Chức năng đăng ký hệ thống
+
+if (isLogin()) {
+    redirect('?module=users&action=lists');
+}
+
 $data = [
     'pageTitle' => 'Đăng Ký Tài Khoản'
 ];
