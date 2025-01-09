@@ -221,3 +221,6 @@ Step 20 - Tối ưu hoá ứng dụng
 ---+ Tự động xoá Login Token khi đóng trình duyệt (hoặc không hoạt động)
 -------+ Tính số phút = (thời gian hiện tại - thời gian hoạt động cuối) / 60
 -------+ Xoá login token nếu số phút vượt mức chỉ định
+---+ Tạo giao diện trang trang chủ (home)
+---+ Chỉnh sửa hiển thị các thành phần navbar
+---+ Lấy thông tin người dùng đăng nhập
