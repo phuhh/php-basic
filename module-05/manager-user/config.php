@@ -1,4 +1,12 @@
 <?php
+// Định nghĩa múi giờ
+date_default_timezone_set('Asia/Bangkok');
+
+// Định nghĩa giờ, phút
+defined('_MINUTE') or define('_MINUTE', 60);
+defined('_HOUR') or define('_HOUR', 3600);
+defined('_DAY') or define('_DAY', 86400);
+
 // Routes Default
 defined('_MODULE_DEFAULT') or define('_MODULE_DEFAULT', 'home');
 defined('_ACTION_DEFAULT') or define('_ACTION_DEFAULT', 'lists');
@@ -7,15 +15,15 @@ defined('_ACTION_DEFAULT') or define('_ACTION_DEFAULT', 'lists');
 defined('_ACCESS_DENIED') or define('_ACCESS_DENIED', true);
 
 // Thiết lập đường dẫn Host Root
-defined('_WEB_HOST_ROOT') or define(
-    '_WEB_HOST_ROOT',
-    'http://' . $_SERVER['HTTP_HOST'] . '/php-basic/module-05/manager-user'
-);
-
 // defined('_WEB_HOST_ROOT') or define(
 //     '_WEB_HOST_ROOT',
-//     'http://' . $_SERVER['HTTP_HOST'] . '/module-05/manager-user'
+//     'http://' . $_SERVER['HTTP_HOST'] . '/php-basic/module-05/manager-user'
 // );
+
+defined('_WEB_HOST_ROOT') or define(
+    '_WEB_HOST_ROOT',
+    'http://' . $_SERVER['HTTP_HOST'] . '/module-05/manager-user'
+);
 
 // Thiết lập dường dẫn Host Templates
 defined('_WEB_HOST_TEMPLATES') or define(
@@ -32,8 +40,8 @@ defined('_WEB_PATH_TEMPLATES') or define('_WEB_PATH_TEMPLATES', _WEB_PATH_ROOT .
 
 // Thiết lập kết nối csdl
 defined('DB_DRIVER ') || define('DB_DRIVER', 'mysql');
-defined('DB_HOST ') || define('DB_HOST', 'localhost');
-// defined('DB_HOST ') || define('DB_HOST', 'localhost:3307');
+// defined('DB_HOST ') || define('DB_HOST', 'localhost');
+defined('DB_HOST ') || define('DB_HOST', 'localhost:3307');
 defined('DB_SCHEMA ') || define('DB_SCHEMA', 'PHPBasic');
 defined('DB_USERNAME ') || define('DB_USERNAME', 'root');
 defined('DB_PASSWORD ') || define('DB_PASSWORD', '');

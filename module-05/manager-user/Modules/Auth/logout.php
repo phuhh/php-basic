@@ -11,6 +11,6 @@ delete('LoginToken', "Token = '{$token}'");
 // Remove Session Token
 removeSession('login_token');
 // Redirect
-setFlashData('msg', 'Đăng xuất thành công!');
+setFlashData('msg', 'Đăng xuất thành công.');
 setFlashData('msg_type', 'warning');
 redirect('?module=auth&action=login');

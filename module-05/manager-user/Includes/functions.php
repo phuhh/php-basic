@@ -204,13 +204,57 @@ function old($field_name)
 function isLogin()
 {
     if (getSession('login_token')) {
-        $login_token = getSession('login_token');
-        $count_record = getRowCount("SELECT UserID FROM LoginToken WHERE Token = '{$login_token}' ");
-        if ($count_record > 0) {
-            return true;
+        $token = getSession('login_token');
+        // $count_record = getRowCount("SELECT UserID FROM LoginToken WHERE Token = '{$login_token}' ");
+
+        $login_token = first('LoginToken', "Token = '{$token}'", 'UserID');
+        if ($login_token['UserID'] > 0) {
+            return $login_token['UserID'];
         } else {
             removeSession('login_token');
         }
+    }
+    return false;
+}
+
+function getFullname() {
+    if(isLogin()){
+        $user = first('Users', 'ID = ' . isLogin(), 'FullName');
+        if(!empty($user)){
+            return $user['FullName'];
+        }
+    }
+    return false;
+}
+// Cập nhật thời gian hoạt động cuối cùng 
+function updateLastActivity(){
+    if(isLogin()){
+        $data = ['LastActivity'=> date('Y-m-d h:i:s')];
+        $update_status = update('Users', $data, 'ID = ' . isLogin());
+        if(!empty($update_status)){
+            return true;
+        }
+    }
+    return false;
+}
+// Tự động xóa Login Token khi không hoạt động
+function autoRemoveLoginToken() {
+    if(isLogin()){
+        $all_login_token = get('LoginToken', 'UserID <> ' . isLogin());
+        if(!empty($all_login_token)){
+            $now = date('Y-m-d h:i:s');
+            foreach($all_login_token as $login_token){
+                $user = first('Users', 'ID = ' . $login_token['UserID'], 'LastActivity');
+                $last_activity = isset($user) ? $user['LastActivity'] : false;
+
+                $diff = (strtotime($now) - strtotime($last_activity)) / _MINUTE;
+                $diff = floor($diff);
+
+                if($diff > 15){
+                    delete('LoginToken', 'ID = ' . $login_token['ID']);
+                }
+            }
+        }   
     }
     return false;
 }

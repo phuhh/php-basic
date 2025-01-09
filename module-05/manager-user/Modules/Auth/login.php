@@ -16,28 +16,31 @@ loadLayout('header_login', $data);
 if (isPost()) {
     $body = getBody();
     $validation_errors = [];
+
+    $input_email = isset($body['email']) ? trim($body['email']) : false;
+    $input_password = isset($body['pass']) ? trim($body['pass']) : false;
     // Check Validation
-    if (empty(trim($body['email']))) {
+    if (empty($input_email)) {
         $validation_errors['email']['required'] = 'Bắt buộc phải nhập.';
-    } else if (!isEmail(trim($body['email']))) {
+    } else if (!isEmail($input_email)) {
         $validation_errors['email']['isEmail'] = 'Định dạng không đúng.';
     }
 
-    if (empty(trim($body['pass']))) {
+    if (empty($input_password)) {
         $validation_errors['pass']['required'] = 'Bắt buộc phải nhập.';
-    } else if (strlen(trim($body['pass'])) < 8) {
+    } else if (strlen($input_password) < 8) {
         $validation_errors['pass']['min'] = 'Độ dài tối thiểu 8 ký tự.';
     }
 
     if (empty($validation_errors)) {
         // Check login
-        $user = first('Users', "Email = '{$body['email']}'", 'ID, Password');
+        $user = first('Users', "Email = '{$input_email}' AND Status = 1", 'ID, Password');
         // Check Email
         if (!empty($user)) {
             $user_id = $user['ID'];
             $user_password = $user['Password'];
             // Check Password
-            if (password_verify($body['pass'], $user_password)) {
+            if (password_verify($input_password, $user_password)) {
                 $login_token = sha1(uniqid() . time());
                 $data = [
                     'UserID' => $user_id,
@@ -60,7 +63,7 @@ if (isPost()) {
                 setFlashData('msg_type', 'danger');
             }
         } else {
-            setFlashData('msg', 'Tài khoản hoặc mật khẩu không hợp lệ.');
+            setFlashData('msg', 'Tài khoản chưa kích hoạt hoặc không tồn tại.');
             setFlashData('msg_type', 'danger');
         }
     } else {

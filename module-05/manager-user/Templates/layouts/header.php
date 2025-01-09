@@ -3,6 +3,8 @@
 if (!isLogin()) {
   redirect('?module=auth&action=login');
 }
+updateLastActivity();
+autoRemoveLoginToken();
 ?>
 
 <!DOCTYPE html>
@@ -52,14 +54,7 @@ if (!isLogin()) {
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <?php
-            if (getSession('login_token')) {
-              $login_token = getSession('login_token');
-              $sql = "SELECT u.FullName FROM LoginToken AS lt  INNER JOIN Users AS u ON u.ID = lt.UserID WHERE lt.Token = '{$login_token}'";
-              $user = getFirstRaw($sql);
-              echo $user['FullName'];
-            }
-            ?>
+            <?php echo getFullname(); ?>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#">Thông tin tài khoản</a>

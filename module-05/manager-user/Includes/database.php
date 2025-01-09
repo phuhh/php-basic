@@ -68,6 +68,7 @@ function update($table = '', $data = [], $condition = '')
         } else {
             $sql = "UPDATE $table SET $keyValue WHERE $condition;";
         }
+        // echo $sql;
         return query($sql, $data);
     }
 
@@ -116,6 +117,7 @@ function get($table, $condition = '', $column = '*')
         if (!empty($condition)) {
             $sql .= " WHERE {$condition}";
         }
+        // echo $sql;
         return getRaw($sql);
     }
     return false;
@@ -131,6 +133,7 @@ function first($table, $condition = '', $column = '*', $order_by = '')
                 $sql .= " ORDER BY {$order_by}";
             }
         }
+        // echo $sql;
         return getFirstRaw($sql);
     }
     return false;
