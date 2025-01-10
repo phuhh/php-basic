@@ -209,6 +209,10 @@ function isLogin()
 
         $login_token = first('LoginToken', "Token = '{$token}'", 'UserID');
         if ($login_token['UserID'] > 0) {
+            $user = first('Users', 'ID = ' . $login_token['UserID'], 'FullName');
+            if(!empty($user)){
+                setSession('auth', $user);
+            }
             return $login_token['UserID'];
         } else {
             removeSession('login_token');
@@ -217,15 +221,13 @@ function isLogin()
     return false;
 }
 
-function getFullname() {
-    if(isLogin()){
-        $user = first('Users', 'ID = ' . isLogin(), 'FullName');
-        if(!empty($user)){
-            return $user['FullName'];
-        }
+function getAuth(){
+    if(getSession('auth')){
+        return getSession('auth');
     }
     return false;
 }
+
 // Cập nhật thời gian hoạt động cuối cùng 
 function updateLastActivity(){
     if(isLogin()){

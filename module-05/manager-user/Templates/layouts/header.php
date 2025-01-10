@@ -3,6 +3,8 @@
 if (!isLogin()) {
   redirect('?module=auth&action=login');
 }
+$auth = getAuth();
+
 updateLastActivity();
 autoRemoveLoginToken();
 ?>
@@ -54,7 +56,7 @@ autoRemoveLoginToken();
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <?php echo getFullname(); ?>
+            <?= !empty($auth['FullName']) ? $auth['FullName'] : false ?>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#">Thông tin tài khoản</a>
