@@ -224,3 +224,6 @@ Step 20 - Tối ưu hoá ứng dụng
 ---+ Tạo giao diện trang trang chủ (home)
 ---+ Chỉnh sửa hiển thị các thành phần navbar
 ---+ Lấy thông tin người dùng đăng nhập
+
+
+Cấu hình trong file: config.php
