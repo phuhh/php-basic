@@ -23,6 +23,16 @@ $str = htmlspecialchars($html); // Output: <a href="/">Click Here</a>
 echo $str . '<br>';
 
 /**
+ * VẤN ĐỀ: htmlentities destroys uft-8 strings
+ * 
+ * GIẢI PHÁP:
+ * 
+ * htmlspecialchars($str, ENT_QUOTES, "UTF-8")
+ * 
+ * This is also better at preventing xss than just htmlentities()
+ */
+
+/**
  * 13. Chuyển dạng thực thể sang chuỗi HTML
  * 
  * Cú pháp: html_entity_decode($str)
