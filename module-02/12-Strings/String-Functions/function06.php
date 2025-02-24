@@ -26,11 +26,12 @@ echo $str . '<br>';
  * VẤN ĐỀ: htmlentities destroys uft-8 strings
  * 
  * GIẢI PHÁP:
- * 
- * htmlspecialchars($str, ENT_QUOTES, "UTF-8")
- * 
- * This is also better at preventing xss than just htmlentities()
  */
+$script = '<script>alert("Xin Chào Chúc Một Ngày Tốt Lành.")</script>';
+echo $script;
+$input = htmlspecialchars($script, ENT_QUOTES, "UTF-8");
+echo $input . '<br>';
+// This is also better at preventing xss than just htmlentities()
 
 /**
  * 13. Chuyển dạng thực thể sang chuỗi HTML
