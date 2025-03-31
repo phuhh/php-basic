@@ -1,7 +1,3 @@
-<?php
-header('Content-Type: text/plain; charset=utf-8');
-?>
-
 Thực hành làm module quản lý người dùng (users) bao gồm các chức năng:
 
 Module 1: Xác thực truy cập
