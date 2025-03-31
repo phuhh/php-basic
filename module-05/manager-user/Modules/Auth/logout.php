@@ -9,6 +9,7 @@ $token = getSession('login_token');
 // Delele Token
 delete('LoginToken', "Token = '{$token}'");
 // Remove Session Token
+removeSession('auth');
 removeSession('login_token');
 // Redirect
 setFlashData('msg', 'Đăng xuất thành công.');

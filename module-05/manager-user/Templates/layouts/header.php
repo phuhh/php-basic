@@ -3,6 +3,8 @@
 if (!isLogin()) {
   redirect('?module=auth&action=login');
 }
+$auth = getAuth();
+
 updateLastActivity();
 autoRemoveLoginToken();
 ?>
@@ -23,30 +25,14 @@ autoRemoveLoginToken();
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Manager User</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-            Dropdown link
-          </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
+          <a class="nav-link" href="?module=users">Tài Khoản</a>
         </li>
       </ul>
     </div>
@@ -54,10 +40,11 @@ autoRemoveLoginToken();
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <?php echo getFullname(); ?>
+            <?= !empty($auth['FullName']) ? $auth['FullName'] : false ?>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Thông tin tài khoản</a>
+            <a class="dropdown-item" href="#">Thông tin</a>
+            <a class="dropdown-item" href="#">Cập nhật mật khẩu</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="?module=auth&action=logout">Đăng Xuất</a>
           </div>
