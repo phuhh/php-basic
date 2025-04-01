@@ -28,7 +28,7 @@ function query($sql = '',  $data = [], $isRead = false)
             }
         }
     } catch (Exception $e) {
-        require _WEB_PATH_ROOT . '/Modules/Errors/database.php';
+        require _WEB_ROOT_PATH . '/Modules/Errors/database.php';
         die();
     }
 

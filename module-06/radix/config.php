@@ -27,21 +27,29 @@ defined('_WEB_HOST_ROOT') or define(
     'http://' . $_SERVER['HTTP_HOST'] . _SUB_DIRECTORY
 );
 
+defined('_ADMIN_HOST_ROOT') or define(
+    '_ADMIN_HOST_ROOT',
+    'http://' . $_SERVER['HTTP_HOST'] . _SUB_DIRECTORY . '/admin'
+);
+
 // Thiết lập dường dẫn Host Templates
 defined('_WEB_HOST_TEMPLATES') or define(
     '_WEB_HOST_TEMPLATES',
-    _WEB_HOST_ROOT . '/Templates'
+    _WEB_HOST_ROOT . '/Templates/client'
+);
+
+defined('_ADMIN_HOST_TEMPLATES') or define(
+    '_ADMIN_HOST_TEMPLATES',
+    _WEB_HOST_ROOT . '/Templates/admin'
 );
 
 // Thiết lập đường dẫn cấu trúc dự án Root
-// defined('_WEB_PATH_ROOT') or define('_WEB_PATH_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/php-basic/module-05/manager-user');
-defined('_WEB_PATH_ROOT') or define('_WEB_PATH_ROOT', __DIR__);
-// Admin (Path Root)
-defined('_ADMIN_PATH_ROOT') or define('_ADMIN_PATH_ROOT', __DIR__ . '/Admin');
-
+// defined('_WEB_ROOT_PATH') or define('_WEB_ROOT_PATH', $_SERVER['DOCUMENT_ROOT'] . '/php-basic/module-05/manager-user');
+defined('_WEB_ROOT_PATH') or define('_WEB_ROOT_PATH', __DIR__);
+defined('_ADMIN_ROOT_PATH') or define('_ADMIN_ROOT_PATH', _WEB_ROOT_PATH . '/Admin');
 
 // Thiết lập đường dẫn cấu trúc dự án Templates
-defined('_WEB_PATH_TEMPLATES') or define('_WEB_PATH_TEMPLATES', _WEB_PATH_ROOT . '/Templates');
+defined('_WEB_PATH_TEMPLATES') or define('_WEB_PATH_TEMPLATES', _WEB_ROOT_PATH . '/Templates');
 
 // Thiết lập kết nối csdl
 defined('DB_DRIVER ') || define('DB_DRIVER', 'mysql');

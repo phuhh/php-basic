@@ -7,10 +7,15 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 // Dùng để viết các hàm chung
-function loadLayout($layoutName = 'header', $data = [])
+// Hàm tải các thành phần trong Template 
+function loadLayout($layoutName = 'header', $data = [], $isAdmin = false)
 {
-    if (file_exists(_WEB_PATH_TEMPLATES . '//layouts//' . $layoutName . '.php'))
-        require_once _WEB_PATH_TEMPLATES . '//layouts//' . $layoutName . '.php';
+    $dir = '/';
+    if ($isAdmin) {
+        $dir = '/' . 'admin/';
+    }
+    if (file_exists(_WEB_PATH_TEMPLATES . $dir . 'layouts/' . $layoutName . '.php'))
+        require_once _WEB_PATH_TEMPLATES . $dir . 'layouts/' . $layoutName . '.php';
 }
 
 // Hàm gửi mail
@@ -217,34 +222,37 @@ function isLogin()
     return false;
 }
 
-function getFullname() {
-    if(isLogin()){
+function getFullname()
+{
+    if (isLogin()) {
         $user = first('Users', 'ID = ' . isLogin(), 'FullName');
-        if(!empty($user)){
+        if (!empty($user)) {
             return $user['FullName'];
         }
     }
     return false;
 }
 // Cập nhật thời gian hoạt động cuối cùng 
-function updateLastActivity(){
-    if(isLogin()){
-        $data = ['LastActivity'=> date('Y-m-d h:i:s')];
+function updateLastActivity()
+{
+    if (isLogin()) {
+        $data = ['LastActivity' => date('Y-m-d h:i:s')];
         $update_status = update('Users', $data, 'ID = ' . isLogin());
-        if(!empty($update_status)){
+        if (!empty($update_status)) {
             return true;
         }
     }
     return false;
 }
 // Tự động xóa Login Token khi không hoạt động
-function autoRemoveLoginToken() {
-    if(isLogin()){
+function autoRemoveLoginToken()
+{
+    if (isLogin()) {
         // Lấy ra tất cả có trong login token ngoài trừ ID đang đăng nhập
         $all_login_token = get('LoginToken', 'UserID <> ' . isLogin());
-        if(!empty($all_login_token)){
+        if (!empty($all_login_token)) {
             $now = date('Y-m-d h:i:s');
-            foreach($all_login_token as $login_token){
+            foreach ($all_login_token as $login_token) {
                 // lấy ra thời gian hoạt động cuối cùng dựa trên UserID
                 $user = first('Users', 'ID = ' . $login_token['UserID'], 'LastActivity');
                 $last_activity = isset($user) ? $user['LastActivity'] : false;
@@ -252,11 +260,19 @@ function autoRemoveLoginToken() {
                 $diff = (strtotime($now) - strtotime($last_activity)) / _MINUTE;
                 $diff = floor($diff);
 
-                if($diff > 15){
+                if ($diff > 15) {
                     delete('LoginToken', 'ID = ' . $login_token['ID']);
                 }
             }
-        }   
+        }
+    }
+    return false;
+}
+
+function isActiveMenuSidebar($module)
+{
+    if (isset(getBody()['module']) && strtolower(getBody()['module']) === strtolower(trim($module))) {
+        return true;
     }
     return false;
 }

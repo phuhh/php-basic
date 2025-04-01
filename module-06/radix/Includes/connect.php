@@ -18,6 +18,6 @@ try {
     }
 } catch (Exception $e) {
     // echo 'Error on <b> line ' . $e->getLine() . '</b> in ' . $e->getFile()  . ': <b>' . $e->getMessage() . '</b><br />';
-    require _WEB_PATH_ROOT . '/Modules/Errors/database.php';
+    require _WEB_ROOT_PATH . '/Modules/Errors/database.php';
     die();
 }
