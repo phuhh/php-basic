@@ -32,11 +32,11 @@ defined('_WEB_HOST_TEMPLATES') or define(
 );
 
 // Thiết lập đường dẫn cấu trúc dự án Root
-// defined('_WEB_PATH_ROOT') or define('_WEB_PATH_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/php-basic/module-05/manager-user');
-defined('_WEB_PATH_ROOT') or define('_WEB_PATH_ROOT', __DIR__);
+// defined('_WEB_ROOT_PATH') or define('_WEB_ROOT_PATH', $_SERVER['DOCUMENT_ROOT'] . '/php-basic/module-05/manager-user');
+defined('_WEB_ROOT_PATH') or define('_WEB_ROOT_PATH', __DIR__);
 
 // Thiết lập đường dẫn cấu trúc dự án Templates
-defined('_WEB_PATH_TEMPLATES') or define('_WEB_PATH_TEMPLATES', _WEB_PATH_ROOT . '/Templates');
+defined('_WEB_PATH_TEMPLATES') or define('_WEB_PATH_TEMPLATES', _WEB_ROOT_PATH . '/Templates');
 
 // Thiết lập kết nối csdl
 defined('DB_DRIVER ') || define('DB_DRIVER', 'mysql');
