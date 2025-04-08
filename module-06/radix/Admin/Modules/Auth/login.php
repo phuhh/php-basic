@@ -70,7 +70,7 @@ if (isPost()) {
         setFlashData('validation_errors', $validation_errors);
         setFlashData('old', $body);
     }
-    redirect('admin/?module=auth&action=login');
+    redirect('/admin/?module=auth&action=login');
 }
 
 $msg = getFlashData('msg');

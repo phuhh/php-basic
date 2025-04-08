@@ -2,7 +2,6 @@
 $data = [
     'pageTitle' => 'Tổng Quát'
 ];
-
 loadLayout('header', $data, true);
 loadLayout('sidebar', $data, true);
 loadLayout('breadcrumb', $data, true);
