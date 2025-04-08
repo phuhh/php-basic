@@ -45,7 +45,7 @@ function sendMail($to, $subject, $body)
         $mail->CharSet = 'UTF-8';
 
         //Recipients
-        $mail->setFrom('phuhh2019@gmail.com', 'Tutorial PHP Basic');
+        $mail->setFrom('phuhh2019@gmail.com', 'Project Radix - PHP Basic');
         $mail->addAddress($to);     //Add a recipient
         // $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
         // $mail->addAddress('ellen@example.com');               //Name is optional
@@ -209,12 +209,12 @@ function old($field_name)
 function isLogin()
 {
     if (getSession('login_token')) {
-        $token = getSession('login_token');
-        // $count_record = getRowCount("SELECT UserID FROM LoginToken WHERE Token = '{$login_token}' ");
+        $token_string = getSession('login_token');
+        // $count_record = getRowCount("SELECT user_id FROM radix_login_token WHERE token_string = '{$token_string}' ");
 
-        $login_token = first('LoginToken', "Token = '{$token}'", 'UserID');
-        if ($login_token['UserID'] > 0) {
-            return $login_token['UserID'];
+        $login_token = first('radix_login_token', "token_string = '{$token_string}'", 'user_id');
+        if ($login_token['user_id'] > 0) {
+            return $login_token['user_id'];
         } else {
             removeSession('login_token');
         }
@@ -236,8 +236,8 @@ function getFullname()
 function updateLastActivity()
 {
     if (isLogin()) {
-        $data = ['LastActivity' => date('Y-m-d h:i:s')];
-        $update_status = update('Users', $data, 'ID = ' . isLogin());
+        $data = ['user_last_activity' => date('Y-m-d h:i:s')];
+        $update_status = update('radix_users', $data, 'user_id = ' . isLogin());
         if (!empty($update_status)) {
             return true;
         }
@@ -249,19 +249,19 @@ function autoRemoveLoginToken()
 {
     if (isLogin()) {
         // Lấy ra tất cả có trong login token ngoài trừ ID đang đăng nhập
-        $all_login_token = get('LoginToken', 'UserID <> ' . isLogin());
+        $all_login_token = get('radix_login_token', 'user_id <> ' . isLogin());
         if (!empty($all_login_token)) {
             $now = date('Y-m-d h:i:s');
             foreach ($all_login_token as $login_token) {
-                // lấy ra thời gian hoạt động cuối cùng dựa trên UserID
-                $user = first('Users', 'ID = ' . $login_token['UserID'], 'LastActivity');
-                $last_activity = isset($user) ? $user['LastActivity'] : false;
-                // Tính ra số phút chưa hoạt động
+                // Lấy ra thời gian hoạt động cuối cùng dựa trên UserID
+                $user = first('radix_users', 'user_id = ' . $login_token['user_id'], 'user_last_activity');
+                $last_activity = isset($user) ? $user['user_last_activity'] : false;
+                // Lấy ra số phút chưa hoạt động
                 $diff = (strtotime($now) - strtotime($last_activity)) / _MINUTE;
                 $diff = floor($diff);
-
+                // Nếu tài khoản dừng hoạt động cách đây 15 phút
                 if ($diff > 15) {
-                    delete('LoginToken', 'ID = ' . $login_token['ID']);
+                    delete('radix_login_token', 'user_id = ' . $login_token['user_id']);
                 }
             }
         }

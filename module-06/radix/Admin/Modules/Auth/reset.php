@@ -9,21 +9,21 @@ $render_form = false;
 $validation_errors = null;
 
 if (isLogin()) {
-    redirect('?module=users&action=lists');
+    redirect('/admin');
 }
 
 $data = [
     'pageTitle' => 'Tạo mật khẩu mới'
 ];
 // Load Template Login
-loadLayout('header_login', $data);
+loadLayout('header_login', $data, true);
 
 $body = getBody();
 $forgot_token = isGet() ? $body['token'] : null;
 // Kiểm tra token tồn tại hay không ???
 if (!empty($forgot_token)) {
     // Lấy ra người dùng từ activeToken
-    $user = getRowCount("SELECT ID FROM Users WHERE ForgotToken='{$forgot_token}'");
+    $user = getRowCount("SELECT user_id FROM radix_users WHERE user_forgot_token='{$forgot_token}'");
     if (!empty($user)) {
         $render_form = true;
     } else {
@@ -51,29 +51,31 @@ if (isPost()) {
     }
 
     if (empty($validation_errors)) {
-        $user = first('Users', "ForgotToken='{$input_token}'", 'ID, Email');
+        $user = first('radix_users', "user_forgot_token='{$input_token}'", 'user_id, user_email');
         if (!empty($user)) {
-            $user_id = $user['ID'];
-            $user_email = $user['Email'];
+            $user_id = $user['user_id'];
+            $user_email = $user['user_email'];
             $password_hash = password_hash($body['pass'], PASSWORD_DEFAULT);
 
             $data = [
-                'Password' => $password_hash,
-                'ForgotToken' => null,
-                'UpdateAt' => date('Y-m-d H:i:s')
+                'user_password' => $password_hash,
+                'user_forgot_token' => null,
+                'user_update_at' => date('Y-m-d H:i:s')
             ];
             // Cập nhật mật khẩu mới
-            $update_status = update('Users', $data, "ID = {$user_id}");
+            $update_status = update('radix_users', $data, "user_id = {$user_id}");
             if (!empty($update_status)) {
                 setFlashData('msg', 'Thay đổi mật khẩu thành công.');
                 setFlashData('msg_type', 'success');
 
                 // Gửi thư thông báo thay đổi mật khẩu thành công
                 $subject = 'Thông báo: Bạn đã thay đổi mật khẩu';
-                $content = 'Chúc mừng bạn đã đổi mới mật khẩu thành công!';
+                $content = 'Chúc mừng bạn đã đổi mới mật khẩu thành công! <br>';
+                $content .= '<a href="' . _ADMIN_HOST_ROOT . '?module=auth&action=login">Truy cập vào hệ thống</a>';
+
                 sendMail($user_email, $subject, $content);
 
-                redirect('?module=auth&action=login');
+                redirect('/admin/?module=auth&action=login');
             } else {
                 setFlashData('msg', 'Lỗi hệ thống. Vui lòng liên hệ quản trị viên để hỗ trợ.');
                 setFlashData('msg_type', 'danger');
@@ -86,7 +88,7 @@ if (isPost()) {
         setFlashData('validation_errors', $validation_errors);
     }
 
-    redirect('?module=auth&action=reset&token=' . $input_token);
+    redirect('/admin/?module=auth&action=reset&token=' . $input_token);
 }
 
 $msg = getFlashData('msg');
@@ -114,7 +116,7 @@ $validation_errors = getFlashData('validation_errors');
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Tạo mới</button>
                     <hr>
-                    <p class="text-center"><a href="?module=auth&action=login">Đăng Nhập</a></p>
+                    <p class="text-center"><a href="<?= _ADMIN_HOST_ROOT ?>?module=auth&action=login">Đăng Nhập</a></p>
                 </form>
             </div>
         </div>
@@ -126,4 +128,4 @@ $validation_errors = getFlashData('validation_errors');
     </div>
 <?php endif; ?>
 
-<?php loadLayout('footer_login'); ?>
+<?php loadLayout('footer_login', null, true); ?>

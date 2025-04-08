@@ -17,9 +17,3 @@
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
-
-<?php
-echo "<pre>";
-print_r(getBody());
-echo "</pre>";
-?>

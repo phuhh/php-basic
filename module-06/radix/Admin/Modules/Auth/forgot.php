@@ -7,14 +7,14 @@ $msg_type = null;
 $validation_errors = null;
 
 if (isLogin()) {
-    redirect('?module=users&action=lists');
+    redirect('/admin');
 }
 
 $data = [
     'pageTitle' => 'Quên Mật Khẩu'
 ];
 
-loadLayout('header_login', $data);
+loadLayout('header_login', $data, true);
 
 if (isPost()) {
     $body = getBody();
@@ -28,19 +28,19 @@ if (isPost()) {
     if (empty($validation_errors)) {
         $input_email = $body['email'];
         // check email exists
-        $user = first('Users', "Email = '{$input_email}'", 'ID');
+        $user = first('radix_users', "user_email = '{$input_email}'", 'user_id');
         if (!empty($user)) {
-            $user_id = $user['ID'];
+            $user_id = $user['user_id'];
             // Tạo ra forgot token
             $forgot_token = sha1(uniqid() . time());
             $data = [
-                'ForgotToken' => $forgot_token,
-                'UpdateAt' => date('Y-m-d h:i:s')
+                'user_forgot_token' => $forgot_token,
+                'user_update_at' => date('Y-m-d h:i:s')
             ];
             // update forgot token
-            $update_status = update('Users', $data, "ID = {$user_id}");
+            $update_status = update('radix_users', $data, "user_id = {$user_id}");
             if ($update_status) {
-                $reset_link = _WEB_HOST_ROOT . '?module=auth&action=reset&token=' . $forgot_token;
+                $reset_link = _ADMIN_HOST_ROOT . '?module=auth&action=reset&token=' . $forgot_token;
                 $subject = 'Khôi phục mật khẩu';
                 $content = 'Chào bạn, <b>' . $input_email . '</b><br>';
                 $content .= 'Chúng tôi nhận được yêu cầu khôi phục mật khẩu từ bạn. Vui lòng nhấn vào đường dẫn sau để khôi phục: ';
@@ -67,7 +67,7 @@ if (isPost()) {
         setFlashData('validation_errors', $validation_errors);
         setFlashData('old', $old);
     }
-    redirect('?module=auth&action=forgot');
+    redirect('/admin/?module=auth&action=forgot');
 }
 
 $msg = getFlashData('msg');
@@ -89,10 +89,10 @@ $old = getFlashData('old');
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Gửi Yêu Cầu</button>
                 <hr>
-                <p class="text-center"><a href="?module=auth&action=login">Đăng Nhập</a></p>
+                <p class="text-center"><a href="<?= _ADMIN_HOST_ROOT ?>?module=auth&action=login">Đăng Nhập</a></p>
             </form>
         </div>
     </div>
 </div>
 
-<?php loadLayout('footer_login'); ?>
+<?php loadLayout('footer_login', null, true); ?>

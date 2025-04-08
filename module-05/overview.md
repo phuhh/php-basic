@@ -22,45 +22,48 @@ Module 2: Quản lý người dùng
 Step 01 - Thiết kế Database
 
 - Bảng Users
-+ ID INT PK
-+ Email VARCHAR(100)
-+ Password VARCHAR(50)
-+ Fullname VARCHAR(50)
-+ Phone VARCHAR(20)
-+ ForgotToken VARCHAR(50) -- Dùng để tạo lại mật khẩu
-+ ActiveToken VARCHAR(50) -- Dùng để kích hoạt tài khoản
-+ Status TINYINT
-+ CreateAt DATETIME
-+ UpdateAt DATETIME
+
+* ID INT PK
+* Email VARCHAR(100)
+* Password VARCHAR(50)
+* Fullname VARCHAR(50)
+* Phone VARCHAR(20)
+* ForgotToken VARCHAR(50) -- Dùng để tạo lại mật khẩu
+* ActiveToken VARCHAR(50) -- Dùng để kích hoạt tài khoản
+* Status TINYINT
+* CreateAt DATETIME
+* UpdateAt DATETIME
 
 - Bảng LoginToken
-+ ID INT PK
-+ UserID INT FK --> Users(ID)
-+ Token VARCHAR(50)
-+ Expire DATETIME
-+ CreateAt DATETIME
 
-
+* ID INT PK
+* UserID INT FK --> Users(ID)
+* Token VARCHAR(50)
+* Expire DATETIME
+* CreateAt DATETIME
 
 Cách cũ: Đăng nhập --> Lưu Session --> Lần sau: Kiểm tra Session
 Hạn chế: đăng nhập trên nhiều thiết bị
 
 Cách hiện tại: Đăng nhập --> Lưu Session --> Lần sau: Kiểm tra Session và Tồn tại Token trong Database
 Ưu điểm: đăng nhập trên nhiều thiết bị
-
+Cụ thể: 1 tài khoản có đăng nhập nhiều thiết bị khác nhau
 
 Trường hợp: Thay đổi mật khẩu
+
 - Cập nhật mật khẩu
 - Xoá Token --> Các thiết bị tự động thoát ra hết
 
 Step 02 - Xây dựng cấu trúc thư mục, tập tin
 
 Step 03 - Code điều hướng (routes)
+
 - Ngăn chặn người dùng truy cập trực tiếp vào folder hoặc file
----+ Đối với folders: tạo index.html (không code gì)
----+ Đối với files: đặt 1 hằng số, từng file kiểm tra hằng số đó có tồn tại không ???
+  ---+ Đối với folders: tạo index.html (không code gì)
+  ---+ Đối với files: đặt 1 hằng số, từng file kiểm tra hằng số đó có tồn tại không ???
 
 Step 04 - Nhúng Boostrap
+
 - Nhúng Boostrap 4.x
 - Nhúng fontawesome 4.7
 - Tạo Layout Master
@@ -73,46 +76,52 @@ Step 04 - Nhúng Boostrap
 - Truyền biến vào Layout
 
 Step 05 - Kết nối CSDL
+
 - Kết nối database
 - Xây dựng các hàm query chung
----+ Hàm lấy ra tổng dòng
----+ Hàm lấy ra id
+  ---+ Hàm lấy ra tổng dòng
+  ---+ Hàm lấy ra id
 
 Step 06 - Viết hàm xử lý Session
+
 - Viết các hàm session và session flash
 
 Step 07 - Kết nối Mail
+
 - Nhúng thư viện PHP Mailer
 - Thiết lập tài khoản Gmail
----+ Fix: Lỗi gửi bằng SSL
+  ---+ Fix: Lỗi gửi bằng SSL
 
 Step 08 - Viết các hàm Validate (bằng hàm filter)
+
 - Viết các hàm xử lý request POST, GET
----+ Hàm filter_input() - xử lý dữ liệu để chống tấn công XSS
+  ---+ Hàm filter_input() - xử lý dữ liệu để chống tấn công XSS
 - Viết các hàm xử lý email, integer, float
 
 Step 09 - Hàm xử lý password
+
 - Hàm password_hash()
 - Hàm password_verify()
 
 Step 10 - Xây dựng chức năng đăng ký người dùng
+
 - Xử lý dữ liệu nhập từ form Đăng Ký (valdation)
----+ Input: Họ và tên
--------+ Bắt buộc nhập
--------+ Tối thiểu 6 ký tự
----+ Input: SĐT
--------+ Bắt buộc nhập
--------+ Đúng định dạng SĐT
----+ Input: Email
--------+ Bắt buộc nhập
--------+ Đúng định dạng Email
--------+ Email không được trùng (trong DB)
----+ Input: Password
--------+ Bắt buộc nhập
--------+ Tối thiểu 8 ký tự
----+ Input: Repassword
--------+ Bắt buộc nhập
--------+ Trùng với input Password
+  ---+ Input: Họ và tên
+  -------+ Bắt buộc nhập
+  -------+ Tối thiểu 6 ký tự
+  ---+ Input: SĐT
+  -------+ Bắt buộc nhập
+  -------+ Đúng định dạng SĐT
+  ---+ Input: Email
+  -------+ Bắt buộc nhập
+  -------+ Đúng định dạng Email
+  -------+ Email không được trùng (trong DB)
+  ---+ Input: Password
+  -------+ Bắt buộc nhập
+  -------+ Tối thiểu 8 ký tự
+  ---+ Input: Repassword
+  -------+ Bắt buộc nhập
+  -------+ Trùng với input Password
 
 ---+ Hiển thị thông báo chung (hoặc cảnh báo)
 -------+ Tạo hàm điều hướng trang
@@ -129,9 +138,9 @@ Step 10 - Xây dựng chức năng đăng ký người dùng
 -------+ Tạo token = sha1(unquid() . time())
 
 - Gửi mail kích hoạt tải khoản
----+ Sau khi thêm mới thành công gọi hàm gửi mail.
----+ Fix: lỗi tiếng viết khi gửi PHPMailer
----+ Nâng cao: Xử lý khi mail không gửi tới dùng cần có (chức năng gửi lại mail)
+  ---+ Sau khi thêm mới thành công gọi hàm gửi mail.
+  ---+ Fix: lỗi tiếng viết khi gửi PHPMailer
+  ---+ Nâng cao: Xử lý khi mail không gửi tới dùng cần có (chức năng gửi lại mail)
 
 - Người dùng bấm vào link để kích hoạt tài khoản (hoặc dùng OTP để kích hoạt tk).
 
@@ -145,7 +154,7 @@ Step 11 - Xây dựng chức năng đăng nhập
 ---+ Xác thực password có hợp lệ hay không ?
 ---+ Thêm logintoken và gán token session
 ---+ Điều hướng khi đăng nhập thành công
----+ Xây dựng hàm check login
+---+ Bổ sung: Kiểm tra đã đăng nhập thành công khi tài khoản đã được kích hoạt
 
 Step 12 - Xây dựng chức năng quên mật khẩu
 Tạo đường dẫn tạo mật khẩu mới
@@ -212,14 +221,15 @@ Step 19 - Xây dựng chức năng xoá người dùng
 -------+ Xoá dữ liệu bảng Users
 
 Step 20 - Tối ưu hoá ứng dụng
----+ Kiểm tra thêm đăng nhập thành công khi tài khoản đã được kích hoạt
----+ Cập nhật thời gian cuối cùng hoạt động.
----+ Tự động xoá Login Token khi đóng trình duyệt (hoặc không hoạt động)
--------+ Tính số phút = (thời gian hiện tại - thời gian hoạt động cuối) / 60
--------+ Xoá login token nếu số phút vượt mức chỉ định
+20.1 Bổ sung 1 số hàm cho Authentication
+20.1.1 Xây dựng hàm check login
+20.1.2 Cập nhật thời gian cuối cùng hoạt động.
+20.1.3 Tự động xoá Login Token khi đóng trình duyệt (hoặc không hoạt động)
+20.1.3.1 Tính số phút = (thời gian hiện tại - thời gian hoạt động cuối) / 60 giây
+20.1.3.2 Xoá login token nếu số phút vượt mức chỉ định
+
 ---+ Tạo giao diện trang trang chủ (home)
 ---+ Chỉnh sửa hiển thị các thành phần navbar
 ---+ Lấy thông tin người dùng đăng nhập
-
 
 Cấu hình trong file: config.php

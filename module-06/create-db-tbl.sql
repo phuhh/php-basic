@@ -12,7 +12,7 @@ CREATE TABLE radix_users (
     ,user_contact_twitter VARCHAR(100) -- Đường dẫn twitter
     ,user_contact_linkedin VARCHAR(100) -- Đường dẫn linkedin
     ,user_contact_pinterest VARCHAR(100) -- Đường dẫn pinterest
-    ,user_forget_token VARCHAR(100) -- Token khi quên mật khẩu
+    ,user_forgot_token VARCHAR(100) -- Token khi quên mật khẩu
     ,group_id INT DEFAULT 0 -- Khoá ngoại dành Group
     ,user_status TINYINT DEFAULT 0 -- Trạng thái: 0 - Chưa kích hoạt, 1 - kích hoạt
     ,user_last_activity DATETIME -- Thời gian quản trị hoạt động cuối cùng
@@ -27,11 +27,9 @@ CREATE TABLE radix_groups (
     ,group_permission TEXT -- Phân quyền (chuỗi JSON)
     ,group_create_at DATETIME -- Thời gian tạo người quản trị
     ,group_update_at DATETIME -- Thời gian cập nhật người quản trị
-    ,user_id INT DEFAULT 0
 )
 
 ALTER TABLE radix_users ADD FOREIGN KEY(group_id) REFERENCES radix_groups(group_id)
-ALTER TABLE radix_groups ADD FOREIGN KEY(user_id) REFERENCES radix_users(user_id)
 
 DROP TABLE IF EXISTS radix_login_token
 CREATE TABLE radix_login_token(
