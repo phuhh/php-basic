@@ -4,9 +4,9 @@ defined('_ACCESS_DENIED') or die('Access Denied !!!');
 // Nhận được mail reset password người nhấn vô link để nhập mật khẩu mới.
 
 $msg = null;
-$msg_type = null;
-$render_form = false;
-$validation_errors = null;
+$msgType = null;
+$renderForm = false;
+$validationErrors = null;
 
 if (isLogin()) {
     redirect('?module=users&action=lists');
@@ -19,13 +19,13 @@ $data = [
 loadLayout('header_login', $data);
 
 $body = getBody();
-$forgot_token = isGet() ? $body['token'] : null;
+$forgotToken = isGet() ? $body['token'] : null;
 // Kiểm tra token tồn tại hay không ???
-if (!empty($forgot_token)) {
+if (!empty($forgotToken)) {
     // Lấy ra người dùng từ activeToken
-    $user = getRowCount("SELECT ID FROM Users WHERE ForgotToken='{$forgot_token}'");
+    $user = getRowCount("SELECT ID FROM Users WHERE ForgotToken='{$forgotToken}'");
     if (!empty($user)) {
-        $render_form = true;
+        $renderForm = true;
     } else {
         setFlashData('msg', 'Liên kết không tôn tại hoặc đã hết hạn');
         setFlashData('msg_type', 'danger');
@@ -37,33 +37,33 @@ if (!empty($forgot_token)) {
 
 if (isPost()) {
     $body = getBody();
-    $input_token = $body['forgot_token'];
+    $inputToken = $body['forgot_token'];
 
     if (empty(trim($body['pass']))) {
-        $validation_errors['pass']['required'] = 'Bắt buộc phải nhập.';
+        $validationErrors['pass']['required'] = 'Bắt buộc phải nhập.';
     } else if (strlen(trim($body['pass'])) < 8) {
-        $validation_errors['pass']['min'] = 'Độ dài tối thiểu 8 ký tự.';
+        $validationErrors['pass']['min'] = 'Độ dài tối thiểu 8 ký tự.';
     }
     if (empty(trim($body['repass']))) {
-        $validation_errors['repass']['required'] = 'Bắt buộc phải nhập.';
+        $validationErrors['repass']['required'] = 'Bắt buộc phải nhập.';
     } else if (trim($body['pass']) !== trim($body['repass'])) {
-        $validation_errors['repass']['match'] = 'Password không trùng khớp.';
+        $validationErrors['repass']['match'] = 'Password không trùng khớp.';
     }
 
-    if (empty($validation_errors)) {
-        $user = first('Users', "ForgotToken='{$input_token}'", 'ID, Email');
+    if (empty($validationErrors)) {
+        $user = first('Users', "ForgotToken='{$inputToken}'", 'ID, Email');
         if (!empty($user)) {
-            $user_id = $user['ID'];
-            $user_email = $user['Email'];
-            $password_hash = password_hash($body['pass'], PASSWORD_DEFAULT);
+            $userID = $user['ID'];
+            $userEmail = $user['Email'];
+            $passwordHash = password_hash($body['pass'], PASSWORD_DEFAULT);
 
             $data = [
-                'Password' => $password_hash,
+                'Password' => $passwordHash,
                 'ForgotToken' => null,
                 'UpdateAt' => date('Y-m-d H:i:s')
             ];
             // Cập nhật mật khẩu mới
-            $update_status = update('Users', $data, "ID = {$user_id}");
+            $update_status = update('Users', $data, "ID = {$userID}");
             if (!empty($update_status)) {
                 setFlashData('msg', 'Thay đổi mật khẩu thành công.');
                 setFlashData('msg_type', 'success');
@@ -71,7 +71,7 @@ if (isPost()) {
                 // Gửi thư thông báo thay đổi mật khẩu thành công
                 $subject = 'Thông báo: Bạn đã thay đổi mật khẩu';
                 $content = 'Chúc mừng bạn đã đổi mới mật khẩu thành công!';
-                sendMail($user_email, $subject, $content);
+                sendMail($userEmail, $subject, $content);
 
                 redirect('?module=auth&action=login');
             } else {
@@ -83,25 +83,25 @@ if (isPost()) {
             setFlashData('msg_type', 'danger');
         }
     } else {
-        setFlashData('validation_errors', $validation_errors);
+        setFlashData('validation_errors', $validationErrors);
     }
 
-    redirect('?module=auth&action=reset&token=' . $input_token);
+    redirect('?module=auth&action=reset&token=' . $inputToken);
 }
 
 $msg = getFlashData('msg');
-$msg_type = getFlashData('msg_type');
-$validation_errors = getFlashData('validation_errors');
+$msgType = getFlashData('msg_type');
+$validationErrors = getFlashData('validation_errors');
 ?>
 
-<?php if ($render_form): ?>
+<?php if ($renderForm): ?>
     <div class="container">
         <div class="row">
             <div class="col-6" style="margin: 20px auto;">
                 <h3 class="text-center text-uppercase"><?= $data['pageTitle'] ?></h3>
-                <?= showMessage($msg, $msg_type) ?>
+                <?= showMessage($msg, $msgType) ?>
                 <form action="" method="post">
-                    <input type="hidden" name="forgot_token" value="<?= $forgot_token ?>">
+                    <input type="hidden" name="forgot_token" value="<?= $forgotToken ?>">
                     <div class="form-group">
                         <label for="pass">Mật khẩu:</label>
                         <input type="password" name="pass" class="form-control" placeholder="Nhập mật khẩu mới...">
@@ -122,7 +122,7 @@ $validation_errors = getFlashData('validation_errors');
 <?php else: ?>
     <div class="container text-center">
         <br>
-        <?= showMessage($msg, $msg_type) ?>
+        <?= showMessage($msg, $msgType) ?>
     </div>
 <?php endif; ?>
 

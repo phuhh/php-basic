@@ -193,9 +193,9 @@ function showMessage($content, $type = 'danger')
 // Hiển thị thông báo lỗi từng input
 function formError($field_name)
 {
-    global $validation_errors;
-    if (!empty($validation_errors[$field_name])) {
-        return '<span class="error">' . reset($validation_errors[$field_name]) . '</span>';
+    global $validationErrors;
+    if (!empty($validationErrors[$field_name])) {
+        return '<span class="error">' . reset($validationErrors[$field_name]) . '</span>';
     }
     return false;
 }
@@ -212,9 +212,9 @@ function isLogin()
         $token_string = getSession('login_token');
         // $count_record = getRowCount("SELECT user_id FROM radix_login_token WHERE token_string = '{$token_string}' ");
 
-        $login_token = first('radix_login_token', "token_string = '{$token_string}'", 'user_id');
-        if ($login_token['user_id'] > 0) {
-            return $login_token['user_id'];
+        $loginToken = first('radix_login_token', "token_string = '{$token_string}'", 'user_id');
+        if ($loginToken['user_id'] > 0) {
+            return $loginToken['user_id'];
         } else {
             removeSession('login_token');
         }
@@ -225,9 +225,9 @@ function isLogin()
 function getFullname()
 {
     if (isLogin()) {
-        $user = first('Users', 'ID = ' . isLogin(), 'FullName');
+        $user = first('radix_users', 'user_id = ' . isLogin(), 'user_fullname');
         if (!empty($user)) {
-            return $user['FullName'];
+            return $user['user_fullname'];
         }
     }
     return false;
@@ -252,16 +252,16 @@ function autoRemoveLoginToken()
         $all_login_token = get('radix_login_token', 'user_id <> ' . isLogin());
         if (!empty($all_login_token)) {
             $now = date('Y-m-d h:i:s');
-            foreach ($all_login_token as $login_token) {
+            foreach ($all_login_token as $loginToken) {
                 // Lấy ra thời gian hoạt động cuối cùng dựa trên UserID
-                $user = first('radix_users', 'user_id = ' . $login_token['user_id'], 'user_last_activity');
+                $user = first('radix_users', 'user_id = ' . $loginToken['user_id'], 'user_last_activity');
                 $last_activity = isset($user) ? $user['user_last_activity'] : false;
                 // Lấy ra số phút chưa hoạt động
                 $diff = (strtotime($now) - strtotime($last_activity)) / _MINUTE;
                 $diff = floor($diff);
                 // Nếu tài khoản dừng hoạt động cách đây 15 phút
                 if ($diff > 15) {
-                    delete('radix_login_token', 'user_id = ' . $login_token['user_id']);
+                    delete('radix_login_token', 'user_id = ' . $loginToken['user_id']);
                 }
             }
         }
@@ -275,4 +275,22 @@ function isActiveMenuSidebar($module)
         return true;
     }
     return false;
+}
+
+function getLinkAdmin($module, $action = null, $params = [])
+{
+    if (empty($module)) return false;
+    $url = '?module=' . $module;
+
+    if (!empty($action)) $url .= '&action=' . $action;
+
+    /**
+     * $params = [keywords => 'item a', 'page' => 3]
+     * 
+     * - Hàm http_build_query() tạo ra query string từ mảng.
+     * result = keywords=item-a&page=3
+     */
+    if (!empty($params) && is_array($params)) $url .= '&' . http_build_query($params);
+
+    return _ADMIN_HOST_ROOT . $url;
 }

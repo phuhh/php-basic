@@ -83,11 +83,11 @@ if (!empty($_SERVER['QUERY_STRING'])) {
 // echo $queryString . '<br>';
 
 $msg = getFlashData('msg');
-$msg_type = getFlashData('msg_type');
+$msgType = getFlashData('msg_type');
 ?>
 
 <div class="container">
-    <?= showMessage($msg, $msg_type) ?>
+    <?= showMessage($msg, $msgType) ?>
     <h3><?= $data['pageTitle'] ?? null ?></h3>
     <p><a href="?module=users&action=add" class="btn btn-success btn-sm">Thêm mới người dùng</a></p>
     <form action="" method="get">

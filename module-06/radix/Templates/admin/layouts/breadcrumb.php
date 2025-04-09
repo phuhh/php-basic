@@ -8,7 +8,7 @@
             <?php if ($data['pageTitle'] !== 'Tổng Quát'): ?>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo _ADMIN_HOST_ROOT ?>">Tổng Quát</a></li>
+                        <li class="breadcrumb-item"><a href="<?= getLinkAdmin('dashboard') ?>">Tổng Quát</a></li>
                         <li class="breadcrumb-item active"><?= $data['pageTitle'] ?? '' ?></li>
                     </ol>
                 </div><!-- /.col -->

@@ -9,45 +9,45 @@ loadLayout('header', $data);
 if (isPost()) {
     // Validation Form
     $body = getBody(); // Lấy ra dữ liệu từ trong from
-    $validation_errors = []; // Lưu trữ các lỗi
+    $validationErrors = []; // Lưu trữ các lỗi
     // Validation Họ Tên: bắt buộc nhập, ít nhất 6 tự ký
     if (empty(trim($body['FullName']))) {
-        $validation_errors['FullName']['required'] = 'Bắt buộc phải nhập.';
+        $validationErrors['FullName']['required'] = 'Bắt buộc phải nhập.';
     } else if (mb_strlen($body['FullName']) < 6) {
-        $validation_errors['FullName']['min'] = 'Độ dài tối thiểu 6 ký tự.';
+        $validationErrors['FullName']['min'] = 'Độ dài tối thiểu 6 ký tự.';
     }
     // Validation SĐT: bắt buộc nhập, đúng định dạng SĐT 10 số (bắt đầu bằng số 0)
     if (empty(trim($body['Phone']))) {
-        $validation_errors['Phone']['required'] = 'Bắt buộc phải nhập.';
+        $validationErrors['Phone']['required'] = 'Bắt buộc phải nhập.';
     } else if (!isPhone(trim($body['Phone']))) {
-        $validation_errors['Phone']['isPhone'] = 'Định dạng không đúng.';
+        $validationErrors['Phone']['isPhone'] = 'Định dạng không đúng.';
     }
     // Validation Email: bắt buộc nhập, đúng định dạng email, email tuyệt đối
     if (empty(trim($body['Email']))) {
-        $validation_errors['Email']['required'] = 'Bắt buộc phải nhập.';
+        $validationErrors['Email']['required'] = 'Bắt buộc phải nhập.';
     } else if (!isEmail(trim($body['Email']))) {
-        $validation_errors['Email']['isEmail'] = 'Định dạng không đúng.';
+        $validationErrors['Email']['isEmail'] = 'Định dạng không đúng.';
     } else {
         $email = trim($body['Email']);
         $sql = "SELECT * FROM Users WHERE Email = '{$email}'";
         if (getRowCount($sql) > 0) {
-            $validation_errors['Email']['unique'] = 'Email đã tồn tại.';
+            $validationErrors['Email']['unique'] = 'Email đã tồn tại.';
         }
     }
     // Validation Password: bắt buộc nhập, ít nhất 8 ký tự
     if (empty(trim($body['Password']))) {
-        $validation_errors['Password']['required'] = 'Bắt buộc phải nhập.';
+        $validationErrors['Password']['required'] = 'Bắt buộc phải nhập.';
     } else if (strlen(trim($body['Password'])) < 8) {
-        $validation_errors['Password']['min'] = 'Độ dài tối thiểu 8 ký tự.';
+        $validationErrors['Password']['min'] = 'Độ dài tối thiểu 8 ký tự.';
     }
     // Validation RePassword: bắt buộc nhập, trùng khớp password
     if (empty(trim($body['ConfirmPassword']))) {
-        $validation_errors['ConfirmPassword']['required'] = 'Bắt buộc phải nhập.';
+        $validationErrors['ConfirmPassword']['required'] = 'Bắt buộc phải nhập.';
     } else if (trim($body['Password']) !== trim($body['ConfirmPassword'])) {
-        $validation_errors['ConfirmPassword']['match'] = 'Password không trùng khớp.';
+        $validationErrors['ConfirmPassword']['match'] = 'Password không trùng khớp.';
     }
 
-    if (empty($validation_errors)) {
+    if (empty($validationErrors)) {
         $data = [
             'Email' => trim($body['Email']),
             'Password' => password_hash(trim($body['Password']), PASSWORD_DEFAULT),
@@ -57,9 +57,9 @@ if (isPost()) {
             'CreateAt' => date('Y-m-d H:i:s')
         ];
         // Thêm tài khoản
-        $insert_status = create('Users', $data);
+        $insertStatus = create('Users', $data);
 
-        if ($insert_status) {
+        if ($insertStatus) {
             setFlashData('msg', 'Thêm mới người dùng thành công.');
             setFlashData('msg_type', 'success');
         } else {
@@ -69,7 +69,7 @@ if (isPost()) {
     } else {
         setFlashData('msg', 'Vui lòng kiểm tra dữ liệu nhập.');
         setFlashData('msg_type', 'danger');
-        setFlashData('validation_errors', $validation_errors);
+        setFlashData('validation_errors', $validationErrors);
         setFlashData('old', $body);
     }
     redirect('?module=users&action=add');
@@ -77,15 +77,15 @@ if (isPost()) {
 
 // lưu ý: khi dùng flash data cần lưu vào 1 biến 
 $msg = getFlashData('msg');
-$msg_type = getFlashData('msg_type');
-$validation_errors = getFlashData('validation_errors');
+$msgType = getFlashData('msg_type');
+$validationErrors = getFlashData('validation_errors');
 $old = getFlashData('old');
 
 ?>
 
 <div class="container mt-3">
     <form action="" method="post">
-        <?= showMessage($msg, $msg_type) ?>
+        <?= showMessage($msg, $msgType) ?>
         <hr>
         <h3><?= $data['pageTitle'] ?></h3>
         <div class="row">

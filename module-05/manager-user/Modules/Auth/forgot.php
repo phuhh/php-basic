@@ -3,8 +3,8 @@ defined('_ACCESS_DENIED') or die('Access Denied !!!');
 // Chức năng quên mật khẩu
 // Hệ thống sẽ gửi mail đến địa chỉ người dùng để reset password
 $msg = null;
-$msg_type = null;
-$validation_errors = null;
+$msgType = null;
+$validationErrors = null;
 
 if (isLogin()) {
     redirect('?module=users&action=lists');
@@ -20,35 +20,35 @@ if (isPost()) {
     $body = getBody();
     // validation
     if (empty(trim($body['email']))) {
-        $validation_errors['email']['required'] = 'Bắt buộc phải nhập.';
+        $validationErrors['email']['required'] = 'Bắt buộc phải nhập.';
     } else if (!isEmail(trim($body['email']))) {
-        $validation_errors['email']['isEmail'] = 'Định dạng không đúng.';
+        $validationErrors['email']['isEmail'] = 'Định dạng không đúng.';
     }
 
-    if (empty($validation_errors)) {
-        $input_email = $body['email'];
+    if (empty($validationErrors)) {
+        $inputEmail = $body['email'];
         // check email exists
-        $user = first('Users', "Email = '{$input_email}'", 'ID');
+        $user = first('Users', "Email = '{$inputEmail}'", 'ID');
         if (!empty($user)) {
-            $user_id = $user['ID'];
+            $userID = $user['ID'];
             // Tạo ra forgot token
-            $forgot_token = sha1(uniqid() . time());
+            $forgotToken = sha1(uniqid() . time());
             $data = [
-                'ForgotToken' => $forgot_token,
+                'ForgotToken' => $forgotToken,
                 'UpdateAt' => date('Y-m-d h:i:s')
             ];
             // update forgot token
-            $update_status = update('Users', $data, "ID = {$user_id}");
+            $update_status = update('Users', $data, "ID = {$userID}");
             if ($update_status) {
-                $reset_link = _WEB_HOST_ROOT . '?module=auth&action=reset&token=' . $forgot_token;
+                $resetLink = _WEB_HOST_ROOT . '?module=auth&action=reset&token=' . $forgotToken;
                 $subject = 'Khôi phục mật khẩu';
-                $content = 'Chào bạn, <b>' . $input_email . '</b><br>';
+                $content = 'Chào bạn, <b>' . $inputEmail . '</b><br>';
                 $content .= 'Chúng tôi nhận được yêu cầu khôi phục mật khẩu từ bạn. Vui lòng nhấn vào đường dẫn sau để khôi phục: ';
-                $content .= $reset_link;
+                $content .= $resetLink;
 
                 // Gửi mail tạo ra đường dẫn đặt lại mật khẩu
-                $send_mail = sendMail($input_email, $subject, $content);
-                if ($send_mail) {
+                $sendMail = sendMail($inputEmail, $subject, $content);
+                if ($sendMail) {
                     setFlashData('msg', 'Vui lòng kiểm tra hộp thư, xem hướng dẫn đặt lại mật khẩu.');
                     setFlashData('msg_type', 'success');
                 } else {
@@ -64,15 +64,15 @@ if (isPost()) {
             setFlashData('msg_type', 'danger');
         }
     } else {
-        setFlashData('validation_errors', $validation_errors);
+        setFlashData('validation_errors', $validationErrors);
         setFlashData('old', $old);
     }
     redirect('?module=auth&action=forgot');
 }
 
 $msg = getFlashData('msg');
-$msg_type = getFlashData('msg_type');
-$validation_errors = getFlashData('validation_errors');
+$msgType = getFlashData('msg_type');
+$validationErrors = getFlashData('validation_errors');
 $old = getFlashData('old');
 ?>
 
@@ -80,7 +80,7 @@ $old = getFlashData('old');
     <div class="row">
         <div class="col-6" style="margin: 20px auto;">
             <h3 class="text-center text-uppercase">Quên Mật Khẩu</h3>
-            <?= showMessage($msg, $msg_type) ?>
+            <?= showMessage($msg, $msgType) ?>
             <form action="" method="post">
                 <div class="form-group">
                     <label for="email">Email:</label>

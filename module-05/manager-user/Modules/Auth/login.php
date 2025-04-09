@@ -2,7 +2,7 @@
 defined('_ACCESS_DENIED') or die('Access Denied !!!');
 // Chức năng đăng nhập hệ thống
 $msg = null;
-$msg_type = null;
+$msgType = null;
 
 if (isLogin()) {
     redirect('?module=users&action=lists');
@@ -15,43 +15,43 @@ loadLayout('header_login', $data);
 
 if (isPost()) {
     $body = getBody();
-    $validation_errors = [];
+    $validationErrors = [];
 
-    $input_email = isset($body['email']) ? trim($body['email']) : false;
-    $input_password = isset($body['pass']) ? trim($body['pass']) : false;
+    $inputEmail = isset($body['email']) ? trim($body['email']) : false;
+    $inputPassword = isset($body['pass']) ? trim($body['pass']) : false;
     // Check Validation
-    if (empty($input_email)) {
-        $validation_errors['email']['required'] = 'Bắt buộc phải nhập.';
-    } else if (!isEmail($input_email)) {
-        $validation_errors['email']['isEmail'] = 'Định dạng không đúng.';
+    if (empty($inputEmail)) {
+        $validationErrors['email']['required'] = 'Bắt buộc phải nhập.';
+    } else if (!isEmail($inputEmail)) {
+        $validationErrors['email']['isEmail'] = 'Định dạng không đúng.';
     }
 
-    if (empty($input_password)) {
-        $validation_errors['pass']['required'] = 'Bắt buộc phải nhập.';
-    } else if (strlen($input_password) < 8) {
-        $validation_errors['pass']['min'] = 'Độ dài tối thiểu 8 ký tự.';
+    if (empty($inputPassword)) {
+        $validationErrors['pass']['required'] = 'Bắt buộc phải nhập.';
+    } else if (strlen($inputPassword) < 8) {
+        $validationErrors['pass']['min'] = 'Độ dài tối thiểu 8 ký tự.';
     }
 
-    if (empty($validation_errors)) {
+    if (empty($validationErrors)) {
         // Check login
-        $user = first('Users', "Email = '{$input_email}' AND Status = 1", 'ID, Password');
+        $user = first('Users', "Email = '{$inputEmail}' AND Status = 1", 'ID, Password');
         // Check Email
         if (!empty($user)) {
-            $user_id = $user['ID'];
-            $user_password = $user['Password'];
+            $userID = $user['ID'];
+            $userPassword = $user['Password'];
             // Check Password
-            if (password_verify($input_password, $user_password)) {
-                $login_token = sha1(uniqid() . time());
+            if (password_verify($inputPassword, $userPassword)) {
+                $loginToken = sha1(uniqid() . time());
                 $data = [
-                    'UserID' => $user_id,
-                    'Token' => $login_token,
+                    'UserID' => $userID,
+                    'Token' => $loginToken,
                     'CreateAt' => date('Y-m-d h:i:s')
                 ];
                 // Insert Login Token and Set Session Token
-                $insert_status = create('LoginToken', $data);
-                if ($insert_status) {
+                $insertStatus = create('LoginToken', $data);
+                if ($insertStatus) {
                     //Set token session
-                    setSession('login_token', $login_token);
+                    setSession('login_token', $loginToken);
 
                     redirect('?module=users');
                 } else {
@@ -67,22 +67,22 @@ if (isPost()) {
             setFlashData('msg_type', 'danger');
         }
     } else {
-        setFlashData('validation_errors', $validation_errors);
+        setFlashData('validation_errors', $validationErrors);
         setFlashData('old', $body);
     }
     redirect('?module=auth&action=login');
 }
 
 $msg = getFlashData('msg');
-$msg_type = getFlashData('msg_type');
-$validation_errors = getFlashData('validation_errors');
+$msgType = getFlashData('msg_type');
+$validationErrors = getFlashData('validation_errors');
 ?>
 
 <div class="container">
     <div class="row">
         <div class="col-6" style="margin: 20px auto;">
             <h3 class="text-center text-uppercase">Đăng Nhập</h3>
-            <?= showMessage($msg, $msg_type) ?>
+            <?= showMessage($msg, $msgType) ?>
             <form action="" method="post">
                 <div class="form-group">
                     <label for="email">Email:</label>

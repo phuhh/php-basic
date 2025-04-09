@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="<?= getLinkAdmin('dashboard') ?>" class="brand-link">
         <span class="brand-text font-weight-light text-uppercase">radix company</span>
     </a>
 
@@ -13,7 +13,7 @@
                 <img src="<?= _ADMIN_HOST_TEMPLATES ?>/assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="<?= getLinkAdmin('auth', 'profile') ?>" class="d-block"><?= getFullname() ?></a>
             </div>
         </div>
 
@@ -23,7 +23,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="<?= _ADMIN_HOST_ROOT ?>?module=dashboard" class="nav-link<?= isActiveMenuSidebar('dashboard') ? ' active' : false ?>">
+                    <a href="<?= getLinkAdmin('dashboard') ?>" class="nav-link<?= isActiveMenuSidebar('dashboard') ? ' active' : false ?>">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Tổng Quát
@@ -40,13 +40,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= _ADMIN_HOST_ROOT ?>?module=categoryBlog&action=add" class="nav-link">
+                            <a href="<?= getLinkAdmin('categoryBlog', 'add') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Thêm Mới</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= _ADMIN_HOST_ROOT ?>?module=categoryBlog" class="nav-link">
+                            <a href="<?= getLinkAdmin('categoryBlog') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh Sách</p>
                             </a>
@@ -63,13 +63,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= _ADMIN_HOST_ROOT ?>?module=blog&action=add" class="nav-link">
+                            <a href="<?= getLinkAdmin('blog', 'add') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Thêm Mới</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= _ADMIN_HOST_ROOT ?>?module=blog" class="nav-link">
+                            <a href="<?= getLinkAdmin('blog') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh Sách</p>
                             </a>
