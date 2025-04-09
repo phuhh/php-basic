@@ -9,9 +9,16 @@ var_dump($point);
 echo '<br>';
 
 // Ép kiểu
-$pi = '3.14';
-$pi = (float) $pi;
-var_dump($pi);
+$pi = (float) '3.14';
+var_dump($pi); // OUTPUT: 3.14
+echo '<br>';
+
+$num2 = (float) '1.2abc';
+var_dump($num2); // OUTPUT: 1.2
+echo '<br>';
+
+$num3 = (float) 'abc1.2';
+var_dump($num3); // OUTPUT: 0
 echo '<hr>';
 
 // Kiểm tra có phải số thực hay không ?
