@@ -30,6 +30,7 @@ Step 01 - Thiết kế Database
 * Phone VARCHAR(20)
 * ForgotToken VARCHAR(50) -- Dùng để tạo lại mật khẩu
 * ActiveToken VARCHAR(50) -- Dùng để kích hoạt tài khoản
+* LastActivity DATETIME -- Dùng để lưu lại thời gian hoạt động cuối cùng
 * Status TINYINT
 * CreateAt DATETIME
 * UpdateAt DATETIME
@@ -47,10 +48,9 @@ Hạn chế: đăng nhập trên nhiều thiết bị
 
 Cách hiện tại: Đăng nhập --> Lưu Session --> Lần sau: Kiểm tra Session và Tồn tại Token trong Database
 Ưu điểm: đăng nhập trên nhiều thiết bị
-Cụ thể: 1 tài khoản có đăng nhập nhiều thiết bị khác nhau
+Cụ thể: 1 tài khoản có đăng nhập nhiều thiết bị khác nhau (để quản lý được user đó đang truy cập bao nhiêu thiết bị)
 
 Trường hợp: Thay đổi mật khẩu
-
 - Cập nhật mật khẩu
 - Xoá Token --> Các thiết bị tự động thoát ra hết
 
