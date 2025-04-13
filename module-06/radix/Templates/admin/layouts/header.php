@@ -36,6 +36,7 @@ autoRemoveLoginToken();
     <link rel="stylesheet" href="<?= _ADMIN_HOST_TEMPLATES ?>/plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="<?= _ADMIN_HOST_TEMPLATES ?>/assets/css/style.css?v=<?= rand() ?>">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -56,11 +57,11 @@ autoRemoveLoginToken();
                         <i class="fas fa-user"></i> Hi, <?= getFullname() ?>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <a href="<?= getLinkAdmin('auth', 'profile') ?>" class="dropdown-item">
+                        <a href="<?= getLinkAdmin('user', 'changeProfile') ?>" class="dropdown-item">
                             <i class="fas fa-info-circle mr-2"></i> Thông tin hồ sơ
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="<?= getLinkAdmin('auth', 'changePassword') ?>" class="dropdown-item">
+                        <a href="<?= getLinkAdmin('user', 'changePassword') ?>" class="dropdown-item">
                             <i class="fas fa-sync mr-2"></i> Thay đổi mật khẩu
                         </a>
                         <div class="dropdown-divider"></div>

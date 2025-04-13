@@ -222,6 +222,17 @@ function isLogin()
     return false;
 }
 
+function getUserInfo()
+{
+    if (isLogin()) {
+        $user = first('radix_users', 'user_id = ' . isLogin(), 'user_fullname, user_email, user_about, user_contact_facebook, user_contact_twitter, user_contact_linkedin, user_contact_pinterest');
+        if (!empty($user)) {
+            return $user;
+        }
+    }
+    return false;
+}
+
 function getFullname()
 {
     if (isLogin()) {
