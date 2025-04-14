@@ -11,8 +11,7 @@ if (!isLogin()) {
 }
 
 $userID = isLogin();
-$userInfo = getUserInfo();
-setFlashData('oldUser', $userInfo);
+$oldUser = getUserInfo();
 
 if (isPost()) {
     // Validation Form
@@ -66,7 +65,7 @@ if (isPost()) {
         setFlashData('old', $body);
     }
 
-    redirect('/admin/?module=user&action=changeProfile');
+    redirect('/admin/?module=user&action=profile');
 }
 
 // lưu ý: khi dùng flash data cần lưu vào 1 biến 
@@ -74,7 +73,6 @@ $msg = getFlashData('msg');
 $msgType = getFlashData('msg_type');
 $validationErrors = getFlashData('validation_errors');
 $old = getFlashData('old');
-$oldUser = getFlashData('oldUser');
 
 if (!empty($oldUser) && empty($old))
     $old = $oldUser;
