@@ -57,7 +57,7 @@ autoRemoveLoginToken();
                         <i class="fas fa-user"></i> Hi, <?= getFullname() ?>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <a href="<?= getLinkAdmin('user', 'changeProfile') ?>" class="dropdown-item">
+                        <a href="<?= getLinkAdmin('user', 'profile') ?>" class="dropdown-item">
                             <i class="fas fa-info-circle mr-2"></i> Thông tin hồ sơ
                         </a>
                         <div class="dropdown-divider"></div>

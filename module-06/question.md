@@ -1,0 +1,1 @@
+- ob_start() là gì? Tại sao phải dùng? Khi nào dùng tới?
