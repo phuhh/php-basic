@@ -1,28 +1,27 @@
 <?php
 
 /**
- * Thiết lập và lấy ra timestamp từ datetime object
+ * Timestamp
  * 
- * 1.Thiết lập lại timestamp cho datetime object: 
+ * 1. Tạo date object từ timestamp
  * 
- * date_timestamp_set($dateTimeObject, $timestamp);
+ * date_timestamp_set($dateObj, $timestamp);
  */
 
-$dateTimeObject = date_create();
 $timestamp = strtotime('2024-09-10 21:16');
-echo $timestamp;
+$dateObj = date_create();
 
-date_timestamp_set($dateTimeObject, $timestamp);
+date_timestamp_set($dateObj, $timestamp);
 
 echo "<pre>";
-print_r($dateTimeObject);
+print_r($dateObj);
 echo "</pre>";
 
 /**
- * 2. Lấy ra timestamp cho datetime object: 
+ * 2. Lấy ra timestamp từ date object
  * 
- * date_timestamp_get($dateTimeObject);
+ * date_timestamp_get($dateObj);
  */
 
-$timestamp2 = date_timestamp_get($dateTimeObject);
+$timestamp2 = date_timestamp_get($dateObj);
 echo $timestamp2;

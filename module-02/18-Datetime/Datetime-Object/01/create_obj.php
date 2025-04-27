@@ -12,7 +12,7 @@
  */
 
 
-// Tạo ra 1 object Timezone
+// Tạo ra 1 object Timezone từ chỉ định định vùng
 $timezoneObj = timezone_open('Asia/Bangkok');
 echo "<pre>";
 print_r($timezoneObj);
@@ -20,42 +20,42 @@ echo "</pre>";
 
 echo '<hr>';
 
-// Tạo ra 1 object Datetime
-$datetimeObj = date_create();
+// date_create() tạo ra object date hiện tại
+$dateObj = date_create();
 echo "<pre>";
-print_r($datetimeObj);
+print_r($dateObj);
 echo "</pre>";
 
-// Tạo ra 1 object Datetime chỉ định theo chuỗi ngày giờ
-$datetimeObj = date_create('2024-09-10 21:55');
+// Tạo ra 1 object date theo chỉ định có sẵn
+$dateObj = date_create('2024-09-10 21:55');
 echo "<pre>";
-print_r($datetimeObj);
+print_r($dateObj);
 echo "</pre>";
 
-// Tạo ra 1 object Datetime chỉ định theo chuỗi ngày giờ và object timezone
-$datetimeObj = date_create('2024-09-10 21:55', $timezoneObj);
+// Tạo ra 1 object date theo chỉ định có sẵn cùng cùng tham số 1 object Timezone 
+$dateObj = date_create('2024-09-10 21:55', $timezoneObj);
 echo "<pre>";
-print_r($datetimeObj);
+print_r($dateObj);
 echo "</pre>";
 
 echo '<hr>';
 
-// Tạo ra 1 object datetime theo định dạng cùng với chuỗi ngày giờ
-$datetimeObj = date_create_from_format('m-d-Y', '09-10-2024');
+// Tạo ra 1 object date có ĐỊNH DẠNG ĐÚNG với chỉ định có sẵn
+$dateObj = date_create_from_format('m-d-Y', '09-10-2024');
 echo "<pre>";
-var_dump($datetimeObj);
+var_dump($dateObj);
 echo "</pre>";
 
-// Tạo ra 1 object datetime theo định dạng cùng với chuỗi ngày giờ và object timezone
-$datetimeObj = date_create_from_format('mdY', '09102024', $timezoneObj);
+// Tạo ra 1 object date có ĐỊNH DẠNG ĐÚNG với chỉ định có sẵn cùng tham số 1 object Timezone 
+$dateObj = date_create_from_format('mdY', '09102024', $timezoneObj);
 echo "<pre>";
-var_dump($datetimeObj);
+var_dump($dateObj);
 echo "</pre>";
 
 // Nếu không đúng định dạng hoặc sai định dạng, sẽ trả về FALSE
-$datetimeObj = date_create_from_format('d-m-Y', '09/10/2024', $timezoneObj);
+$dateObj = date_create_from_format('d-m-Y', '09/10/2024', $timezoneObj);
 echo "<pre>";
-var_dump($datetimeObj);
+var_dump($dateObj);
 echo "</pre>";
 
 /**

@@ -9,7 +9,6 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 $timezone =  date_default_timezone_get();
 echo $timezone;
 
-echo '<br>';
-
-$dateTimeObject = date_create();
-echo $dateTimeObject->format('Y-m-d H:i:s');
+echo '<hr>';
+$dateObj = date_create();
+echo $dateObj->format('Y-m-d H:i:s');

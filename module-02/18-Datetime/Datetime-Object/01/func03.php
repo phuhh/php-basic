@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Thiết lập giờ phút giây cho datetime object: 
+ * Cập nhật lại giờ phút giây của date object
  * 
- * date_time_set($dateTimeObject, $hour, $minute, $second);
+ * date_time_set($dateObj, $hour, $minute, $second);
  */
 
-$dateTimeObject = date_create();
 $hour = 23;
 $minute = 45;
 $second = 30;
+$dateObj = date_create();
 
-date_time_set($dateTimeObject, $hour, $minute, $second);
+date_time_set($dateObj, $hour, $minute, $second);
 
 echo "<pre>";
-print_r($dateTimeObject);
+print_r($dateObj);
 echo "</pre>";

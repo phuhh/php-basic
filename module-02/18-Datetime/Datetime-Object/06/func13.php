@@ -3,7 +3,7 @@
 /**
  * Timezone Object
  * 
- * 1. Tạo đối tượng timezone
+ * 1. Lấy timezone object chỉ định
  */
 
 $timezoneObject = timezone_open('Asia/Ho_Chi_Minh');
@@ -13,13 +13,13 @@ print_r($timezoneObject);
 echo "</pre>";
 
 /**
- * 2. Lấy tên của timezone
+ * 2. Truy cập tên từ timezone object
  */
 $timezoneName = timezone_name_get($timezoneObject);
 echo $timezoneName;
 
 /**
- * 3. Lấy ra thông tin khu vực timezone
+ * 3. Lấy ra thông tin khu vực timezone object
  */
 
 $timezoneInfo = timezone_location_get($timezoneObject);

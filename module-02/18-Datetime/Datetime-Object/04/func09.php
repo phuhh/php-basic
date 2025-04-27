@@ -1,39 +1,44 @@
 <?php
 
 /**
- * Định dạng ngày giờ cho datetime object
+ * Định dạng ngày giờ cho date object
  * 
- * 1. dùng hàm date_format($dateTimeObject, $format)
+ * Cách 1: dùng hàm date_format($dateObj, $format)
  */
 
-$dateTimeObject = date_create();
-
-$output = date_format($dateTimeObject, 'd/m/Y H:i:s');
+$dateObj = date_create();
+$output = date_format($dateObj, 'd/m/Y H:i:s');
 echo $output;
 echo '<br>';
 
-$d = date_format($dateTimeObject, 'd');
-$m = date_format($dateTimeObject, 'm');
-$y = date_format($dateTimeObject, 'Y');
+$d = date_format($dateObj, 'd');
+$m = date_format($dateObj, 'm');
+$y = date_format($dateObj, 'Y');
 $output = 'Ngày ' . $d . ' Tháng ' . $m . ' Năm ' . $y;
 echo $output;
 echo '<br>';
 
-$h = date_format($dateTimeObject, 'H');
-$m = date_format($dateTimeObject, 'i');
-$i = date_format($dateTimeObject, 's');
+$h = date_format($dateObj, 'H');
+$m = date_format($dateObj, 'i');
+$i = date_format($dateObj, 's');
 $output = 'Giờ ' . $h . ' Phút ' . $m . ' Giây ' . $i;
 echo $output;
 echo '<hr>';
 
-// Định dạng ngày giờ bằng hàm date_create_form_format($format, $str);
-$dateTimeObject = date_create_from_format('Y-m-d H:i:s', '2024-09-11 22:31:21');
-echo date_format($dateTimeObject, 'd/m/Y H:i A');
+$dateObj = date_create('2024-09-11 22:31:21');
+$output = date_format($dateObj, 'd/m/Y H:i:s');
+echo $output;
+echo '<br>';
+
+// Định dạng thời gian bằng từ date_create_form_format($format, $str);
+$dateObj = date_create_from_format('Y-m-d H:i:s', '2024-09-11 22:31:21');
+echo date_format($dateObj, 'd/m/Y H:i A');
 echo '<hr>';
 
 /**
- * 2. Định dạng ngày giờ qua phương thức format() có trong datetime object (OOP)
+ * Cách 2. Định dạng thời gian qua phương thức format() có trong datetime object (OOP)
  * 
  * Nên thường xuyên dùng.
  */
-echo $dateTimeObject->format('d-m-Y');
+$dateObj = date_create('2024-09-11 22:31:21');
+echo $dateObj->format('d-m-Y');

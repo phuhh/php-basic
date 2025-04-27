@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Định dạng dateInterval object theo 1 dạng định nhất định.
+ * Định dạng thời gian từ dateInterval object.
  */
 
 $dateIntervalObj = date_interval_create_from_date_string('10 day');
