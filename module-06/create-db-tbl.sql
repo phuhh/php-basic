@@ -29,7 +29,7 @@ CREATE TABLE radix_groups (
     ,group_update_at DATETIME -- Thời gian cập nhật người quản trị
 )
 
-ALTER TABLE radix_users ADD FOREIGN KEY(group_id) REFERENCES radix_groups(group_id)
+-- ALTER TABLE radix_users ADD FOREIGN KEY(group_id) REFERENCES radix_groups(group_id)
 
 DROP TABLE IF EXISTS radix_login_token
 CREATE TABLE radix_login_token(
@@ -37,8 +37,9 @@ CREATE TABLE radix_login_token(
     ,token_string VARCHAR(100)
     ,user_id INT DEFAULT 0
 	,token_create_at DATETIME
-	,FOREIGN KEY user_id REFERENCES radix_users(user_id)
+	-- ,FOREIGN KEY user_id REFERENCES radix_users(user_id)
 )
+-- mỗi record token đại diện 1 thiết bị
 
 DROP TABLE IF EXISTS radix_options
 CREATE TABLE radix_options (
@@ -49,7 +50,7 @@ CREATE TABLE radix_options (
    ,user_id INT DEFAULT 0 -- ID của quản trị viên, foregin key tới id của bảng radix_users
    ,option_create_at DATETIME -- Thời gian tạo tuỳ chọn
    ,option_Update_at DATETIME -- Thời gian cập nhật tuỳ chọn 
-   ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
+--    ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
 )
 
 
@@ -62,7 +63,7 @@ CREATE TABLE radix_pages (
    ,user_id INT DEFAULT 0 -- ID của quản trị viên, foregin key tới id của bảng radix_users
    ,page_create_at DATETIME -- Thời gian tạo trang
    ,page_Update_at DATETIME -- Thời gian cập nhật trang
-   ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
+--    ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
 )
 
 DROP TABLE IF EXISTS radix_contract_type
@@ -72,7 +73,7 @@ CREATE TABLE IF NOT EXISTS radix_contract_type (
    ,user_id INT DEFAULT 0 -- ID của quản trị viên, foregin key tới id của bảng radix_users
    ,type_create_at DATETIME -- Thời gian tạo kiểu liên hệ
    ,type_update_at DATETIME -- Thời gian cập nhật kiểu liên hệ
-   ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
+--    ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
 )
 
 DROP TABLE IF EXISTS radix_contracts
@@ -87,8 +88,8 @@ CREATE TABLE radix_contracts (
    ,user_id INT DEFAULT 0 -- ID của quản trị viên, foregin key tới id của bảng radix_users
    ,contract_create_at DATETIME -- Thời gian tạo liên hệ
    ,contract_update_at DATETIME -- Thời gian cập nhật liên hệ
-   ,FOREIGN KEY (type_id) REFERENCES radix_contract_type(type_id)
-   ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
+--    ,FOREIGN KEY (type_id) REFERENCES radix_contract_type(type_id)
+--    ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
 )
 
 DROP TABLE IF EXISTS radix_services
@@ -102,7 +103,7 @@ CREATE TABLE radix_services (
     ,user_id INT DEFAULT 0 -- ID của quản trị viên, foregin key tới id của bảng radix_users
     ,service_create_at DATETIME -- Thời gian tạo dịch vụ
     ,service_update_at DATETIME -- Thời gian cập nhật dịch vụ
-    ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
+    -- ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
 )
 
 DROP TABLE IF EXISTS radix_portfolio_categories
@@ -113,7 +114,7 @@ CREATE TABLE radix_portfolio_categories (
     ,user_id INT DEFAULT 0 -- ID của quản trị viên, foregin key tới id của bảng radix_users
     ,category_create_at DATETIME -- Thời gian tạo dự án
     ,category_update_at DATETIME -- Thời gian cập nhật dự án
-    ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
+    -- ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
 )
 
 DROP TABLE IF EXISTS radix_portfilios
@@ -129,8 +130,8 @@ CREATE TABLE radix_portfilios (
     ,user_id INT DEFAULT 0 -- ID của quản trị viên, foregin key tới id của bảng radix_users
     ,portfolio_create_at DATETIME -- Thời gian tạo dự án
     ,portfolio_update_at DATETIME -- Thời gian cập nhật dự án
-    ,FOREIGN KEY (category_id) REFERENCES radix_portfolio_categories(category_id) 
-    ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
+    -- ,FOREIGN KEY (category_id) REFERENCES radix_portfolio_categories(category_id) 
+    -- ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
 )
 
 DROP TABLE IF EXISTS radix_portfilio_images
@@ -140,7 +141,7 @@ CREATE TABLE radix_portfilio_images(
     ,portfolio_id INT DEFAULT 0 -- Khoá ngoại của bảng radix_portfilios
     ,image_create_at DATETIME -- Thời gian tạo hình ảnh
     ,image_update_at DATETIME -- Thời gian cập nhật hình ảnh
-    ,FOREIGN KEY (portfolio_id) REFERENCES radix_portfilios(portfolio_id) 
+    -- ,FOREIGN KEY (portfolio_id) REFERENCES radix_portfilios(portfolio_id) 
 )
 
 DROP TABLE IF EXISTS radix_blog_categories
@@ -151,7 +152,7 @@ CREATE TABLE radix_blog_categories (
     ,user_id INT DEFAULT 0 -- ID của quản trị viên, foregin key tới id của bảng radix_users
     ,category_create_at DATETIME -- Thời gian tạo thể loại
     ,category_update_at DATETIME -- Thời gian cập thể loại
-    ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
+    -- ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
 )
 
 DROP TABLE IF EXISTS radix_blogs
@@ -167,8 +168,8 @@ CREATE TABLE radix_blogs (
     ,user_id INT DEFAULT 0 -- ID của quản trị viên, foregin key tới id của bảng radix_users
     ,blog_create_at DATETIME -- Thời gian tạo bài viết
     ,blog_update_at DATETIME -- Thời gian cập nhật bài viết
-    ,FOREIGN KEY (category_id) REFERENCES radix_blog_categories(category_id) 
-    ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
+    -- ,FOREIGN KEY (category_id) REFERENCES radix_blog_categories(category_id) 
+    -- ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
 )
 
 
@@ -181,7 +182,7 @@ CREATE TABLE radix_subscribers (
     ,user_id INT DEFAULT 0 -- ID của quản trị viên, foregin key tới id của bảng radix_users
     ,subcriber_create_at DATETIME  -- Thời gian tạo theo dõi
     ,subcriber_update_at DATETIME  -- Thời gian cập nhật theo dõi
-    ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
+    -- ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
 )
 
 
@@ -198,8 +199,8 @@ CREATE TABLE radix_comments (
     ,user_id INT DEFAULT 0 -- user_id của quản trị viên (Dùng để trả lời comment)
     ,comment_create_at DATETIME  -- Thời gian tạo bình luận
     ,comment_update_at DATETIME  -- Thời gian cập nhật bình luận
-    ,FOREIGN KEY (blog_id) REFERENCES radix_blogs(blog_id)
-    ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
+    -- ,FOREIGN KEY (blog_id) REFERENCES radix_blogs(blog_id)
+    -- ,FOREIGN KEY (user_id) REFERENCES radix_users(user_id)
 )
 
 

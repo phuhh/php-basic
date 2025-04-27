@@ -305,3 +305,11 @@ function getLinkAdmin($module, $action = null, $params = [])
 
     return _ADMIN_HOST_ROOT . $url;
 }
+
+function formatDate($date, $format = 'd/m/Y H:i:s')
+{
+    if (empty($date)) return '';
+    $dateObj = date_create($date);
+    if (!$dateObj) return '';
+    return date_format($dateObj, $format);
+}

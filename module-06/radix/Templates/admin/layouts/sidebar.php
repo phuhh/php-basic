@@ -30,6 +30,29 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item has-treeview<?= isActiveMenuSidebar('group') ? ' menu-open' : false ?>">
+                    <a href="#" class="nav-link<?= isActiveMenuSidebar('group') ? ' active' : false ?>">
+                        <i class="nav-icon fas fa-file-alt"></i>
+                        <p>
+                            Danh Mục Nhóm
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= getLinkAdmin('group', 'create') ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thêm Mới</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= getLinkAdmin('group') ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh Sách</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item has-treeview<?= isActiveMenuSidebar('categoryBlog') ? ' menu-open' : false ?>">
                     <a href="#" class="nav-link<?= isActiveMenuSidebar('categoryBlog') ? ' active' : false ?>">
                         <i class="nav-icon fas fa-file-alt"></i>

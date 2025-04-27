@@ -6,10 +6,6 @@ loadLayout('header', $data, true);
 loadLayout('sidebar', $data, true);
 loadLayout('breadcrumb', $data, true);
 
-if (!isLogin()) {
-    redirect('/admin/?module=auth&action=login');
-}
-
 $userID = isLogin();
 $userInfo = getUserInfo();
 

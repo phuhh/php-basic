@@ -23,6 +23,9 @@ Các bước xây dựng website
    4.1.1. Tạo ra layouts (header, sidebar, breadcrumb, footer)
    4.1.2. Liên kết css, js, images
    4.2. Xử lý menu sidebar
+   4.3. Xây dựng module auth (login, forgot, reset, logout)
+   4.4. xây dựng module user (changePassword, updateProfile)
+   4.5. Xây dựng module group (list, create, update, delete)
 
 5. Xây dựng trang người dùng
 6. Kiểm tra và xử lý lỗi

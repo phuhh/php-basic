@@ -1,4 +1,10 @@
 <?php
+defined('_48_HOURS') or define('_48_HOURS', 176400);
+//If you close your browser your session is lost.
+//session.cookie_lifetime specifies the lifetime of the cookie in seconds which is sent to the browser.
+ini_set('session.cookie_lifetime', _48_HOURS);
+//session.gc_maxlifetime specifies the number of seconds after which data will be seen as 'garbage' and potentially cleaned up.
+ini_set('session.gc_maxlifetime', _48_HOURS);
 session_start();
 
 // Imports
