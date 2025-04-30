@@ -1,7 +1,10 @@
 <?php
+defined('_ACCESS_DENIED') or die('Access Denied !!!');
+
 $data = [
     'pageTitle' => 'Danh Sách Nhóm Người Dùng'
 ];
+
 loadLayout('header', $data, true);
 loadLayout('sidebar', $data, true);
 loadLayout('breadcrumb', $data, true);
@@ -64,11 +67,10 @@ $msgType = getFlashData('msg_type');
     <div class="container-fluid">
         <!-- Main row -->
         <?= showMessage($msg, $msgType) ?>
-        <p>
-            <a href="<?= getLinkAdmin('group', 'create') ?>" class="btn btn-success">Thêm mới nhóm</a>
-        </p>
+        <a href="<?= getLinkAdmin('groups', 'create') ?>" class="btn btn-success">Thêm mới nhóm</a>
+        <hr>
         <form action="" method="get">
-            <input type="hidden" name="module" value="group">
+            <input type="hidden" name="module" value="groups">
             <div class="row mb-3">
                 <div class="col-md-10">
                     <input type="text" name="keywords" class="form-control " placeholder="Từ khóa..." value="<?= $keywords ?>">
@@ -104,10 +106,10 @@ $msgType = getFlashData('msg_type');
                                     <a href="javascript:void(0)" class="btn btn-success"><i class="fas fa-tasks"></i></a>
                                 </td>
                                 <td>
-                                    <a href="<?= getLinkAdmin('group', 'edit', ['id' => $group['group_id']]) ?>" class="btn btn-info"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="<?= getLinkAdmin('groups', 'edit', ['id' => $group['group_id']]) ?>" class="btn btn-info"><i class="fas fa-pencil-alt"></i></a>
                                 </td>
                                 <td>
-                                    <a href="<?= getLinkAdmin('group', 'delete', ['id' => $group['group_id']]) ?>" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn xóa ?')"><i class="fas fa-trash"></i></a>
+                                    <a href="<?= getLinkAdmin('groups', 'delete', ['id' => $group['group_id']]) ?>" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn xóa ?')"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

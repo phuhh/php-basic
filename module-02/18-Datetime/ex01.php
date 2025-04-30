@@ -3,7 +3,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 /**
  * Xử lý tăng hoặc giảm chuỗi ngày giờ
  * 
- *    1. dùng hàm date_modify($dateTimeObject, $modifier)
+ *    1. dùng hàm date_modify($dateObj, $modifier) --> date object
  *    2. dùng hàm strtotime($modifier, $dateTime)
  */
 
@@ -13,6 +13,7 @@ echo $currentDate . '<br>';
 
 $currentTimestamp = strtotime($currentDate);
 $endTimestamp = strtotime('1 Year', $currentTimestamp);
+
 $endDate = date('Y-m-d H:s:i', $endTimestamp);
 echo $endDate;
 echo '<hr>';

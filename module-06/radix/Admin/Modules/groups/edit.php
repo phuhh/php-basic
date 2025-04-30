@@ -11,18 +11,18 @@ if (isGet()) {
     $body = getBody();
     // Lấy ID từ phương thức GET
     if (!empty($body['id'])) {
-        $oldData = first('radix_groups', "group_id = {$body['id']}");
-        if (!empty($oldData)) {
-            setFlashData('oldData', $oldData);
+        $group = first('radix_groups', "group_id = {$body['id']}");
+        if (!empty($group)) {
+            setFlashData('oldData', $group);
         } else {
             setFlashData('msg', 'Nhóm người dùng không tồn tại.');
             setFlashData('msg_type', 'danger');
-            redirect('/admin/?module=group');
+            redirect('/admin?module=group');
         }
     } else {
         setFlashData('msg', 'Liên kết không tồn tại.');
         setFlashData('msg_type', 'danger');
-        redirect('/admin/?module=group');
+        redirect('/admin?module=group');
     }
 }
 
@@ -64,7 +64,7 @@ if (isPost()) {
         setFlashData('old', $body);
     }
     //Result
-    redirect("/admin/?module=group&action=edit&id={$body['group_id']}");
+    redirect("/admin?module=group&action=edit&id={$body['group_id']}");
 }
 
 $msg = getFlashData('msg');
@@ -92,7 +92,7 @@ if (!empty($oldData))
         </div>
         <hr>
         <button type="submit" class="btn btn-success" tabindex='2'>Cập nhật</button>
-        <a href="<?= getLinkAdmin('group') ?>" class="btn btn-outline-secondary" tabindex='3'>Quay Lại</a>
+        <a href="<?= getLinkAdmin('groups') ?>" class="btn btn-outline-secondary" tabindex='3'>Quay Lại</a>
     </form>
 </div>
 

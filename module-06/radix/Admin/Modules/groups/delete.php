@@ -22,4 +22,4 @@ if (!empty($body['id'])) {
     setFlashData('msg', 'Liên kết không tồn tại.');
     setFlashData('msg_type', 'danger');
 }
-redirect('/admin/?module=group');
+redirect('/admin?module=group');

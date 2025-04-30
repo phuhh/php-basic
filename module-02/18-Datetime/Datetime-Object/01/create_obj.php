@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Giới thiệu và cách khỏi tạo object
+ * Giới thiệu và cách khởi tạo object
  * - Object Timezone
  * - Object Datetime
  * 

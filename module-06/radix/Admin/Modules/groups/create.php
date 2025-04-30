@@ -1,6 +1,5 @@
 <?php
 defined('_ACCESS_DENIED') or die('Access Denied !!!');
-// Thêm mới người dùng
 
 $data['pageTitle'] = 'Thêm mới nhóm người dùng';
 
@@ -46,7 +45,7 @@ if (isPost()) {
         setFlashData('old', $body);
     }
     //Result
-    redirect('/admin/?module=group&action=create');
+    redirect('/admin?module=group&action=create');
 }
 
 
@@ -71,7 +70,7 @@ $old = getFlashData('old');
         </div>
         <hr>
         <button type="submit" class="btn btn-primary" tabindex='2'>Tạo Mới</button>
-        <a href="<?= getLinkAdmin('group') ?>" class="btn btn-outline-secondary" tabindex='3'>Quay Lại</a>
+        <a href="<?= getLinkAdmin('groups') ?>" class="btn btn-outline-secondary" tabindex='3'>Quay Lại</a>
     </form>
 </div>
 

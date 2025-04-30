@@ -75,7 +75,7 @@ if (isPost()) {
 
                 sendMail($userEmail, $subject, $content);
 
-                redirect('/admin/?module=auth&action=login');
+                redirect('/admin?module=auth&action=login');
             } else {
                 setFlashData('msg', 'Lỗi hệ thống. Vui lòng liên hệ quản trị viên để hỗ trợ.');
                 setFlashData('msg_type', 'danger');
@@ -88,7 +88,7 @@ if (isPost()) {
         setFlashData('validation_errors', $validationErrors);
     }
 
-    redirect('/admin/?module=auth&action=reset&token=' . $inputToken);
+    redirect('/admin?module=auth&action=reset&token=' . $inputToken);
 }
 
 $msg = getFlashData('msg');

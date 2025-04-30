@@ -308,8 +308,7 @@ function getLinkAdmin($module, $action = null, $params = [])
 
 function formatDate($date, $format = 'd/m/Y H:i:s')
 {
-    if (empty($date)) return '';
+    if (empty($date)) return false;
     $dateObj = date_create($date);
-    if (!$dateObj) return '';
-    return date_format($dateObj, $format);
+    return $dateObj->format($format);
 }
