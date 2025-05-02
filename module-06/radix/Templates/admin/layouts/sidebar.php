@@ -76,6 +76,29 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item has-treeview<?= isActiveMenuSidebar('services') ? ' menu-open' : false ?>">
+                    <a href="#" class="nav-link<?= isActiveMenuSidebar('services') ? ' active' : false ?>">
+                        <i class="nav-icon fas fa-file-alt"></i>
+                        <p>
+                            Dịch Vụ
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= getLinkAdmin('services', 'create') ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thêm Mới</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= getLinkAdmin('services') ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh Sách</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item has-treeview<?= isActiveMenuSidebar('categoryBlog') ? ' menu-open' : false ?>">
                     <a href="#" class="nav-link<?= isActiveMenuSidebar('categoryBlog') ? ' active' : false ?>">
                         <i class="nav-icon fas fa-file-alt"></i>

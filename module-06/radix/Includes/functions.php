@@ -312,3 +312,39 @@ function formatDate($date, $format = 'd/m/Y H:i:s')
     $dateObj = date_create($date);
     return $dateObj->format($format);
 }
+
+function isFontIcon($str)
+{
+    if (strpos($str, '<i class="') !== false) {
+        return true;
+    }
+    return false;
+}
+
+
+function updateQueryString($queryString, $keyFind, $value = null)
+{
+    if (empty($queryString) || empty($keyFind)) return false;
+
+    $paramArr = explode('&', $queryString);
+    $paramArr = array_filter($paramArr);
+
+    if (empty($paramArr)) return false;
+
+    $indexFind = -1;
+
+    foreach ($paramArr as $i => $param) {
+        if (strpos($param, $keyFind) !== false) {
+            $indexFind = $i;
+            break;
+        }
+    }
+
+    if ($indexFind === -1) return false;
+
+    $itemArr = explode('=', $paramArr[$indexFind]);
+    $itemArr[1] = $value;
+    $itemStr = implode('=', $itemArr);
+    $paramArr[$indexFind] = $itemStr;
+    return implode('&', $paramArr);
+}

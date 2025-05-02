@@ -1,6 +1,8 @@
 <?php
 
 /**
+ * Trong PHP String mutable
+ * 
  * Chú ý:
  * 
  * 1 - Bản chất của chuỗi là 1 mảng ký tự.

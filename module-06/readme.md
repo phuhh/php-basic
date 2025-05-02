@@ -33,8 +33,15 @@ Các bước xây dựng website
    4.6.3.1. Đang đăng nhập ẩn nút xóa và không được xóa chính bản thân mình.
    4.6.3.2. Đối với tài khoản khác khi xóa tài khoản, xóa luôn login token người đó --> để tự động logout hệ thống
    4.6.3.3. Các bài viết liên quan người dùng xóa
-   4.6.3.3.1. Cách 1: Xóa các bài viết liên quan người dùng đó
-   4.6.3.3.2. Cách 2: Chuyển các bài viết đó sang người khác.
+
+   - Cách 1: Xóa các bài viết liên quan người dùng đó
+   - Cách 2: Chuyển các bài viết đó sang người khác.
+
+     4.7. Xây dựng module services (lists, create, update, delete)
+     4.7.1 Hiển danh sách các dịch vụ
+     4.7.1.1. Xử lý hiển thị icon và images
+     4.7.1.2. Xử lý hiển thị tên người dùng tạo ra
+     4.7.1.3. Xử lý lọc dữ liệu theo người dùng và tìm kiếm theo tên dịch vụ
 
 5. Xây dựng trang người dùng
 6. Kiểm tra và xử lý lỗi

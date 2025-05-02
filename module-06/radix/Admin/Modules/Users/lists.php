@@ -16,7 +16,7 @@ $condition = '';
 if (isGet()) {
     $body = getBody();
 
-    if (isset($body['group'])) {
+    if (!empty($body['group'])) {
         $group_id = trim($body['group']);
 
         $operator = 'WHERE ';
@@ -24,19 +24,18 @@ if (isGet()) {
             $operator = ' AND ';
         }
 
-        if ($group_id != 0)
-            $condition .= $operator . 'ru.group_id = ' . $group_id;
+        $condition .= $operator . 'ru.group_id = ' . $group_id;
     }
 
-    if (isset($body['status'])) {
+    if (isset($body['status']) && ($body['status'] == 1 || $body['status'] == 0)) {
         $status = trim($body['status']);
 
         $operator = 'WHERE ';
         if (!empty($condition) && strpos('WHERE', $condition) >= 0) {
             $operator = ' AND ';
         }
-        if ($status == 1 || $status == 0)
-            $condition .= $operator . 'ru.user_status = ' . $status;
+
+        $condition .= $operator . 'ru.user_status = ' . $status;
     }
 
     if (!empty($body['keywords'])) {
@@ -68,7 +67,6 @@ FROM radix_users AS ru
 INNER JOIN radix_groups AS rg ON rg.group_id = ru.group_id
  ' . $condition . ' ORDER BY ru.user_create_at DESC';
 $sql .= ' LIMIT ' . $offset . ',' . $limit;
-
 $users = getRaw($sql);
 
 $sqlGroups = 'SELECT group_id, group_name FROM radix_groups';
@@ -95,7 +93,7 @@ $msgType = getFlashData('msg_type');
         <div class="row mb-3">
             <div class="col-md-3">
                 <select name="group" class="form-control">
-                    <option value="0">Chọn nhóm</option>
+                    <option value="">Chọn nhóm</option>
                     <?php
                     if (!empty($groups)):
                         foreach ($groups as $group):
