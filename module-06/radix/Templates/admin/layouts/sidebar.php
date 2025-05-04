@@ -19,68 +19,23 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" data-accordion="false" role="menu">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="<?= getLinkAdmin('dashboard') ?>" class="nav-link<?= isActiveMenuSidebar('dashboard') ? ' active' : false ?>">
+                    <a href="<?= getLinkAdmin('dashboard') ?>" class="nav-link<?= isActiveMenuSidebar('dashboard') ? ' active' : '' ?>">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
-                            Tổng Quát
+                            Tổng quan
                         </p>
                     </a>
                 </li>
-                <li class="nav-item has-treeview<?= isActiveMenuSidebar('groups') ? ' menu-open' : false ?>">
-                    <a href="#" class="nav-link<?= isActiveMenuSidebar('groups') ? ' active' : false ?>">
-                        <i class="nav-icon fas fa-file-alt"></i>
+
+                <li class="nav-item has-treeview<?= isActiveMenuSidebar('services') ? ' menu-open' : '' ?>">
+                    <a href="javascript:void(0)" class="nav-link<?= isActiveMenuSidebar('services') ? ' active' : '' ?>">
+                        <i class="nav-icon fab fa-servicestack"></i>
                         <p>
-                            Nhóm Người Dùng
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?= getLinkAdmin('groups', 'create') ?>" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Thêm Mới</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= getLinkAdmin('groups') ?>" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh Sách</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview<?= isActiveMenuSidebar('users') ? ' menu-open' : false ?>">
-                    <a href="#" class="nav-link<?= isActiveMenuSidebar('users') ? ' active' : false ?>">
-                        <i class="nav-icon fas fa-file-alt"></i>
-                        <p>
-                            Người Dùng
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?= getLinkAdmin('users', 'create') ?>" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Thêm Mới</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= getLinkAdmin('users') ?>" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh Sách</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview<?= isActiveMenuSidebar('services') ? ' menu-open' : false ?>">
-                    <a href="#" class="nav-link<?= isActiveMenuSidebar('services') ? ' active' : false ?>">
-                        <i class="nav-icon fas fa-file-alt"></i>
-                        <p>
-                            Dịch Vụ
+                            Dịch vụ
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -88,63 +43,66 @@
                         <li class="nav-item">
                             <a href="<?= getLinkAdmin('services', 'create') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Thêm Mới</p>
+                                <p>Thêm mới</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= getLinkAdmin('services') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Danh Sách</p>
+                                <p>Danh sách</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview<?= isActiveMenuSidebar('categoryBlog') ? ' menu-open' : false ?>">
-                    <a href="#" class="nav-link<?= isActiveMenuSidebar('categoryBlog') ? ' active' : false ?>">
-                        <i class="nav-icon fas fa-file-alt"></i>
+
+                <li class="nav-item has-treeview<?= isActiveMenuSidebar('groups') ? ' menu-open' : '' ?>">
+                    <a href="javascript:void(0)" class="nav-link<?= isActiveMenuSidebar('groups') ? ' active' : '' ?>">
+                        <i class="nav-icon fas fa-users-cog"></i>
                         <p>
-                            Danh Mục Bài Viết
+                            Nhóm người dùng
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= getLinkAdmin('categoryBlog', 'add') ?>" class="nav-link">
+                            <a href="<?= getLinkAdmin('groups', 'create') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Thêm Mới</p>
+                                <p>Thêm mới</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= getLinkAdmin('categoryBlog') ?>" class="nav-link">
+                            <a href="<?= getLinkAdmin('groups') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Danh Sách</p>
+                                <p>Danh sách</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview<?= isActiveMenuSidebar('blog') ? ' menu-open' : false ?>">
-                    <a href="#" class="nav-link<?= isActiveMenuSidebar('blog') ? ' active' : false ?>">
-                        <i class="nav-icon fas fa-file"></i>
+
+                <li class="nav-item has-treeview<?= isActiveMenuSidebar('users') ? ' menu-open' : '' ?>">
+                    <a href="javascript:void(0)" class="nav-link<?= isActiveMenuSidebar('users') ? ' active' : '' ?>">
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Bài Viết
+                            Người dùng
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= getLinkAdmin('blog', 'add') ?>" class="nav-link">
+                            <a href="<?= getLinkAdmin('users', 'create') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Thêm Mới</p>
+                                <p>Thêm mới</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= getLinkAdmin('blog') ?>" class="nav-link">
+                            <a href="<?= getLinkAdmin('users') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Danh Sách</p>
+                                <p>Danh sách</p>
                             </a>
                         </li>
                     </ul>
                 </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

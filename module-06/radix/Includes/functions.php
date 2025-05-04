@@ -12,7 +12,7 @@ function loadLayout($layoutName = 'header', $data = [], $isAdmin = false)
 {
     $dir = '/';
     if ($isAdmin) {
-        $dir = '/' . 'admin/';
+        $dir .= 'admin/';
     }
     if (file_exists(_WEB_PATH_TEMPLATES . $dir . 'layouts/' . $layoutName . '.php'))
         require_once _WEB_PATH_TEMPLATES . $dir . 'layouts/' . $layoutName . '.php';
@@ -282,7 +282,7 @@ function autoRemoveLoginToken()
 
 function isActiveMenuSidebar($module)
 {
-    if (isset(getBody()['module']) && strtolower(getBody()['module']) === strtolower(trim($module))) {
+    if (!empty(getBody()['module']) && strtolower(getBody()['module']) === strtolower(trim($module))) {
         return true;
     }
     return false;
